@@ -1,0 +1,255 @@
+div.test-results-view {
+    height: 615px;
+}
+
+div.test-results-view div.test-results-summary-container {
+    height: 35%;
+    display: -webkit-box;
+}
+
+div.details-separator {
+    width: 1px;
+    background: #dfe1e6;
+    margin: 10px 0;
+}
+
+div#test-results-summary-graph-canvas svg,
+div#test-results-summary-overall-graph-canvas svg {
+    margin: auto
+}
+
+div.test-results-view div.test-results-table-container {
+    height: 65%;
+}
+
+div.test-results-summary-details {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel {
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status {
+    flex: 0 0 140px;
+    padding: 10px;
+    display: flex;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.card {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    margin: 8px;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total {
+    flex: 0 0 25%;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total div.total-count,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed div.not-executed-count {
+    margin: 5px 0;
+    padding: 0 10px;
+    text-align: left;
+    display: flex;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total div.total-count img,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed div.not-executed-count img {
+    height: 30px;
+    width: 30px;
+    margin: auto 10px auto 0;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total div.total-count span,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed div.not-executed-count span {
+    font-size: 50px;
+    cursor: pointer;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total div.total-count span:hover,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed div.not-executed-count span:hover {
+    text-decoration: underline;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.total div.total-count span {
+    color: #656565;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed div.not-executed-count span {
+    color: #ffca0f;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed {
+    flex: 0 0 40%;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types {
+    display: flex;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass {
+    flex: 0 0 50%;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass div.pass-count,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed div.failed-count  {
+    padding: 0 10px;
+    text-align: left;
+    display: flex;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass div.pass-count img,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed div.failed-count img  {
+    height: 25px;
+    width: 25px;
+    margin: auto 10px auto 0;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass div.pass-count span,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed div.failed-count span  {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass div.pass-count span:hover,
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed div.failed-count span:hover {
+    text-decoration: underline;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.pass div.pass-count span {
+    color: #39b39b;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed div.failed-count span  {
+    color: #e75236;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.executed div.executed-types div.failed {
+    flex: 1;
+}
+
+div.test-results-summary-details div.test-results-summary-details-panel div.selected-eentity-status div.not-executed {
+    flex: 0 0 25%;
+}
+
+div.test-results-summary-graph {
+    width: 20%;
+}
+
+div.test-results-summary-overall-graph {
+    width: 20%;
+}
+
+div.test-results-table-header {
+    height: 41px;
+}
+
+div.test-results-table-content {
+    height: calc(100% - 41px);
+}
+
+table.controller .line.level1 .vert {
+    background-color: #FFFFFF;
+}
+
+table.controller .line.level1 .horz {
+    background-color: #FFFFFF;
+}
+
+table.controller .line.level2 .vert {
+    background-color: #FFFFFF;
+}
+
+table.controller .line.level2 .horz {
+    background-color: #FFFFFF;
+}
+
+table.controller .line.level3 .vert {
+    background-color: #FFFFFF;
+}
+
+table.controller .line.level3 .horz {
+    background-color: #FFFFFF;
+}
+
+tbody#test-results-table-tbody tr td:nth-child(1) {
+    width: 120px;
+}
+
+table.aui:not(.aui-table-list) > tbody#test-results-table-tbody > tr > td {
+    border-bottom: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+}
+
+.aui-progress-tracker-step>span:before, .aui-progress-tracker-step>a:before{
+    height: 15px;
+    width: 15px;
+}
+
+.aui-progress-tracker .aui-progress-tracker-step{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    top: 1px;
+    z-index: 10;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group input,
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group textarea,
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group input,
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group textarea {
+    max-width: 100% !important;
+    background: transparent;
+    color: #000;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel {
+    width: 100%;
+    max-width: 100% !important;
+    font-size: 11px;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(1),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(1) {
+    width: 5%;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(2),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(2) {
+    width: 20%;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(3),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(3) {
+    width: 20%;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(4),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(4) {
+    width: 20%;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(5),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(5) {
+    width: 20%;
+}
+
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel thead tr td:nth-child(6),
+section#show-tc-dialog div.aui-dialog2-content form.aui div.field-group table.jexcel tbody tr td:nth-child(6) {
+    width: 15%;
+}
+
+#steps-table{
+    table-layout: auto;
+    width: 100%; 
+    border: 1px solid #c1c7d0;
+}
+
+div#test-reports-release-filter {
+    width: 250px;
+}
+
+

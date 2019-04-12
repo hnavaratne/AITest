@@ -1,0 +1,23 @@
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+$webResourceManager.requireResource("com.virtusa.gto.plugins:aitest-resources")
+<div class="rci">
+    <script>#include("js/rci.js");</script>
+    <div class="devrci">
+        #set($Integer = 0)
+        #if($value)
+            #set($input1InInteger = $Integer.parseInt($value))
+        #else
+            #set($input1InInteger = 0)
+        #end
+        #foreach($i in [1..5])
+        #if($i <= $input1InInteger)
+        <span class="aui-icon aui-icon-small aui-iconfont-star-filled" rating=$i user="" style="color: orange;"></span>
+        #else
+        <span class="aui-icon aui-icon-small aui-iconfont-new-star" rating=$i user=""></span>
+        #end
+        #end
+        <input class="text" id="$customField.id" name="$customField.id" type="hidden"
+               value="$textutils.htmlEncode($!value)"/>
+    </div>
+</div>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)

@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin plugins-version="2" name="${project.name}" key="${project.groupId}.${project.artifactId}">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+        <!--<param name="atlassian-licensing-enabled">true</param>-->
+    </plugin-info>
+    <!-- add our i18n resource -->
+    <resource name="i18n" location="aitest" type="i18n"/>
+    <!--add our web resources -->
+    <web-resource name="aitest Web Resources" key="aitest-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:jquery-ui-other</dependency>
+        <dependency>com.atlassian.auiplugin:aui-experimental-iconfont</dependency>
+        <resource name="aitest.css" location="/css/aitest.css" type="download"/>
+        <!--<resource name="aitest.js" location="/js/aitest.js" type="download"/>-->
+        <resource name="rci.css" location="/css/rci.css" type="download"/>
+        <resource name="rci.js" location="/js/rci.js" type="download"/>
+        <resource name="rangeslider.js" location="/js/rangeslider.js" type="download"/>
+        <resource name="rangeslider.css" location="/css/rangeslider.css" type="download"/>
+        <resource name="testDesignEffort.js" location="/js/testDesignEffort.js" type="download"/>
+        <resource name="test-design-effort.css" location="/css/test-design-effort.css" type="download"/>
+        <resource name="test-execution-effort.js" location="/js/test-execution-effort.js" type="download"/>
+        <resource name="test-execution-effort.css" location="/css/test-execution-effort.css" type="download"/>
+        <resource name="select.js" location="/js/select.js" type="download"/>
+        <resource name="angular.min.js" location="/js/angular.min.js" type="download"/>
+        <resource name="angular-route.min.js" location="/js/angular-route.min.js" type="download"/>
+        <resource name="ment.min.js" location="/js/ment.min.js" type="download"/>
+        <resource name="ng-context-menu.min.js" location="/js/ng-context-menu.min.js" type="download"/>
+        <resource name="tinymce.min.js" location="/js/tinymce.min.js" type="download"/>
+        <resource name="clipboard.min.js" location="/js/clipboard.min.js" type="download"/>
+        <resource name="ngclipboard.js" location="/js/ngclipboard.js" type="download"/>
+        <resource name="svg-assets-cache.js" location="/js/svg-assets-cache.js" type="download"/>
+        <!-- Custom Fields -->
+        <!-- Test Case management imports -->
+        <resource name="jquery.jexcel.css" location="/css/jquery.jexcel.css" type="download"/>
+        <resource name="jquery.jexcel.js" location="/js/jquery.jexcel.js" type="download"/>
+        <resource name="d3.js" location="/js/d3.js" type="download"/>
+        <resource name="donut-pie-chart.js" location="/js/donut-pie-chart.js" type="download"/>
+        <resource name="tabelizer.css" location="/css/tabelizer.css" type="download"/>
+        <resource name="jquery.tabelizer.js" location="/js/jquery.tabelizer.js" type="download"/>
+        <resource name="hunterPopup.css" location="/css/hunterPopup.css" type="download"/>
+        <resource name="jquery-popup.js" location="/js/jquery-popup.js" type="download"/>
+        <resource name="jquery.caret.js" location="/js/jquery.caret.js" type="download"/>
+        <resource name="jquery.caret.min.js" location="/js/jquery.caret.min.js" type="download"/>
+        <resource name="angular-sanitize.min.js" location="/js/angular-sanitize.min.js" type="download"/>
+        <!-- Test Case designing -->
+        <resource name="datatables.min.css" location="/css/datatables.min.css" type="download"/>
+        <resource name="test-case-designing.css" location="/css/test-management/test-case-designing.css"
+                  type="download"/>
+        <resource name="test-case-designing.js" location="/js/test-management/test-case-designing.js" type="download"/>
+        <resource name="datatables.min.js" location="/js/datatables.min.js" type="download"/>
+        <resource name="testManagement.js" location="/js/testManagement.js" type="download"/>
+        <resource name="tableController.js" location="/js/tableController.js" type="download"/>
+        <!-- Test Planning -->
+        <resource name="test-planning.css" location="/css/test-management/test-planning.css" type="download"/>
+        <resource name="test-planning.js" location="/js/test-management/test-planning.js" type="download"/>
+        <!-- Test Execution -->
+        <resource name="test-execution.css" location="/css/test-management/test-execution.css" type="download"/>
+        <resource name="test-execution.js" location="/js/test-management/test-execution.js" type="download"/>
+        <!-- Test Result -->
+        <resource name="test-reports.css" location="/css/test-management/test-reports.css" type="download"/>
+        <resource name="test-reports.js" location="/js/test-management/test-reports.js" type="download"/>
+        <!-- My Task -->
+        <resource name="my-task.css" location="/css/test-management/my-task.css" type="download"/>
+        <resource name="my-tasks.js" location="/js/test-management/my-tasks.js" type="download"/>
+        <!--TestCase Defects-->
+        <resource name="test-case-defects.css" location="/css/test-management/test-case-defects.css" type="download"/>
+        <resource name="test-case-defects.js" location="/js/test-management/test-case-defects.js" type="download"/>
+        <!-- Test Scripts Custom Field-->
+        <resource name="scripts-custom-field.css" location="/css/custom-fields/scripts-custom-field.css"
+                  type="download"/>
+        <!--TestLink-->
+        <resource name="test-link.js" location="/js/test-management/test-link.js" type="download"/>
+        <resource name="test-link.css" location="/css/test-management/test-link.css" type="download"/>
+        <!--Test Scheduler-->
+        <resource name="schedule-view.js" location="/js/test-management/schedule-view.js" type="download"/>
+        <resource name="schedule-view.css" location="/css/test-management/schedule-view.css" type="download"/>
+        <!--Agent Registry-->
+        <resource name="agent-registry.css" location="/css/test-management/agent-registry.css" type="download"/>
+        <!--<resource name="ng-table.js" location="/js/ng-table.js" type="download"/>-->
+        <!--<resource name="md-data-table-style.css" location="css/md-data-table-style.css" type="download"/>-->
+        <resource name="agent-registry.js" location="/js/test-management/agent-registry.js" type="download"/>
+        <!-- Mindmap Dependency -->
+        <resource name="common.css" location="/css/mindmap/common.css" type="download"/>
+        <resource name="app.css" location="/css/mindmap/app.css" type="download"/>
+        <resource name="jquery-ui-1.8.7.custom.css" location="/css/mindmap/Aristo/jquery-ui-1.8.7.custom.css"
+                  type="download"/>
+        <resource name="jquery.miniColors.css" location="/css/mindmap/minicolors/jquery.miniColors.css"
+                  type="download"/>
+        <resource name="filestack.js" location="/js/mindmap/filestack.js" type="download"/>
+        <resource name="FileSaver.min.js" location="/js/mindmap/FileSaver.min.js" type="download"/>
+        <resource name="jquery-ui-1.8.11.custom.min.js" location="/js/mindmap/libs/jquery-ui-1.8.11.custom.min.js"
+                  type="download"/>
+        <resource name="dragscrollable.js" location="/js/mindmap/libs/dragscrollable.js" type="download"/>
+        <resource name="jquery.hotkeys.js" location="/js/mindmap/libs/jquery.hotkeys.js" type="download"/>
+        <resource name="jquery.mousewheel.js" location="/js/mindmap/libs/jquery.mousewheel.js" type="download"/>
+        <resource name="jquery.minicolors.js" location="/js/mindmap/libs/jquery.minicolors.js" type="download"/>
+        <resource name="jquery.tmpl.js" location="/js/mindmap/libs/jquery.tmpl.js" type="download"/>
+        <resource name="events.js" location="/js/mindmap/libs/events.js" type="download"/>
+        <resource name="XMLWriter.js" location="/js/XMLWriter.js" type="download"/>
+        <resource name="MindMaps.js" location="/js/mindmap/MindMaps.js" type="download"/>
+        <resource name="Command.js" location="/js/mindmap/Command.js" type="download"/>
+        <resource name="CommandRegistry.js" location="/js/mindmap/CommandRegistry.js" type="download"/>
+        <resource name="Action.js" location="/js/mindmap/Action.js" type="download"/>
+        <resource name="Util.js" location="/js/mindmap/Util.js" type="download"/>
+        <resource name="Point.js" location="/js/mindmap/Point.js" type="download"/>
+        <resource name="Document.js" location="/js/mindmap/Document.js" type="download"/>
+        <resource name="MindMap.js" location="/js/mindmap/MindMap.js" type="download"/>
+        <resource name="Node.js" location="/js/mindmap/Node.js" type="download"/>
+        <resource name="NodeMap.js" location="/js/mindmap/NodeMap.js" type="download"/>
+        <resource name="UndoManager.js" location="/js/mindmap/UndoManager.js" type="download"/>
+        <resource name="UndoController.js" location="/js/mindmap/UndoController.js" type="download"/>
+        <resource name="ClipboardController.js" location="/js/mindmap/ClipboardController.js" type="download"/>
+        <resource name="ZoomController.js" location="/js/mindmap/ZoomController.js" type="download"/>
+        <resource name="ShortcutController.js" location="/js/mindmap/ShortcutController.js" type="download"/>
+        <resource name="HelpController.js" location="/js/mindmap/HelpController.js" type="download"/>
+        <resource name="FloatPanel.js" location="/js/mindmap/FloatPanel.js" type="download"/>
+        <resource name="Navigator.js" location="/js/mindmap/Navigator.js" type="download"/>
+        <resource name="Inspector.js" location="/js/mindmap/Inspector.js" type="download"/>
+        <resource name="ToolBar.js" location="/js/mindmap/ToolBar.js" type="download"/>
+        <resource name="StatusBar.js" location="/js/mindmap/StatusBar.js" type="download"/>
+        <resource name="CanvasDrawingTools.js" location="/js/mindmap/CanvasDrawingTools.js" type="download"/>
+        <resource name="CanvasView.js" location="/js/mindmap/CanvasView.js" type="download"/>
+        <resource name="CanvasPresenter.js" location="/js/mindmap/CanvasPresenter.js" type="download"/>
+        <resource name="ApplicationController.js" location="/js/mindmap/ApplicationController.js" type="download"/>
+        <resource name="MindMapModel.js" location="/js/mindmap/MindMapModel.js" type="download"/>
+        <resource name="NewDocument.js" location="/js/mindmap/NewDocument.js" type="download"/>
+        <resource name="OpenDocument.js" location="/js/mindmap/OpenDocument.js" type="download"/>
+        <resource name="SaveDocument.js" location="/js/mindmap/SaveDocument.js" type="download"/>
+        <resource name="MainViewController.js" location="/js/mindmap/MainViewController.js" type="download"/>
+        <resource name="Storage.js" location="/js/mindmap/Storage.js" type="download"/>
+        <resource name="Event.js" location="/js/mindmap/Event.js" type="download"/>
+        <resource name="Notification.js" location="/js/mindmap/Notification.js" type="download"/>
+        <resource name="StaticCanvas.js" location="/js/mindmap/StaticCanvas.js" type="download"/>
+        <resource name="PrintController.js" location="/js/mindmap/PrintController.js" type="download"/>
+        <resource name="ExportMap.js" location="/js/mindmap/ExportMap.js" type="download"/>
+        <resource name="AutoSaveController.js" location="/js/mindmap/AutoSaveController.js" type="download"/>
+        <resource name="FilePicker.js" location="/js/mindmap/FilePicker.js" type="download"/>
+        <resource name="block-ui.js" location="/js/block-ui.js" type="download"/>
+        <resource name="oscar-integration.js" location="/js/test-management/oscar-integration.js" type="download"/>
+        <resource name="oscar.css" location="/css/test-management/oscar.css" type="download"/>
+        <resource name="circle-progress.min.js" location="/js/circle-progress.min.js" type="download"/>
+
+        <resource name="images/mindmap/ajax-loader.gif" location="/images/mindmap/ajax-loader.gif">
+            <param name="content-type" value="image/gif"/>
+        </resource>
+        <resource name="images/mindmap/bg_fallback.png" location="/images/mindmap/bg_fallback.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/circle.gif" location="/images/mindmap/circle.gif">
+            <param name="content-type" value="image/gif"/>
+        </resource>
+        <resource name="images/mindmap/closedhand.png" location="/images/mindmap/closedhand.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/creator-nub-sprite.png" location="/images/mindmap/creator-nub-sprite.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/gradient.png" location="/images/mindmap/gradient.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/grid.gif" location="/images/mindmap/grid.gif">
+            <param name="content-type" value="image/gif"/>
+        </resource>
+        <resource name="images/mindmap/icon_sprite.png" location="/images/mindmap/icon_sprite.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/line.gif" location="/images/mindmap/line.gif">
+            <param name="content-type" value="image/gif"/>
+        </resource>
+        <resource name="images/mindmap/openhand.png" location="/images/mindmap/openhand.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/plus-minus.png" location="/images/mindmap/plus-minus.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/progress_bar.gif" location="/images/mindmap/progress_bar.gif">
+            <param name="content-type" value="image/gif"/>
+        </resource>
+        <resource name="images/mindmap/rainbow.png" location="/images/mindmap/rainbow.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/slider_handles.png" location="/images/mindmap/slider_handles.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/trigger.png" location="/images/mindmap/trigger.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/ui-icons_222222_256x240.png"
+                  location="/images/mindmap/ui-icons_222222_256x240.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <resource name="images/mindmap/ui-icons_454545_256x240.png"
+                  location="/images/mindmap/ui-icons_454545_256x240.png">
+            <param name="content-type" value="image/png"/>
+        </resource>
+        <!-- Images -->
+        <resource name="images/test-management/total.svg" location="/images/test-management/total.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/pass.svg" location="/images/test-management/pass.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/failed.svg" location="/images/test-management/failed.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/in-progress.svg" location="/images/test-management/in-progress.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/ai-brain.svg" location="/images/test-management/ai-brain.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/excel.svg" location="/images/test-management/excel.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/generate-oscar.svg"
+                  location="/images/test-management/generate-oscar.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/back.svg" location="/images/test-management/back.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/save.svg" location="/images/test-management/save.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/script.svg" location="/images/test-management/script.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/robotics-n.svg" location="/images/test-management/robotics-n.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/plus-solid.svg" location="/images/test-management/plus-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/coins-solid.svg" location="/images/test-management/coins-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/users-solid.svg" location="/images/test-management/users-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/key-solid.svg" location="/images/test-management/key-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/clock-solid.svg" location="/images/test-management/clock-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/users-cog-solid.svg"
+                  location="/images/test-management/users-cog-solid.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/copy.svg" location="/images/test-management/copy.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/agent.svg" location="/images/test-management/agent.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/key.svg" location="/images/test-management/key.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/size.svg" location="/images/test-management/size.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/time.svg" location="/images/test-management/time.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/search.svg" location="/images/test-management/search.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/pool-view.svg" location="/images/test-management/pool-view.svg">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/deletepool.svg" location="/images/test-management/deletepool.svg"
+                  type="download">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/agent-pool.svg" location="/images/test-management/agent-pool.svg"
+                  type="download">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/test-management/add-pool.svg" location="/images/test-management/add-pool.svg"
+                  type="download">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/viewissue/testcaseicon.svg" location="/images/viewissue/testcaseicon.svg" type="download">
+            <param name="content-type" value="image/svg"/>
+        </resource>
+        <resource name="images/" location="/images" type="download"/>
+        <!--<resource name="bootstrap.min.css" location="/css/bootstrap.min.css" type="download"/>-->
+        <!--<resource name="glyphicons-halflings-regular.eot" location="/fonts/glyphicons-halflings-regular.eot" type="download"/>-->
+        <!--<resource name="glyphicons-halflings-regular.svg" location="/fonts/glyphicons-halflings-regular.svg" type="download"/>-->
+        <!--<resource name="glyphicons-halflings-regular.ttf" location="/fonts/glyphicons-halflings-regular.ttf" type="download"/>-->
+        <!--<resource name="glyphicons-halflings-regular.woff" location="/fonts/glyphicons-halflings-regular.woff" type="download"/>-->
+        <!--<resource name="glyphicons-halflings-regular.woff2" location="/fonts/glyphicons-halflings-regular.woff2" type="download"/>-->
+        <!--<resource name="bootstrap.min.js" location="/js/bootstrap.min.js" type="download"/>-->
+        <!--<resource name="jquery.min.js" location="/js/jquery.min.js" type="download"/>-->
+        <context>atl.general</context>
+        <context>jira.userprofile</context>
+        <context>jira.view.issue</context>
+    </web-resource>
+    <web-resource name="heatMap Web Resources" key="heat-map-resource">
+        <!-- E Charts JS files-->
+        <resource name="echarts.min.js" location="/js/echarts.min.js" type="download"/>
+        <resource name="bmap.min.js" location="/js/bmap.min.js" type="download"/>
+        <resource name="dataTool.min.js" location="/js/dataTool.min.js" type="download"/>
+        <resource name="echarts-gl.min.js" location="/js/echarts-gl.min.js" type="download"/>
+        <resource name="ecStat.min.js" location="/js/ecStat.min.js" type="download"/>
+        <resource name="world.js" location="/js/world.js" type="download"/>
+    </web-resource>
+    <!--angular material-->
+    <web-resource name="angularMaterial Web Resources" key="angular-material-resource">
+        <resource name="angular-message.js" location="/js/angular-message.js"/>
+        <resource name="angular-aria.min.js" location="/js/angular-aria.min.js" type="download"/>
+        <resource name="angular-animate.min.js" location="/js/angular-animate.min.js" type="download"/>
+
+        <resource name="md-data-table.css" location="/css/md-data-table.css" type="download"/>
+        <!--<resource name="svg-assets-cache.js" location="/js/svg-assets-cache.js" type="download"/>-->
+        <resource name="material.min.css" location="/css/material.min.css" type="download"/>
+        <resource name="angular-material.min.js" location="/js/angular-material.min.js" type="download"/>
+        <resource name="md-data-table.min.js" location="/js/md-data-table.min.js" type="download"/>
+    </web-resource>
+    <web-resource  name="cron Web Resources" key="cron-resource">
+        <!--<resource name="angular-cron-generator.min.css" location="/css/angular-cron-generator.min.css" type="download"/>
+        <resource name="cron-gen.min.js" location="/js/cron-gen.min.js" type="download"/>
+        <resource name="cron-gen.min.css" location="/css/cron-gen.min.css" type="download"/>-->
+    </web-resource>
+    <web-resource name="switch Web Resources" key="switch-resource">
+        <resource name="jtoggler.js" location="/js/jtoggler.js" type="download"/>
+        <resource name="jtoggler.styles.css" location="/css/jtoggler.styles.css" type="download"/>
+    </web-resource>
+    <resource name="oscar/" location="/oscar" type="download"/>
+    <resource name="RQMeasurement.py" location="/ml/RQMeasurswitch-resourceement.py" type="download"/>
+    <web-section name="requirementSection" key="requirement-section" location="requirement-item-link" weight="1000"
+                 i18n-name-key="requirement-section.name">
+        <descriptijquery-cron.json key="requirement-section.description">The requirementSection Plugin</descriptijquery-cron.json>
+    </web-section>
+    <!--<web-item name="Requirements" key="requirements" weight="1000" i18n-name-key="requirements.name"-->
+    <!--section="system.top.navigation.bar">-->
+    <!--<description key="requirements.description">The Requirements Plugin</description>-->
+    <!--<label key="requirements.label"/>-->
+    <!--<link linkId="requirement-item-link">deleteme</link>-->
+    <!--</web-item>-->
+    <!--<web-item name="Virtusa Site" key="virtusa-site" weight="1000" i18n-name-key="virtusa-site.name"-->
+    <!--section="requirement-item-link/requirement-section">-->
+    <!--<description key="virtusa-site.description">The Virtusa Site Plugin</description>-->
+    <!--<label key="virtusa-site.label"/>-->
+    <!--<link linkId="virtusa-site-link">/secure/RequirementView.jspa</link>-->
+    <!--<param name="target" value="_blank"/>-->
+    <!--</web-item>-->
+    <!--<webwork1 key="requirementIssue" name="RequirementIssueView" i18n-name-key="REQ-ISSUE">-->
+    <!--<description key="REQ-ISSUE-DESCRIPTION">Views Requirement Issues</description>-->
+    <!--<actions>-->
+    <!--<action name="com.virtusa.gto.plugins.aitestst.webwork.RequirementAction" alias="RequirementView">-->
+    <!--<view name="requirement-issue-view">-->
+    <!--/templates/requirementIssue/requirementaction/requirement-issue-view.vm-->
+    <!--</view>-->
+    <!--<result type="rawText"/>-->
+    <!--</action>-->
+    <!--</actions>-->
+    <!--</webwork1>-->
+    <!-- Beginning of Test Management section -->
+    <web-section name="Test Management" i18n-name-key="test-management.name" key="test-management-section"
+                 location="test-management-item-link" weight="1000">
+        <description key="test-management.description">The Test Management Plugin</description>
+        <label key="test-management.label"/>
+    </web-section>
+    <web-item name="Test Management" key="test-management" weight="1000" i18n-name-key="test-management.name"
+              section="system.top.navigation.bar">
+        <description key="test-management.description">The Test Management Plugin</description>
+        <label key="test-management.label"/>
+        <link linkId="test-management-item-link">delete-me</link>
+        <condition class="com.virtusa.gto.plugins.aitest.util.UserLoggedInCondition"/>
+        <!--<condition class="com.virtusa.gto.plugins.aitest.util.LicenseCondition"/>-->
+    </web-item>
+    <web-item name="Test Case Designing" key="test-case-designing" weight="1000"
+              i18n-name-key="test-case-designing.name" section="test-management-item-link/test-management-section">
+        <description key="test-case-designing.description">The Test Case Designing Plugin</description>
+        <label key="test-case-designing.label"/>
+        <link linkId="test-case-designing-link">/secure/TestCaseDesigningView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item name="Test Planning" key="test-planning" weight="1000" i18n-name-key="test-planning.name"
+              section="test-management-item-link/test-management-section">
+        <description key="test-planning.description">The Test Planning Plugin</description>
+        <label key="test-planning.label"/>
+        <link linkId="test-planning-link">/secure/TestPlanningView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item name="Test Execution" key="test-execution" weight="1000" i18n-name-key="test-execution.name"
+              section="test-management-item-link/test-management-section">
+        <description key="test-execution.description">The Test Execution Plugin</description>
+        <label key="test-execution.label"/>
+        <link linkId="test-execution-link">/secure/TestExecutionView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item name="Test Reports" key="test-reports" weight="1000" i18n-name-key="test-reports.name"
+              section="test-management-item-link/test-management-section">
+        <description key="test-reports.description">The Test Reports Plugin</description>
+        <label key="test-reports.label"/>
+        <link linkId="test-reports-link">/secure/TestReportsView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item name="TestCase Defects" i18n-name-key="test-case-defects.name" key="test-case-defects"
+              section="test-management-item-link/test-management-section" weight="1000">
+        <description key="test-case-defects.description">The TestCase Defects Plugin</description>
+        <label key="test-case-defects.label"/>
+        <link linkId="test-case-defects-link">/secure/TestCaseDefectsView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item name="Oscar Integration" key="oscar-integration" weight="1000" i18n-name-key="oscar-integration.name">
+        <description key="oscar-integration.description">Oscar Integration Plugin</description>
+        <label key="oscar-integration.label"/>
+        <link linkId="oscar-integration-link">/secure/OscarIntegrationView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-section name="Test Management Util" i18n-name-key="test-management-util.name"
+                 key="test-management-util-section" location="test-management-item-link" weight="1000">
+        <description key="test-management-util.description">The Test Management Util Plugin</description>
+        <label key="test-management-util.label"/>
+    </web-section>
+    <web-item name="AgentRegistryWi" i18n-name-key="agent-registry-wi.name" key="agent-registry-wi"
+              section="test-management-item-link/test-management-util-section" weight="1000">
+        <description key="agent-registry-wi.description">The AgentRegistry Plugin</description>
+        <label key="agent-registry-wi.label"></label>
+        <link linkId="agent-registry-wi-link">/secure/AgentRegistryView.jspa</link>
+    </web-item>
+    <web-item name="My Tasks" key="my-tasks" weight="1000" i18n-name-key="my-tasks.name"
+              section="test-management-item-link/test-management-util-section">
+        <description key="my-tasks.description">The Test My-Tasks Plugin</description>
+        <label key="my-tasks.label"/>
+        <link linkId="my-tasks-link">/secure/MyTasksView.jspa</link>
+        <param name="target" value="_blank"/>
+    </web-item>
+    <web-item key="config_link" name="Configuration" section="test-management-item-link/test-management-util-section"
+              weight="1000">
+        <label>Centroid Configuration</label>
+        <link linkId="config_link"/>
+    </web-item>
+    <web-item name="Scheduler" i18n-name-key="scheduler.name" key="scheduler" section="test-management-item-link/test-management-section" weight="1000">
+        <description key="scheduler.description">The Schedule Plugin</description>
+        <label key="scheduler.label"/>
+        <link linkId="scheduler-link">/secure/ScheduleView.jspa</link>
+    </web-item>
+    <web-item name="Import" i18n-name-key="import.name" key="import" section="test-management-item-link/test-management-section" weight="1000">
+        <description key="import.description">The Import Plugin</description>
+        <label key="import.label"/>
+        <link linkId="import-link"/>
+    </web-item>
+    <!--newly added-->
+    <webwork1 key="test-case-designing-view" name="TestCaseDesigningView" i18n-name-key="test-case-designing-view.name">
+        <description key="test-case-designing-view.description">Test Case Designing</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.TestCaseDesigning"
+                    alias="TestCaseDesigningView">
+                <view name="test-case-designing-view">/templates/test-management-view/test-case-designing-view.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="test-execution-view" name="TestExecutionView" i18n-name-key="test-execution-view.name">
+        <description key="test-execution-view.description">Test Execution</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.TestExecution"
+                    alias="TestExecutionView">
+                <view name="test-execution-view">/templates/test-management-view/test-execution-view.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="test-planning-view" name="TestPlanningView" i18n-name-key="test-planning-view.name">
+        <description key="test-planning-view.description">Test Planning</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.TestPlanning" alias="TestPlanningView">
+                <view name="test-planning-view">/templates/test-management-view/test-planning-view.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="test-reports-view" name="TestReportsView" i18n-name-key="test-reports-view.name">
+        <description key="test-reports-view.description">Test Reports</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.TestReports" alias="TestReportsView">
+                <view name="test-reports-view">/templates/test-management-view/test-reports-view.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="my-tasks-view" name="MyTasksView" i18n-name-key="my-tasks-view.name">
+        <description key="my-tasks-view.description">My Tasks</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.MyTasks" alias="MyTasksView">
+                <view name="my-tasks-view">/templates/test-management-view/my-tasks-view.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="test-case-defects-view" name="TestCaseDefectsView" i18n-name-key="test-case-defects-view.name">
+        <description key="test-case-defects-view.description">TestCase Defects</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.TestCaseDefects"
+                    alias="TestCaseDefectsView">
+                <view name="test-case-defects-view">/templates/test-management-view/test-case-defects-view.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="oscar-integration-view" name="OscarIntegrationView" i18n-name-key="oscar-integration-view.name">
+        <description key="oscar-integration-view.description">Oscar Integration</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.OscarIntegration"
+                    alias="OscarIntegrationView">
+                <view name="oscar-integration-view">/templates/test-management-view/oscar-integration.vm</view>
+                <result type="rawText"/>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="schedule" name="ScheduleView" i18n-name-key="schedule.name">
+        <description key="schedule.description">Scheduler</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.Schedule" alias="ScheduleView">
+                <view name="schedule-view">/templates/test-management-view/schedule-view.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+    <webwork1 key="agent-registry" name="AgentRegistryView" i18n-name-key="agent-registry.name">
+        <description key="agent-registry.description">The AgentRegistry Plugin</description>
+        <actions>
+            <action name="com.virtusa.gto.plugins.aitest.webwork.testmanagement.AgentRegistry"
+                    alias="AgentRegistryView">
+                <view name="agent-registry-view">/templates/test-management-view/agent-registry-view.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+    <!-- End of Test Management section -->
+    <!-- Issue Questions Panel -->
+    <issue-tabpanel key="issue-questions-tab-panel" name="Questions"
+                    class="com.virtusa.gto.plugins.aitest.custompanel.IssueQuestionsPanel">
+        <description>Issue Questions panel.</description>
+        <label>Questions</label>
+        <supports-ajax-load>true</supports-ajax-load>
+    </issue-tabpanel>
+    <web-resource key="issue-questions-tab-resources" name="Questions Tab Resources">
+        <context>jira.view.issue</context>
+        <dependency>jira.webresources:viewissue</dependency>
+        <resource name="issue-questions.css" location="/css/custom-panel/issue-questions.css" type="download"/>
+        <resource name="issue-questions.js" location="/js/custom-panel/issue-questions.js" type="download"/>
+    </web-resource>
+    <customfield-type name="Qa Rci" i18n-name-key="qa-rci.name" key="qa-rci"
+                      class="com.virtusa.gto.plugins.aitest.customfields.QaRci">
+        <description key="qa-rci.description">The Qa Rci Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/qa-rci/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/qa-rci/edit.vm"/>
+    </customfield-type>
+    <!--<customissuelink>-->
+    <web-resource key="linked-testcase-resources" name="Linked TestCase Resources">
+        <context>jira.view.issue</context>
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>jira.webresources:viewissue</dependency>
+    </web-resource>
+    <web-panel name="Linked TestCases" i18n-name-key="link-issue-panel.name" key="link-issue-panel" location="atl.jira.view.issue.left.context" weight="800">
+        <description key="link-issue-panel.description">The Link Issue Panel Plugin</description>
+        <!--<context-provider class="com.virtusa.gto.plugins.aitest.web.contextproviders.testmanagement.LinkIssueContextProvider"/>-->
+        <condition class="com.virtusa.gto.plugins.aitest.util.LinkIssuePanelCondition"/>
+        <resource name="view" type="velocity" location="/templates/viewissue/customissuelink.vm"/>
+    </web-panel>
+    <!-- Custom Field Type LastUpdatedUser For Issue Type TestCase-->
+    <customfield-type name="Team Average" i18n-name-key="team-average.name" key="team-average"
+                      class="com.virtusa.gto.plugins.aitest.customfields.TeamAverage">
+        <description key="team-average.description">The Team Average Field</description>
+        <resource name="view" type="velocity" location="/templates/customfields/average-rci/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/average-rci/edit.vm"/>
+    </customfield-type>
+    <!-- end of Custom field LastUpdatedUser -->
+    <customfield-type name="Scripts" i18n-name-key="scripts.name" key="scripts"
+                      class="com.virtusa.gto.plugins.aitest.customfields.Scripts">
+        <description key="scripts.description">The Scripts Field</description>
+        <resource name="view" type="velocity" location="/templates/customfields/testcase-script-mapping/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/testcase-script-mapping/edit.vm"/>
+    </customfield-type>
+    <customfield-type name="Rangeslide" i18n-name-key="rangeslide.name" key="rangeslide"
+                      class="com.virtusa.gto.plugins.aitest.customfields.Rangeslide">
+        <description key="rangeslide.description">The Rangeslide Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/rangeslide/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/rangeslide/edit.vm"/>
+    </customfield-type>
+    <ao key="ao-module">
+        <description>The module configuring the Active Objects service used by this plugin</description>
+        <entity>com.virtusa.gto.plugins.aitest.entity.RequirementClarity</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestCaseFolder</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestPlan</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestSteps</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestPlanTestCases</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntity</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntityTP</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntityTPTC</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntityI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntityTPI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ExecEntityTPTCI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestParamV</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestStepParams</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TestStepsI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TCaseDataInstance</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TCaseDataIteration</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.Configuration</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.Oscar</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.OscarVE</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.Question</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.ServerStatus</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.Comment</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.BusComFolder</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.BusComSteps</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.BusComScript</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.BDTEntity</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.TCIMyTask</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.Scripts</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.UserStoryEntityI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.DefectsEntityI</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.OscarPVE</entity>
+        <entity>com.virtusa.gto.plugins.aitest.entity.SchedulerEntity</entity>
+    </ao>
+    <routing key="requirement-key" path="/requirements">
+        <route from="/view" to="/secure/RequirementView.jspa"/>
+    </routing>
+    <routing key="test-management-key" path="/test-management">
+        <route from="/view" to="/secure/TestManagementAction.jspa"/>
+    </routing>
+    <servlet name="TestCase Management" i18n-name-key="test-case-management.name" key="testcase-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestCaseManagement">
+        <description key="test-case-management.description">TestCase Management</description>
+        <url-pattern>/test-case-management</url-pattern>
+    </servlet>
+    <servlet name="TestPlan Management" i18n-name-key="test-plan-management.name" key="testplan-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestPlanManagement">
+        <description key="test-plan-management.description">TestPlan Management</description>
+        <url-pattern>/test-plan-management</url-pattern>
+    </servlet>
+    <servlet name="Custom Field" i18n-name-key="custom-field.name" key="custom-field"
+             class="com.virtusa.gto.plugins.aitest.servlet.CustomField">
+        <description key="custom-field.description">The Custom Field Plugin</description>
+        <url-pattern>/test-case-custom-fields</url-pattern>
+    </servlet>
+    <servlet name="Test Case" i18n-name-key="test-case.name" key="test-case"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestCase">
+        <description key="test-case.description">The Test Case Plugin</description>
+        <url-pattern>/test-case</url-pattern>
+    </servlet>
+    <servlet name="Test Step Management" i18n-name-key="Test Step Management" key="test-step"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestStepManagement">
+        <description key="Test Step Management plugin">The Test Step Plugin</description>
+        <url-pattern>/test-step</url-pattern>
+    </servlet>
+    <servlet name="TestPlanTestCaseManagement" i18n-name-key="TestPlanTestCaseManagement"
+             key="TestPlanTestCaseManagement" class="com.virtusa.gto.plugins.aitest.servlet.TestPlanTestCaseManagement">
+        <description key="TestPlanTestCaseManagement plugin">The TestPlanTestCaseManagement Plugin</description>
+        <url-pattern>/test-plan-tc</url-pattern>
+    </servlet>
+    <servlet name="Accello Handler" i18n-name-key="accello-handler.name" key="accello-handler"
+             class="com.virtusa.gto.plugins.aitest.servlet.AccelloHandler">
+        <description key="accello-handler.description">The Accello Handler Plugin</description>
+        <url-pattern>/accellohandler</url-pattern>
+    </servlet>
+    <servlet name="Business Component" i18n-name-key="business-component.name" key="business-component"
+             class="com.virtusa.gto.plugins.aitest.servlet.BusinessComponentManagement">
+        <description key="business-component.description">The Business Component Plugin</description>
+        <url-pattern>/bcomponent</url-pattern>
+    </servlet>
+    <servlet name="ExecutionEntityManagement" i18n-name-key="ExecutionEntityManagement"
+             key="ExecutionEntityManagementKey"
+             class="com.virtusa.gto.plugins.aitest.servlet.ExecutionEntityManagement">
+        <description key="ExecutionEntityManagement plugin">The ExecutionEntityManagement Plugin</description>
+        <url-pattern>/exe-entity</url-pattern>
+    </servlet>
+    <servlet name="ExecutionEntityInstanceManagement" i18n-name-key="ExecutionEntityInstanceManagement"
+             key="ExecutionEntityInstanceManagementKey"
+             class="com.virtusa.gto.plugins.aitest.servlet.ExecutionEntityInstanceManagement">
+        <description key="ExecutionEntityInstanceManagement plugin">The ExecutionEntityInstanceManagement Plugin
+        </description>
+        <url-pattern>/exe-entity-instance</url-pattern>
+    </servlet>
+    <servlet name="TestManagementUtil" i18n-name-key="TestManagementUtil" key="TestManagementUtilKey"
+             class="com.virtusa.gto.plugins.aitest.servlet.Util">
+        <description key="TestManagementUtil plugin">The TestManagementUtil Plugin</description>
+        <url-pattern>/test-management-util</url-pattern>
+    </servlet>
+    <servlet name="TestCaseDataManagement" i18n-name-key="TestCaseDataManagement" key="TestCaseDataManagementKey"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestCaseDataManagement">
+        <description key="TestCaseDataManagementKey plugin">The TestCaseDataManagementKey Plugin</description>
+        <url-pattern>/test-case-data-management</url-pattern>
+    </servlet>
+    <servlet name="Test Step Instance Management" i18n-name-key="Test Step Instance Management" key="test-step-instance"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestStepInstanceManagement">
+        <description key="Test Step Instance Management plugin">The Test Step Instance Plugin</description>
+        <url-pattern>/test-step-instance</url-pattern>
+    </servlet>
+    <servlet name="Test Case Management View Project Issues"
+             i18n-name-key="test-case-management-view-project-issues.name"
+             key="test-case-management-view-project-issues"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestCaseManagementViewProjectIssues">
+        <description key="test-case-management-view-project-issues.description">The Test Case Management View Project
+            Issues Plugin
+        </description>
+        <url-pattern>/test-case-management-view-project-issues</url-pattern>
+    </servlet>
+    <servlet name="Oscar Data Generation" i18n-name-key="oscar-data-generation.name" key="oscar-data-generation"
+             class="com.virtusa.gto.plugins.aitest.servlet.OscarGeneratorManagement">
+        <description key="oscar-data-generation.description">Oscar Data Generation Plugin</description>
+        <url-pattern>/oscar-generation</url-pattern>
+    </servlet>
+    <servlet name="Issue Questions" i18n-name-key="issue-questions" key="issue-questions"
+             class="com.virtusa.gto.plugins.aitest.servlet.IssueQuestionManagement">
+        <description key="Issue Question Description">Issue Question Plugin</description>
+        <url-pattern>/issue-questions</url-pattern>
+    </servlet>
+    <rest name="Accello Services" i18n-name-key="accello-services.name" key="accello-services" path="/accelloservices"
+          version="1.0">
+        <description key="accello-services.description">The Accello Services Plugin</description>
+    </rest>
+    <servlet name="Components" i18n-name-key="components.name" key="components"
+             class="com.virtusa.gto.plugins.aitest.servlet.Components">
+        <description key="components.description">The Components Plugin</description>
+        <url-pattern>/components</url-pattern>
+    </servlet>
+    <servlet name="UserStoryEntityManagement" i18n-name-key="UserStoryEntityManagement.name"
+             key="UserStoryEntityManagement" class="com.virtusa.gto.plugins.aitest.servlet.UserStoryEntityManagement">
+        <description key="UserStoryEntityManagement.description">The UserStoryEntityManagement Plugin</description>
+        <url-pattern>/user-story</url-pattern>
+    </servlet>
+    <servlet name="DefectEntityManagement" i18n-name-key="defects.name" key="defects"
+             class="com.virtusa.gto.plugins.aitest.servlet.DefectEntityManagement">
+        <description key="defects.description">The Defects Entity Management Plugin</description>
+        <url-pattern>/defect-entity-management</url-pattern>
+    </servlet>
+    <servlet name="MyTaskEntityManagement" i18n-name-key="my-task.name" key="my-task"
+             class="com.virtusa.gto.plugins.aitest.servlet.MyTaskEntityManagement">
+        <description key="my-task.description">The My Task Entity Management Plugin</description>
+        <url-pattern>/my-task-entity-management</url-pattern>
+    </servlet>
+    <servlet name="ReportsViewDataManagement" i18n-name-key="reports-view-data-management.name"
+             key="reports-view-data-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.ReportsViewDataManagement">
+        <description key="reports-view-data-management.description">The Reports View Data Management Plugin
+        </description>
+        <url-pattern>/reports-view-data-management</url-pattern>
+    </servlet>
+    <servlet name="ExecutionEntityDataMangement" i18n-name-key="execution-entity-data-management.name"
+             key="execution-entity-data-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.ExecutionEntityInstanceDataMangement">
+        <description key="execution-entity-data-management.description">The Execution Entity Data Management Plugin
+        </description>
+        <url-pattern>/execution-entity-data-management</url-pattern>
+    </servlet>
+    <servlet name="BusinessScriptStepsManagement" i18n-name-key="business-script-steps-management.name"
+             key="business-script-steps-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.BusinessScriptStepsManagement">
+        <description key="business-script-steps-management.description">The Business Script Steps Management Plugin
+        </description>
+        <url-pattern>/business-script-steps-management</url-pattern>
+    </servlet>
+    <servlet name="Test Link Management" i18n-name-key="test-link-management.name" key="test-link-management"
+             class="com.virtusa.gto.plugins.aitest.servlet.TestLinkManagement">
+        <description key="test-link-management.description">The Test Link Management Plugin</description>
+        <url-pattern>/test-link-data-management</url-pattern>
+    </servlet>
+    <servlet name="Quartz Scheduler Management" i18n-name-key="quartz-scheduler-management.name" key="quartz-scheduler-management" class="com.virtusa.gto.plugins.aitest.servlet.QuartzSchedulerManagement">
+        <description key="quartz-scheduler-management.description">The Quartz Scheduler Management Plugin</description>
+        <url-pattern>/quartz-scheduler-management</url-pattern>
+    </servlet>
+    <servlet name="Agent Registry Management" i18n-name-key="agent-registry-management.name" key="agent-registry-management" class="com.virtusa.gto.plugins.aitest.servlet.AgentRegistryManagement">
+        <description key="agent-registry-management.description">The Agent Registry Management Plugin</description>
+        <url-pattern>/agent-registry-management</url-pattern>
+    </servlet>
+    <!--<servlet name="License Servlet" class="com.virtusa.gto.plugins.aitest.util.LicenseServlet" key="license-servlet">-->
+    <!--<description>Servlet which serves the raw license string</description>-->
+    <!--<url-pattern>/license</url-pattern>-->
+    <!--</servlet>-->
+    <rest name="Swagger Services" i18n-name-key="swagger-services.name" key="swagger-services" path="/ai-test"
+          version="1.0">
+        <description key="swagger-services.description">The Swagger Services Plugin</description>
+    </rest>
+    <customfield-type name="AIRCI" i18n-name-key="airci.name" key="airci"
+                      class="com.virtusa.gto.plugins.aitest.customfields.AIRCI">
+        <description key="airci.description">The AIRCI Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/airci/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/airci/edit.vm"/>
+    </customfield-type>
+    <customfield-type name="Test Design Effort" i18n-name-key="test-design-effort.name" key="test-design-effort"
+                      class="com.virtusa.gto.plugins.aitest.customfields.TestDesignEffort">
+        <description key="test-design-effort.description">The Test Design Effort Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/test-design-effort/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/test-design-effort/edit.vm"/>
+    </customfield-type>
+    <customfield-type name="Test Execution Effort" i18n-name-key="test-execution-effort.name"
+                      key="test-execution-effort"
+                      class="com.virtusa.gto.plugins.aitest.customfields.TestExecutionEffort">
+        <description key="test-execution-effort.description">The Test Execution Effort Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/test-execution-effort/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/test-execution-effort/edit.vm"/>
+    </customfield-type>
+</atlassian-plugin>

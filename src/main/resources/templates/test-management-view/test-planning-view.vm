@@ -1,0 +1,145 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-page-layout")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-lozenge")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-sidebar")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-progress-tracker")
+<div class="container" style="width: 100%; background: white;">
+    <ol class="aui-progress-tracker" style="width: 100%;">
+        <li id="aui-progress-tracker-test-case-designing" class="aui-progress-tracker-step " style="width:25%"><span ><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-designing.label.auipgt-tcd")</a></span></li>
+        <li id="aui-progress-tracker-test-case-planning" class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:25%"><span><a href="#" class="aui-lozenge  aui-lozenge-moved">$i18n.getText("all.li.aui-progress-tracker-test-case-planning.label.auipgt-tcp")</a></span></li>
+        <li id="aui-progress-tracker-test-case-execution" class="aui-progress-tracker-step" style="width:25%"><span><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-execution.label.auipgt-tce")</a></span></li>
+        <li id="aui-progress-tracker-test-case-results" class="aui-progress-tracker-step" style="width:25%"><span><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-results.label.auipgt-tcr")</a></span></li>
+        <!--<li id="aui-progress-tracker-test-case-defects" class="aui-progress-tracker-step" style="width:20%"><span><a-->
+                <!--href="#" class="aui-lozenge">Defects</a></span></li>-->
+    </ol>
+</div>
+<div class="aui-page-panel test-planning-page-panel">
+    <div class="aui-page-panel-inner">
+        <div class="test-plan-actions-section">
+            <button class="aui-button" id="new-test-plan-btn">
+                <span class="aui-icon aui-icon-small aui-iconfont-calendar"></span>
+                $i18n.getText("planningview.label.add-new-test-plan")
+            </button>
+        </div>
+        <div class="test-plan-table-container">
+            <div class="table-header">
+                <table class="aui">
+                    <thead>
+                    <tr>
+                        <th id="tbl-test-plan-id" width="5%">#</th>
+                        <th id="tbl-test-plan-name" width="30%">$i18n.getText("planningview.label.plan-name")</th>
+                        <th id="tbl-test-plan-test-cases" width="30%"># of Test Cases</th>
+                        <th id="tbl-test-plan-last-execution" width="25%">$i18n.getText("planningview.label.last-executed")</th>
+                        <th id="tbl-test-plan-actions" width="10%">$i18n.getText("planningview.label.actions")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="table-content">
+                <table class="aui" id="test-plan-list-table-content">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <button id="test-case-execution" class="aui-button " style="float: right;">$i18n.getText("planningview.label.create-an-executionPlan")<span class="aui-icon aui-icon-small aui-iconfont-arrow-right-circle"></span></button>
+</div>
+
+<section id="add-test-plan-dialog" class="aui-dialog2 aui-dialog2-xlarge aui-layer" data-aui-modal="true" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-calendar" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" id="test-plan-modal-title" style="font-size: 18px;"></span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui" style="border-bottom: 2px solid #ebecf0;">
+            <div class="field-group">
+                <label for="new-test-plan-name">
+                    Name
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text medium-field" type="text" id="new-test-plan-name" name="test-plan-name"
+                       placeholder="Test Plan Name" style="max-width: 400px;" autocomplete="off">
+                <!--style="display: none;"-->
+                <div class="error" id="test-plan-name-error">$i18n.getText("planningview.label.test-plan-name-should-not-be-empty")</div>
+            </div>
+        </form>
+        <div class="test-plan-content-details">
+            <div class="aui-sidebar">
+                <div class="aui-sidebar-wrapper">
+                    <div class="aui-sidebar-body">
+                        <nav class="aui-navgroup aui-navgroup-vertical">
+                            <div class="aui-navgroup-inner">
+                                <div class="aui-sidebar-group aui-sidebar-group-tier-one" style="margin-top: 10px;">
+                                    <div class="aui-nav-heading" title="Stuff">
+                                        <strong>$i18n.getText("all.label.folder-hierarchy")</strong>
+                                    </div>
+                                    <ul class="aui-nav">
+                                        <li id="root-node" type="test-plan-folder">
+                                            <a class="aui-nav-item">
+                                                <span class="aui-icon aui-icon-small aui-iconfont-share"></span>
+                                                <span class="aui-nav-item-label">$i18n.getText("all.label.root")</span>
+                                            </a>
+                                        </li>
+                                        <ul class="aui-nav" parent="test-plan-root-node">
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-page-panel" style="border: none;">
+                <div class="selected-folder-test-cases">
+                    <div class="aui-nav-heading" title="Stuff" style="margin-top: 10px;">
+                        <strong>$i18n.getText("all.label.test-cases")</strong>
+                    </div>
+                    <div class="selected-folder-test-cases-content" style="height: calc(100% - 30px); overflow: auto;">
+                        <nav class="aui-navgroup aui-navgroup-vertical">
+                            <div class="aui-navgroup-inner">
+                                <div class="aui-sidebar-group aui-sidebar-group-tier-one"
+                                     style="margin-top: 0px; margin-bottom: 10px; padding: 0 10px;">
+                                    <ul class="aui-nav selected-folder-ul" id="selected-folder-ul">
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div style="flex: 0 0 1px; background: #dedede;"></div>
+                <div class="selected-test-cases">
+                    <div class="aui-nav-heading" title="Stuff" style="margin-top: 10px;">
+                        <strong>$i18n.getText("planningview.label.selected-test-cases")</strong>
+                    </div>
+                    <div class="selected-test-cases-content" style="height: calc(100% - 30px); overflow: auto;">
+                        <table class="aui">
+                            <thead>
+                                <th id="selected-tc-name">$i18n.getText("all.label.name")</th>
+                                <th id="selected-tc-automated" style="text-align: center;" width="10%">$i18n.getText("all.label.automated")</th>
+                                <th id="selected-tc-manual" style="text-align: center;" width="10%">$i18n.getText("all.label.manual")</th>
+                                <th id="selected-tc-user" width="20%" style="text-align: center;">$i18n.getText("all.label.agent")</th>
+                                <th id="selected-tc-agent" width="20%" style="text-align: center;">$i18n.getText("all.label.user")</th>
+                                <th id="selected-tc-remove" width="5%"></th>
+                            </thead>
+                            <tbody id="selected-tc-table-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-test-plan-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="edit-test-plan-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+            <button id="cancel-test-plan-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>

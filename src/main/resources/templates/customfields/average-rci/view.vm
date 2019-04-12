@@ -1,0 +1,9 @@
+<div id="DEV RCI">
+    #foreach($i in [1..5])
+    #if($i <= $value)
+    <span class="aui-icon aui-icon-small aui-iconfont-star-filled" rating=$i style="color: orange;"></span>
+    #else
+    <span class="aui-icon aui-icon-small aui-iconfont-new-star" rating=$i></span>
+    #end
+    #end
+</div>

@@ -1,0 +1,1095 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-sidebar")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-page-header")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-tabs")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:table")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-forms")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-flag")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-progress-tracker")
+
+
+<div class="container" style="width: 100%; border-bottom: 2px solid #f4f5f7; background:white">
+    <ol class="aui-progress-tracker" style="width: 100%;">
+        <li id="aui-progress-tracker-test-case-designing"
+            class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:20%"><span><a href="#"
+                                                                                                           class="aui-lozenge aui-lozenge-moved">$i18n.getText("all.li.aui-progress-tracker-test-case-designing.label.auipgt-tcd")</a></span>
+        </li>
+        <li id="aui-progress-tracker-test-case-planning" class="aui-progress-tracker-step" style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-planning.label.auipgt-tcp")</a></span></li>
+        <li id="aui-progress-tracker-test-case-execution" class="aui-progress-tracker-step" style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-execution.label.auipgt-tce")</a></span></li>
+        <li id="aui-progress-tracker-test-case-results" class="aui-progress-tracker-step" style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-results.label.auipgt-tcr")</a></span></li>
+    </ol>
+</div>
+
+<div class="aui-page-panel" class="aui-page-panel">
+    <div class="aui-page-panel-inner" ng-app="testManagement" ng-controller="excelCtrl" >
+        <div class="aui-page-panel-nav">
+                <div class="aui-sidebar" id="test-design-side-nav" aria-expanded="true" data-aui-responsive="false">
+                    <div class="aui-sidebar-wrapper" id="siderbar-wrapper">
+                        <div class="aui-sidebar-body" id="sidebar-body">
+                            <!--tab view add-->
+                            <div class="aui-tabs horizontal-tabs">
+                                <ul class="tabs-menu testcase-designing-tabs">
+                                    <li class="menu-item active-tab" data-id="test-case">
+                                        <a href="#testcase-tab">$i18n.getText("designing-view.label.test-case")</a>
+                                    </li>
+                                    <li class="menu-item" data-id="bc">
+                                        <a href="#business-component-tab">$i18n.getText("designing-view.label.business-component")</a>
+                                    </li>
+                                </ul>
+                                <div class="tabs-pane active-pane" id="testcase-tab">
+                                    <nav class="aui-navgroup aui-navgroup-vertical">
+                                        <div class="aui-navgroup-inner">
+                                            <div class="aui-sidebar-group aui-sidebar-group-tier-one">
+                                                <div class="aui-nav-heading" title="Stuff">
+                                                    <strong>$i18n.getText("all.label.folder-hierarchy")</strong>
+                                                </div>
+                                                <ul class="aui-nav">
+                                                    <li id="root-node" type="folder">
+                                                        <a class="aui-nav-item">
+                                                            <span class="aui-icon aui-icon-small aui-iconfont-share"></span>
+                                                            <span class="aui-nav-item-label">$i18n.getText("all.label.root")</span>
+                                                        </a>
+                                                    </li>
+                                                    <ul class="aui-nav" parent="root-node">
+                                                    </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <!--bc-->
+                                <div class="tabs-pane" id="business-component-tab">
+                                    <nav class="aui-navgroup aui-navgroup-vertical">
+                                        <div class="aui-navgroup-inner" id="bc-nav">
+                                            <div class="aui-sidebar-group aui-sidebar-group-tier-one">
+                                                <div class="aui-nav-heading" title="Stuff">
+                                                    <strong>$i18n.getText("all.label.folder-hierarchy")</strong>
+                                                </div>
+                                                <ul class="aui-nav">
+                                                    <li id="bcroot-node" type="bc-folder">
+                                                        <a class="aui-nav-item">
+                                                            <span class="aui-icon aui-icon-small aui-iconfont-share"></span>
+                                                            <span class="aui-nav-item-label">$i18n.getText("all.label.root")</span>
+                                                        </a>
+                                                    </li>
+                                                    <ul class="aui-nav" parent="bcroot-node">
+                                                    </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <section  class="aui-page-panel-content" id="test-case-details-page-panel" style="display:none">
+                <header class="aui-page-header">
+                    <div class="aui-page-header-inner">
+                        <span class="aui-icon aui-icon-large aui-iconfont-bullet-list"></span>
+                        <span class="header-title" id="selected-test-case-titile"></span>
+                    </div>
+                </header>
+                <div class="aui-tabs horizontal-tabs">
+                    <ul class="tabs-menu">
+                        <!--Test case details-->
+                        <li class="menu-item active-tab">
+                            <a href="#test-case-details-tab">
+                                <span class="aui-icon aui-icon-small aui-iconfont-info-circle"></span>
+                                $i18n.getText("designing-view.label.details")
+                            </a>
+                        </li>
+                        <!--Test case data-->
+                        <li class="menu-item">
+                            <a href="#test-case-data-tab">
+                                <span class="aui-icon aui-icon-small aui-iconfont-heading-row"></span>
+                                $i18n.getText("designing-view.label.test-data")
+                            </a>
+                        </li>
+                        <!--Test case scripts-->
+                        <li class="menu-item">
+                            <a href="#test-case-scripts-tab">
+                                <span class="aui-icon aui-icon-small aui-iconfont-documents"></span>
+                                $i18n.getText("designing-view.label.script-details")
+                            </a>
+                        </li>
+                        <!--linked issues added-->
+                        <li class="menu-item">
+                            <a href="#test-case-linkedissue-tab">
+                                <span class="aui-icon aui-icon-small aui-iconfont-issues"></span>
+                                $i18n.getText("designing-view.label.linked-user-stories")
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Test Case Details tab start -->
+                    <div class="tabs-pane active-pane" id="test-case-details-tab">
+                        <form class="aui">
+                            <div class="field-group">
+                                <label for="test-case-name">
+                                    $i18n.getText("all.label.name")
+                                    <span class="aui-icon icon-required">(required)</span>
+                                </label>
+                                <input class="text medium-field" type="text" id="test-case-name" name="test-case-name"
+                                    placeholder="Test Case Name" disabled>
+                                <div class="description">$i18n.getText("reportsview.div.your-test-case-name")</div>
+                            </div>
+                            <div class="field-group">
+                                <label for="test-case-description">
+                                    $i18n.getText("reportsview.label.description")
+                                </label>
+                                <textarea class="textarea" name="test-case-description" id="test-case-description" rows="5"
+                                        placeholder="Your description here..."></textarea>
+                            </div>
+                            <div class="field-group">
+                                <label for="test-case-overall-expected-result">
+                                    $i18n.getText("reportsview.label.overall-expected-result")
+                                </label>
+                                <textarea class="textarea" name="test-case-overall-expected-result"
+                                        id="test-case-overall-expected-result" rows="5"
+                                        placeholder="Overall Expected Result here..."></textarea>
+                            </div>
+                            <div class="field-group">
+                                <label>$i18n.getText("reportsview.label.automated")</label>
+                                <div class="radio">
+                                    <input class="radio" type="radio" name="automatedRadioButtons" id="automatedYes"
+                                        value="Yes">
+                                    <label for="automatedYes">$i18n.getText("reportsview.label.yes")</label>
+                                </div>
+                                <div class="radio">
+                                    <input class="radio" type="radio" checked="checked" name="automatedRadioButtons"
+                                        id="automatedNo" value="No">
+                                    <label for="automatedNo">$i18n.getText("reportsview.label.no")</label>
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <label>$i18n.getText("reportsview.label.manual")</label>
+                                <div class="radio">
+                                    <input class="radio" type="radio" checked="checked" name="manualRadioButtons"
+                                        id="manualYes" value="Yes">
+                                    <label for="manualYes">$i18n.getText("reportsview.label.yes")</label>
+                                </div>
+                                <div class="radio">
+                                    <input class="radio" type="radio" name="manualRadioButtons" id="manualNo" value="No">
+                                    <label for="manualNo">$i18n.getText("reportsview.label.no")</label>
+                                </div>
+                            </div>
+                            <div class="field-group steps-group">
+                                <div class="aui-tabs horizontal-tabs">
+                                    <ul class="tabs-menu">
+                                        <li class="menu-item active-tab" id="steps-tab">
+                                            <a href="#tab-test-step">$i18n.getText("designing-view.label.steps")</a>
+                                        </li>
+                                        <li class="menu-item" id="bdt-step-details" style="visibility: hidden">
+                                            <a href="#tab-bdt-steps">$i18n.getText("designing-view.label.business-function")</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tabs-pane active-pane" id="tab-test-step"
+                                        style="height:calc(50vh);overflow:auto;">
+                                        <div class="steps-table-content">
+                                            <div class="table-header">
+                                                <table>
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="no">$i18n.getText("reportsview.label.no")</th>
+                                                        <th class="desc">$i18n.getText("designing-view.label.step-description")</th>
+                                                        <th class="result">$i18n.getText("designing-view.label.expected-result")</th>
+                                                        <th class="data">$i18n.getText("all.label.data")</th>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="table-content">
+                                                <table context-menu data-target="menu-1" context-menu-close="resetIndex()">
+                                                    <tbody id="test-step-tb">
+                                                    <tr ng-repeat="step in steps" ng-class="{'row-selected':($index  == index)}">
+                                                        <td class="no" ng-right-click="setSelectedIndex($index)" >{{ $index +
+                                                            1 }}
+                                                        </td>
+                                                        <td class="desc" ng-right-click="setSelectedIndex($index)" ng-click="setClickedIndex($index,0)">
+                                                            <textarea ng-mouseup="resize($event)" ng-mousedown="resize($event)" ng-if="isBCFunction(step.function) == false" paste-excel class="textarea-desc" type="text" ng-model="step.step" style="max-width: 100% !important;height: 100%;" ng-keyup="mention($event)" bcid={{step.function}} ></textarea>
+                                                            <input ng-if="isBCFunction(step.function) == true" ng-keyup="mention($event)" type="text" ng-model="step.step" style="max-width: 100% !important;height: 100%;" bcid={{step.function}}>
+                                                        </td>
+                                                        <td ng-if="isBCFunction(step.function) == false" class="result" ng-right-click="setSelectedIndex($index)" ng-click="setClickedIndex($index,1)">
+                                                            <textarea ng-mouseup="resize($event)" ng-mousedown="resize($event)" paste-excel class="textarea-result" type="text" ng-model="step.expectedResult" style="max-width: 100% !important;height: 100%;font-family: inherit;"></textarea>
+                                                        </td>
+                                                        <td ng-if="isBCFunction(step.function) == true" align="center" class="result" ng-right-click="setSelectedIndex($index)" ng-click="setClickedIndex($index,1)" style="vertical-align: middle;">
+                                                            <a  href ng-click="viewSteps(step.function)" vid={{step.function}} class="view-Steps" ng-if="isBCFunction(step.function) == true"><span class="aui-lozenge aui-lozenge-moved"> View Business Function </span> </a>
+                                                        </td>
+                                                        <td class="data" ng-right-click="setSelectedIndex($index)" ng-click="setClickedIndex($index,2)">
+                                                            <textarea ng-mouseup="resize($event)" ng-mousedown="resize($event)" ng-if="isBCFunction(step.function) == false" paste-excel class="textarea-data" type="text" ng-model="step.data" style="max-width: 100% !important;height: 100%;font-family: inherit;" stepId = {{step.id}} ng-change="onStepParamChange()"></textarea>
+                                                            <input ng-if="isBCFunction(step.function) == true" type="text" style="max-width: 100% !important;height: 100%;font-family: inherit;" disabled>
+                                                        </td>
+                                                        <div class="jira-mention" style="display:none;">
+                                                            <ul class="jira-scrollable-menu">
+                                                                <li class="jira-mention-menu-item"
+                                                                    ng-repeat="element in elements"
+                                                                    ng-click="mentionSelect($event)" scid={{element.Id}}>{{element.Name}}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="no"></td>
+                                                    <td class="desc" ng-click="setClickedIndex(-1,0)">
+                                                            <textarea ng-if="isBCFunction(newstep.function) == false" paste-excel class="textarea-desc" type="text" ng-model="newstep.step" style="max-width: 100% !important;height: 100%;margin-bottom: 1px;font-family: inherit;" ng-keyup="mention($event)" bcid="" ng-enter="addStep()" ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                            ></textarea>
+                                                            <input ng-if="isBCFunction(newstep.function) == true" ng-keyup="mention($event)" type="text" ng-model="newstep.step" style="max-width: 100% !important;height: 100%;font-family: inherit;font-family: inherit;" ng-enter="addStep()">
+                                                        </td>
+                                                        <td ng-if="isBCFunction(newstep.function) == false" class="result" ng-click="setClickedIndex(-1,1)" ng-enter="addStep()">
+                                                            <textarea paste-excel class="textarea-result" type="text" ng-model="newstep.expectedResult" style="max-width: 100% !important;height: 100%;margin-bottom: 1px;font-family: inherit;" ng-enter="addStep()" ng-mouseup="resize($event)" ng-mousedown="resize($event)"></textarea>
+                                                        </td>
+                                                        <td ng-if="isBCFunction(newstep.function) == true" class="result" ng-click="setClickedIndex(-1,1)" style="vertical-align: middle;" ng-enter="addStep()">
+                                                            <a href="#" ng-if="isBCFunction(newstep.function) == true"><span class="aui-lozenge aui-lozenge-moved" ng-enter="addStep()" > View Business Function </span> </a>
+                                                        </td>
+                                                        <td class="data" ng-click="setClickedIndex(-1,2)">
+                                                            <textarea ng-if="isBCFunction(newstep.function) == false" paste-excel class="textarea-data" type="text" ng-model="newstep.data" style="max-width: 100% !important;height: 100%;margin-bottom: 1px;font-family: inherit;" ng-enter="addStep()" ng-mouseup="resize($event)" ng-mousedown="resize($event)"></textarea>
+                                                            <input ng-if="isBCFunction(newstep.function) == true" type="text" style="max-width: 100% !important;height: 100%;margin-bottom: 1px;font-family: inherit;" ng-enter="addStep()" disabled>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="dropdown position-fixed" id="menu-1">
+                                                <ul class="v-dropdown-menu" role="menu">
+                                                    <li ng-click="clickedDelete()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-trash" ></span>$i18n.getText("all.label.delete")</a></li>
+                                                    <li ng-click="insertNewRow()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-insert-row-after"></span> Insert Row Down</a></li>
+                                                    <li ng-click="insertNewRowUp()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-insert-row-after"></span> Insert Row Up</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-pane" id="tab-bdt" style="height:330px;">
+                                        <div id="sticker">
+                                            <ul id="sortable">
+                                                <li class="">When</li>
+                                                <li class="">Then</li>
+                                                <li class="">Given</li>
+                                                <li class="">Scenario</li>
+                                                <li class="">Feature</li>
+                                            </ul>
+                                        </div>
+                                        <div id="bdt-table">
+                                            <table class="aui" id="droppable">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:2%;"></th>
+                                                    <th>$i18n.getText("designing-view.label.description")</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="sticker-table-body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-pane" id="tab-bdt-steps" style="height:330px; visibility: hidden">
+                                        <div class="steps-table-content" id="bdt-steps-table-content">
+                                            <div class="table-header">
+                                                <table>
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="no">$i18n.getText("reportsview.label.no")</th>
+                                                        <th class="desc">$i18n.getText("designing-view.label.step-description")</th>
+                                                        <th class="result">$i18n.getText("designing-view.label.expected-result")</th>
+                                                        <th class="data">$i18n.getText("all.label.data")</th>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="table-content">
+                                                <table context-menu data-target="menu-1" context-menu-close="resetIndex()">
+                                                    <tbody id="bdt-test-step-tb">
+                                                                <tr ng-repeat="bdtstep in bdtSteps"
+                                                        ng-class="{'row-selected':($index  == index)}">
+                                                        <td class="no" ng-right-click="setSelectedIndex($index)">{{ $index +
+                                                            1 }}
+                                                        </td>
+                                                        <td class="desc">
+                                                            <textarea type="text" ng-model="bdtstep.step"
+                                                                    class="textarea-desc"
+                                                                    style="max-width: 100% !important;height: 100%;margin-bottom: 1px;"
+                                                            ></textarea>
+                                                        </td>
+                                                        <td class="result">
+                                                            <textarea class="textarea-result" type="text"
+                                                                    ng-model="bdtstep.expectedResult"
+                                                                    style="max-width: 100% !important;height: 100%;margin-bottom: 1px;"></textarea>
+                                                        </td>
+                                                        <td class="data" >
+                                                            <textarea class="textarea-data"
+                                                                    style="max-width: 100% !important;height: 100%;margin-bottom: 1px;" ng-model="bdtstep.data"></textarea>
+                                                        </td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons-container">
+                                <div class="buttons">
+                                    <button class="button submit" id="test-case-form-save-btn" ng-click="save()">$i18n.getText("all.label.save")
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Test Case Details tab end -->
+
+                    <!-- Test Case Data tab start -->
+                    <div class="tabs-pane" id="test-case-data-tab">
+                        <div class="test-case-data-management" id="test-case-data-management">
+                            <div class="filter">
+                                <!--<button class="aui-button" id="importDataFromExcelBtn">Import from Excel</button>-->
+                                <button class="aui-button" id="importDataFromOscarBtn">$i18n.getText("designing-view.label.auto-generate-from-ai")</button>
+                            </div>
+                            <div style="height:600px;overflow:scroll;">
+                                <div class="data-table" id="testdata">
+                                    <table class="aui" id="test-data-table" style="">
+                                        <thead id="auithead">
+
+                                        </thead>
+                                        <tbody id="auitbody">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="height:400px;">
+                                    <div class="data-table">
+
+                                        <table class="aui" id="test-data-table2" style="">
+                                            <tbody id="auitbody-data">
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter">
+                                <button id="save-data" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Test Case Data tab end -->
+
+                    <!--Start of Scripts Pane-->
+                    <div class="tabs-pane" id="test-case-scripts-tab">
+                        <div id="test-case-scripts-management">
+                            <div class="data-table" id="test-case-scripts-table">
+                                <table class="display compact" style="width:100%" id="script-table">
+                                    <thead>
+                                    <tr>
+                                        <th id="script-id">$i18n.getText("designing-view.label.script-id")</th>
+                                        <th id="script-name">$i18n.getText("designing-view.label.script-name")</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="script-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of Scripts Pane-->
+
+                    <!--Linked Issue Pane start-->
+                    <div class="tabs-pane" id="test-case-linkedissue-tab">
+                        <div id="test-case-linkedissue-management">
+                                <div class="link-issue-table-content">
+                                    <div class="table-header">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="issueid">$i18n.getText("designing-view.label.issue-id")</th>
+                                                <th class="issuekey">$i18n.getText("designing-view.label.issue-key")</th>
+                                                <th class="summary">$i18n.getText("designing-view.label.summary")</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="table-content">
+                                        <table context-menu data-target="menu-3" context-menu-close="resetIndex()">
+                                            <tbody>
+                                            <tr ng-repeat="issue in issues"
+                                                ng-class="{'row-selected':($index  == index)}">
+                                                <td class="issueid" ng-model="issue.issue_id" ng-right-click="setSelectedIndex($index)"><a href="javascript:void(0);" ng-click="viewUserStory(issue.issue_name)">{{issue.issue_id}}</a></td>
+                                                <td class="issuekey" ng-model="issue.issue_name" ng-right-click="setSelectedIndex($index)">{{issue.issue_name}}</td>
+                                                <td class="summary" ng-model="issue.summary" ng-right-click="setSelectedIndex($index)">{{issue.summary}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="dropdown position-fixed" id="menu-3">
+                                        <ul class="v-dropdown-menu" role="menu">
+                                            <li ng-click="clickedDeleteLink()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-trash" ></span>$i18n.getText("all.label.delete")</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <div>
+                                <ol class="aui-nav aui-nav-pagination" style="text-align:center;" id="issuenav">
+
+                                </ol>
+                            </div>
+                            <div style="margin-top:20px;">
+                                <div style="margin-left: 10px;">
+                                    <a href="#" class="jira-btn-sm" style="float:right; margin-left: 10px;" id="btnaddlinkissue" ng-click="getStories()">
+                                        <span class="aui-icon aui-icon-small aui-iconfont-add-circle"
+                                            style="margin-left:5px;"></span>$i18n.getText("designing-view.label.add-linkedissue")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Linked Issue Pane end-->
+                </div>
+        </section>
+        <section id="bc-section" class="aui-page-panel-content" style="display:none;">
+            <header class="aui-page-header">
+                <div class="aui-page-header-inner" id="business-script-header">
+                    <span class="aui-icon aui-icon-large aui-iconfont-bullet-list"></span>
+                    <span class="header-title" id="selected-business-Script-titile"></span>
+                </div>
+            </header>
+            <div class="aui-page-panel" style="height:440px;" id="bc-step-view">
+                <div class="bc-steps-table-content" id="bc-steps-table-content">
+                    <!--<div id="bc-steps-excel-view" class="bc-steps-excel-view"></div>-->
+                    	<div class="steps-table-content">
+                                        <div class="table-header">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th class="no">$i18n.getText("reportsview.label.no")</th>
+                                                    <th class="desc">$i18n.getText("designing-view.label.step-description")</th>
+                                                    <th class="result">$i18n.getText("designing-view.label.expected-result")</th>
+                                                    <th class="data">$i18n.getText("all.label.data")</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="table-content">
+                                            <table context-menu data-target="menu-2" context-menu-close="resetIndex()">
+                                                <tbody>
+                                                	<tr ng-repeat="bsbdtstep in bsbdtSteps"
+                                                    ng-class="{'row-selected':($index  == index)}">
+                                                    <td class="no">{{ $index +
+                                                        1 }}
+                                                    </td>
+                                                    <td class="desc" ng-right-click="setSelectedIndex($index)">
+                                                        <textarea type="text" ng-model="bsbdtstep.step"
+                                                                  class="textarea-desc"
+                                                                  style="max-width: 100% !important;height: 100%;font-family: inherit;"
+                                                                  ng-click="setClickedIndex($index,0)"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                        ></textarea>
+                                                    </td>
+                                                    <td class="result" ng-right-click="setSelectedIndex($index)">
+                                                        <textarea class="textarea-result" type="text"
+                                                                  ng-model="bsbdtstep.expectedResult"
+                                                                  style="max-width: 100% !important;height: 100%;font-family: inherit;"
+                                                                     ng-click="setClickedIndex($index,1)"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                                  ></textarea>
+                                                    </td>
+                                                    <td class="data" ng-right-click="setSelectedIndex($index)">
+                                                        <textarea class="textarea-data"
+                                                        ng-click="setBCClickedIndex($index,2,$event)"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                                  style="max-width: 100% !important;height: 100%;font-family: inherit;" ng-model="bsbdtstep.data" step_id = {{bsbdtstep.id}} ng-change="onChange()"></textarea>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="no"></td>
+                                                    <td class="desc">
+                                                        <textarea paste-excel type="text" ng-model="newbsbdtstep.step"
+                                                                  class="textarea-desc"
+                                                                  ng-click="setClickedIndex(-1,0)"
+                                                                  ng-enter="addbsbdtStep()"
+                                                                  style="max-width: 100% !important;height: 100%;"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                        ></textarea>
+                                                    </td>
+                                                    <td class="result">
+                                                        <textarea paste-excel class="textarea-result" type="text"
+                                                                    ng-model="newbsbdtstep.expectedResult"
+                                                                    ng-enter="addbsbdtStep()"
+                                                                    ng-click="setClickedIndex(-1,1)"
+                                                                    style="max-width: 100% !important;height: 100%;font-family: inherit;"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                        ></textarea>
+
+                                                    </td>
+                                                    <td class="data">
+                                                        <textarea paste-excel class="textarea-data" type="text"
+                                                                    ng-model="newbsbdtstep.data"
+                                                                    ng-enter="addbsbdtStep()"
+                                                                    ng-click="setClickedIndex(-1,2)"
+                                                                    style="max-width: 100% !important;height: 100%;font-family: inherit;"
+                                                                  ng-mouseup="resize($event)" ng-mousedown="resize($event)"
+                                                        ></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="dropdown position-fixed" id="menu-2">
+                                            <ul class="v-dropdown-menu" role="menu">
+                                                <li ng-click="clickedDeleteBdt()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-trash" ></span>$i18n.getText("all.label.delete")</a></li>
+                                                <li ng-click="insertNewRowBdt()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-insert-row-after"></span> Insert Row Down</a></li>
+                                                <li ng-click="insertNewRowBdtUp()"><a class="pointer" role="menuitem" tabindex="1"><span class="aui-icon aui-icon-small aui-iconfont-insert-row-after"></span> Insert Row Up</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                </div>
+                <button class="aui-button aui-button-primary" id="bc-step-save" ng-click="saveBCSteps()">$i18n.getText("all.label.save")</button>
+            </div>
+        </section>
+        <section id="test-case-details-page-panel-empty" style="display: block;">
+        </section>
+    </div>  
+</div>
+
+<div id="folderContext" class="context-menu">
+    <ul class="context-menu-options" role="menu" aria-labelledby="dropdownMenu"
+        style="display:block;position:static;margin-bottom:5px;">
+        <li id="addFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-folder"></span>
+                <span>$i18n.getText("designing-view.label.add-folder")</span>
+            </a>
+        </li>
+        <li id="addTestCaseLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-bullet-list"></span>
+                <span>$i18n.getText("designing-view.label.add-test-case")</span>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li id="renameFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-new-edit"></span>
+                <span>$i18n.getText("designing-view.label.rename")</span>
+            </a>
+        </li>
+        <li id="deleteFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-trash"></span>
+                <span>$i18n.getText("all.label.delete")</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="testCaseContext" class="context-menu">
+    <ul class="context-menu-options" role="menu" aria-labelledby="dropdownMenu">
+        <li id="renameTestCaseLi" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-new-edit"></span>
+                <span>$i18n.getText("designing-view.label.rename")</span>
+            </a>
+        </li>
+        <li id="deleteTestCaseLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-trash"></span>
+                <span>$i18n.getText("all.label.delete")</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<section id="add-folder-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" data-aui-modal="true" role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-folder" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("designing-view.label.add-folder")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-folder-name">
+                    $i18n.getText("all.label.name")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text large-field" type="text" id="new-folder-name" name="new-folder-name"
+                       placeholder="Enter Folder name..." autocomplete="off">
+                <div class="description">$i18n.getText("designing-view.label.your-folder-name")</div>
+            </div>
+        </form>
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-folder-description">
+                    $i18n.getText("reportsview.label.description")
+                </label>
+                <input class="text large-field" type="text" id="new-folder-description" name="test-case-description"
+                       placeholder="Your Description here..." autocomplete="off"></input>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-folder-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="cancel-folder-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+
+<section id="add-test-case-dialog" class="aui-dialog2 aui-dialog2-large aui-layer" data-aui-modal="true" role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-small aui-iconfont-bullet-list" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("designing-view.label.add-test-case")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-test-case-name">
+                    $i18n.getText("all.label.name")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text large-field" type="text" id="new-test-case-name" name="new-test-case-name"
+                       placeholder="Enter Test Case name..." autocomplete="off">
+                <div class="description">$i18n.getText("designing-view.label.your-test-case-name")</div>
+            </div>
+            <div class="field-group">
+                <label for="new-test-case-description">
+                    $i18n.getText("reportsview.label.description")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <textarea class="textarea" id="new-test-case-description" name="new-test-case-description" rows="3"
+                          placeholder="Description here..."></textarea>
+            </div>
+            <div class="field-group">
+                <label for="new-test-case-overall-expected-result">
+                    $i18n.getText("reportsview.label.overall-expected-result")
+                </label>
+                <textarea class="textarea" id="new-test-case-overall-expected-result"
+                          name="new-test-case-overall-expected-result" rows="3"
+                          placeholder="Overall Expected Result here..."></textarea>
+            </div>
+            <div class="field-group">
+                <label>$i18n.getText("reportsview.label.automated")</label>
+                <div class="radio">
+                    <input class="radio" type="radio" name="new-test-case-automated" id="new-test-case-automatedYes"
+                           value="Yes">
+                    <label for="new-test-case-automatedYes">$i18n.getText("reportsview.label.yes")</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="new-test-case-automated"
+                           id="new-test-case-automatedNo" value="No">
+                    <label for="new-test-case-automatedNo">$i18n.getText("reportsview.label.no")</label>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>$i18n.getText("reportsview.label.manual")</label>
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="new-test-case-manual"
+                           id="new-test-case-manualYes" value="Yes">
+                    <label for="new-test-case-manualYes">$i18n.getText("reportsview.label.yes")</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" name="new-test-case-manual" id="new-test-case-manualNo"
+                           value="No">
+                    <label for="new-test-case-manualNo">$i18n.getText("reportsview.label.no")</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-test-case-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="cancel-test-case-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+
+<section id="add-link-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-link" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("designing-view.label.add-link")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-link-name">
+                    $i18n.getText("all.label.name")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text large-field" type="text" id="new-link-name" name="new-link-name"
+                       placeholder="Enter Link name...">
+                <div class="description">$i18n.getText("designing-view.label.your-link-name")</div>
+            </div>
+            <div class="field-group">
+                <label for="new-link-type">
+                    Type
+                </label>
+                <select id="new-link-type">
+                    <option value="TASK">
+                        Task
+                    </option>
+                    <option value="ISSUE">
+                        Issue
+                    </option>
+                    <option value="REQUIREMENT">
+                        Requirement
+                    </option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label for="new-link-item">
+                    Item
+                </label>
+                <select id="new-link-item">
+                    <option value="issue 1">
+                        Issue 1
+                    </option>
+                    <option value="issue 2">
+                        Issue 2
+                    </option>
+                    <option value="issue 3">
+                        Issue 3
+                    </option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-link-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="cancel-link-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+
+<!--dialog-->
+<section id="demo-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("designing-view.label.add-linked-user-story")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <select id="select2-issueid" multiple="">
+            </select>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="createissuebtn" class="aui-button aui-button-primary">$i18n.getText("designing-view.label.lus")</button>
+        </div>
+    </footer>
+</section>
+<!--Rename TestCase model-->
+<section id="rename-testcase-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("designing-view.label.rename")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-testcase-name">New Testcase Name<span class="aui-icon icon-required">required</span></label>
+                <input class="text" type="text" id="new-testcase-name" name="text-input" title="Text input"
+                    autocomplete="off">
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="testcase-newname-save-button" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+        </div>
+    </footer>
+</section>
+<!--Rename Folder Model-->
+<section id="rename-folder-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("designing-view.label.rename")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="newfolder-name">$i18n.getText("designing-view.label.new-folder-name")<span class="aui-icon icon-required">required</span></label>
+                <input class="text" type="text" id="newfolder-name" name="text-input" title="Text input" autocomplete="off">
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="folder-newname-save-button" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+        </div>
+    </footer>
+</section>
+
+<section id="warning-dialog-folder" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main"><b>$i18n.getText("designing-view.label.confirm-you-want-to-delete-this")</b></h2>
+    </header>
+    <div class="aui-dialog2-content">
+        <p>$i18n.getText("designing-view.label.are-you-certain-that-you-want-this-thing-to-be-gone-forever")</p>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="folder-delete-confirm" class="aui-button aui-button-primary" style="margin-right: 10px;">
+                $i18n.getText("all.label.delete")
+            </button>
+            <button id="folder-delete-cancel" class="aui-button aui-button-link">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+
+<section id="warning-dialog-test-case" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main"><b>$i18n.getText("designing-view.label.confirm-you-want-to-delete-this")</b></h2>
+    </header>
+    <div class="aui-dialog2-content">
+        <p>$i18n.getText("designing-view.label.are-you-certain-that-you-want-this-thing-to-be-gone-forever")</p>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="test-case-delete-confirm" class="aui-button aui-button-primary" style="margin-right: 10px;">
+                $i18n.getText("all.label.delete")
+            </button>
+            <button id="test-case-delete-cancel" class="aui-button aui-button-link">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+
+<!--==================================Business Component Section==========================-->
+<!--Start Add new bc-Folder-->
+<section id="add-bc-folder-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" data-aui-modal="true" role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-folder" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("designing-view.label.add-folder")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-bc-folder-name">
+                    $i18n.getText("all.label.name")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text large-field" type="text" id="new-bc-folder-name" name="new-folder-name"
+                       placeholder="Enter Folder name..." autocomplete="off">
+                <div class="description">Your folder name.</div>
+            </div>
+        </form>
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-bc-folder-description">
+                    Description
+                </label>
+                <input class="text large-field" type="text" id="new-bc-folder-description" name="test-case-description"
+                       placeholder="Your Description here..." autocomplete="off"></input>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-bc-folder-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="cancel-bc-folder-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+<!--End Add new bc-Folder-->
+<!--Start Add new business Script-->
+<section id="add-bc-businessfunction-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" data-aui-modal="true"
+         role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-folder" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("designing-view.label.add-business-function")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="new-bc-businessfunction-name">
+                    $i18n.getText("all.label.name")
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text large-field" type="text" id="new-bc-businessfunction-name"
+                       name="new-businessfunction-name"
+                       placeholder="Enter business Script name..." autocomplete="off">
+                <div class="description">$i18n.getText("designing-view.label.ybsn")</div>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="create-bc-businessfunction-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.create")</button>
+            <button id="cancel-bc-businessfunction-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+<!--End Add new business Script-->
+<!-- Start bc-folderContext-->
+<div id="bc-folderContext" class="context-menu">
+    <ul class="context-menu-options" role="menu" aria-labelledby="dropdownMenu"
+        style="display:block;position:static;margin-bottom:5px;">
+        <li id="bc-addFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-folder"></span>
+                <span>$i18n.getText("designing-view.label.add-folder")</span>
+            </a>
+        </li>
+        <li id="bc-addBusinessFunctionLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-bullet-list"></span>
+                <span>$i18n.getText("designing-view.label.abs")</span>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li id="bc-renameFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-new-edit"></span>
+                <span>$i18n.getText("designing-view.label.rename")</span>
+            </a>
+        </li>
+        <li id="bc-deleteFolderLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-trash"></span>
+                <span>$i18n.getText("all.label.delete")</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--End bc-folderContext-->
+<!--Start bc-scriptContext-->
+<div id="bc-scriptContext" class="context-menu">
+    <ul class="context-menu-options" role="menu" aria-labelledby="dropdownMenu">
+        <li id="renameBusinessScriptLi" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-new-edit"></span>
+                <span>$i18n.getText("designing-view.label.rename")</span>
+            </a>
+        </li>
+        <li id="deleteBusinessScriptLI" class="context-menu-option">
+            <a tabindex="-1" href="#">
+                <span class="aui-icon aui-icon-small aui-iconfont-trash"></span>
+                <span>$i18n.getText("all.label.delete")</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--End bc-scriptContext-->
+<!--Start Rename bc-Folder Model-->
+<section id="bc-rename-folder-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("designing-view.label.rename")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="bc-newfolder-name">$i18n.getText("designing-view.label.new-folder-name")<span class="aui-icon icon-required">required</span></label>
+                <input class="text" type="text" id="bc-newfolder-name" name="text-input" title="Text input"
+                    autocomplete="off">
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="bc-folder-newname-save-button" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+        </div>
+    </footer>
+</section>
+<!--End Rename bc-Folder Model-->
+<!--Start Rename Business Script model-->
+<section id="bc-rename-businessfunction-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("designing-view.label.rename")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="bc-new-businessfunction-name">Businessfunction Name<span
+                        class="aui-icon icon-required">required</span></label>
+                <input class="text" type="text" id="bc-new-businessfunction-name" name="text-input" title="Text input"
+                    autocomplete="off">
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="bc-businessfunction-newname-save-button" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+        </div>
+    </footer>
+</section>
+<!--End Rename Business Script model-->
+<!--Start bc folder delete warning dialog-->
+<section id="warning-dialog-bcfolder" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main"><b>$i18n.getText("designing-view.label.confirm-you-want-to-delete-this")</b></h2>
+    </header>
+    <div class="aui-dialog2-content">
+        <p>$i18n.getText("designing-view.label.are-you-certain-that-you-want-this-thing-to-be-gone-forever")</p>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="bcfolder-delete-confirm" class="aui-button aui-button-primary" style="margin-right: 10px;">
+                $i18n.getText("all.label.delete")
+            </button>
+            <button id="bcfolder-delete-cancel" class="aui-button aui-button-link">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+<!--End bc folder delete warning dialog-->
+<!--Start bc script delete warning dialog-->
+<section id="warning-dialog-business-script" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog"
+         aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main"><b>$i18n.getText("designing-view.label.confirm-you-want-to-delete-this")</b></h2>
+    </header>
+    <div class="aui-dialog2-content">
+        <p>Are you certain that you want this thing to be gone forever?</p>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="business-script-delete-confirm" class="aui-button aui-button-primary"
+                    style="margin-right: 10px;">
+                $i18n.getText("all.label.delete")
+            </button>
+            <button id="business-script-delete-cancel" class="aui-button aui-button-link">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+<!--End bc script delete warning dialog-->

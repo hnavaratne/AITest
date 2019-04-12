@@ -1,0 +1,27 @@
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+$webResourceManager.requireResource("com.virtusa.gto.plugins:aitest-resources")
+<div class="slider-box" id="box-slide">
+    <div class="row">
+        <script>#include("js/rangeslider.js");</script>
+        #set($Integer = 0)
+        #if($value)
+        #set($input1InInteger = $Integer.parseInt($value))
+        #else
+        #set($input1InInteger = 0)
+        #end
+        <div class="column" style="width:10px;padding:5px;text-align:center;">
+            <span id="z-span">0</span>
+        </div>
+        <div class="column" style="padding-top:5px;width:150px;">
+            <input type="range" value="$input1InInteger" min="0" max="100" id="range-slide" class="slider" customId="$customField.id"/>
+            <output id="range-slider-value" for="range-slide" onforminput="value = $input1InInteger;"></output>
+        </div>
+        <div class="column" style="width:10px;padding-top:5px;text-align:center;padding-left:0px;">
+            <span id="h-span">100</span>
+        </div>
+
+        <input class="text" id="$customField.id" name="$customField.id" type="hidden"
+               value="$textutils.htmlEncode($!value)"/>
+    </div>
+</div>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)

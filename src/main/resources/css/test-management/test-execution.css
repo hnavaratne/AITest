@@ -1,0 +1,210 @@
+div#test-exection-selected-items-panel {
+    height: 615px;
+}
+
+div#test-exection-selected-items-panel div.selected-test-exec-table-container {
+    height: calc(100% - 50px);
+}
+
+/* nav#impact-view-nav{
+    padding: 0px !important;
+} */
+
+div#test-exection-selected-items-panel div.test-exec-actions {
+    height: 50px;
+}
+
+div.selected-test-exec-table-header {
+    height: 35px;
+}
+
+div.selected-test-exec-table-content {
+    height: calc(100% - 35px);
+}
+
+div.test-execution-page-panel div.aui-page-panel-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.test-execution-page-panel div.aui-page-panel-inner div.test-execution-actions-section {
+    flex: 0 0 50px;
+    display: flex;
+}
+
+div.test-execution-page-panel div.aui-page-panel-inner div.test-execution-actions-section button {
+    margin: auto 10px;
+}
+
+div.test-execution-page-panel div.aui-page-panel-inner div.test-execution-table-container {
+    border-top: 1px solid #dfe1e6;
+    flex: 0 0 400px;
+    display: flex;
+}
+
+div.test-execution-page-panel div.aui-page-panel-inner div.test-execution-table-container div.aui-sidebar div.aui-sidebar-wrapper {
+    height: 100% !important;
+}
+
+#execution-run-spinner {
+    margin: auto 10px;
+}
+
+div#test-execution-side-nav div.aui-sidebar-body {
+    display: flex;
+    flex-direction: column;
+}
+
+div#test-execution-side-nav div.aui-sidebar-body div.test-execution-test-plans-grouping {
+    flex: 0 0 300px;
+    overflow: auto;
+}
+
+div#test-execution-side-nav div.aui-sidebar-body div.hr {
+    flex: 0 0 1px;
+    background-color: #FFFFFF;
+}
+
+div#test-execution-side-nav div.aui-sidebar-body div.test-execution-test-cases-grouping {
+    flex: 1 1 auto;
+    overflow: auto;
+}
+
+.aui-progress-tracker-step>span:before, .aui-progress-tracker-step>a:before{
+    height: 15px !important;
+    width: 15px !important;
+    top: 1px !important;
+    z-index: 10 !important;
+}
+
+.row {
+    display: flex;
+}
+
+.heat-map-view{
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.component-column {
+    border: none !important;
+    margin-top: 3px;
+    flex: 34.8%;
+    height: auto;
+}
+
+.requirment-table-column {
+    border: none !important;
+    margin-top: 3px;
+    flex: 65%;
+    height: auto; 
+}
+
+.divider{
+    flex: 0.2%
+}
+
+.requirement-table-headers{
+    margin-right: 2px;
+}
+
+#requirment-data-table{
+    border-left: 2px solid rgba(196, 196, 196, 0.322);
+    border: none !important;
+}
+
+#add-to-build-btn{
+    background: #86BF4A;
+    border-radius: 3px;
+    color: white;
+}
+
+#s2id_impact-analysis-release-selector{
+    width: 150px;
+}
+.component-button {
+    cursor: not-allowed;
+}
+
+#requirment-data-body{
+    width: 100%;
+    min-width: 100%;
+}
+
+.requirement-table{
+    width: 560px;
+    padding: 10px;
+}
+
+#aui-navgroup-tab-selected{
+    padding: 0px;
+}
+
+#aui-navgroup-tab-selected{
+    position: inherit;
+}
+
+tr.component-header{
+    cursor:pointer;
+}
+
+.requirment-data-table{
+    border-collapse:collapse;
+}
+
+
+.active-status{
+    border: 1.5px solid rgba(0, 0, 0, 0.8);
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+[data-title]:after {
+    content: attr(data-title);
+    visibility: hidden;
+    width: 80px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 5px;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    margin-left: -30px;
+}
+[data-title] {
+    position: relative;
+}
+
+.aui-navgroup-horizontal::after{
+    background: #ffffff;
+}
+#schedule-dialog > div > form > div> label{
+    text-align: left;
+}
+#schedule-dialog > div > form{
+    padding: 10px;
+}
+#selector{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #6b778c;
+}
+
+.cron-builder {
+    min-height: 130px;
+}
+
+#example2-btn {
+    margin-top: 15px;
+}
+
+

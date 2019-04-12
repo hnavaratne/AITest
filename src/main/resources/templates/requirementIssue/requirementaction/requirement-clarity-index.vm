@@ -1,0 +1,26 @@
+<script type="text/javascript">;
+                    #include("js/rci.js")
+                    myRemoteMethod();
+                        </script>
+<div class="col-lg-12 col-md-12 no-padding-margin">
+    <div class="col-lg-6 col-md-6 no-padding-margin">
+        <div class="panel panel-primary">
+            <div class="panel-body">DEV RCI
+                <div id="DEV RCI" value="1">
+                    <div id="dev-rci-id" class="devrci">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 no-padding-margin">
+        <div class="panel panel-primary">
+            <div class="panel-body">QA RCI
+                <div id="QA-RCI" value="1">
+                    <div id="qa-rci-id" class="qarci">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

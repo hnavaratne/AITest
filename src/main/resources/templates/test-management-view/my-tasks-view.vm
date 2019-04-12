@@ -1,0 +1,308 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-tooltips")
+<div ng-app="myTaskDialog" ng-controller="myTaskCtrl">
+<div style="padding: 20px; background: white" id="my-task-view" >
+    <div style="height:500px;overflow: auto;">
+    <table class="aui" id="mytaskstable">
+        <thead>
+            <tr>
+                <th width="0%" style="display: none"></th>
+                <th width="10%" id="my-tasks-execution-cycle">$i18n.getText("reportsview.table.td.span.execution-cycle")</th>
+				<th width="8%" id="my-tasks-test-case-id">$i18n.getText("all.label.test-case-id")</th>
+                <th width="15%" id="my-tasks-test-case-name">$i18n.getText("reportview.placeholder.test-case-name")</th>
+                <th width="5%" id="my-tasks-test-caste-iteration-data">$i18n.getText("all.label.data")</th>
+                <th width="18%" id="my-tasks-overall-expected-result">$i18n.getText("reportsview.label.overall-expected-result")</th>
+                <th width="18%" id="my-tasks-overall-actual-result">$i18n.getText("reportsview.label.overall-actual-result")</th>
+                <th width="10%" id="my-tasks-overall-status">$i18n.getText("reportsview.label.overall-status")</th>
+				<th width="3%" id="my-tasks-show-details"></th>
+                <th width="3%" id="my-tasks-link-defects"></th>
+                <th width="10%" id="my-tasks-complete-execution"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="display: none">
+                <td headers="basic-number" class="vertical-align-tr">1</td>
+                <td headers="basic-fnamer" class="vertical-align-tr">$i18n.getText("my-task-view.label.create-user-profile")</td>
+                <td class="vertical-align-tr">$i18n.getText("my-task-view.label.customer-creation")</td>
+                <td headers="basic-lname" class="field-group">
+                    <textarea disabled class="textarea text-area-full-width-tr form-control" name="comment" id="textarea-id"></textarea>
+                </td>
+                <td headers="basic-username"  class="field-group">
+                    <textarea class="textarea text-area-full-width-tr form-control" name="comment" id="textarea-id" placeholder="Enter actual value here"></textarea>
+                </td>
+                <td headers="basic-username" class="vertical-align-tr align-center-tr field-group">
+                    <select class="text" type="text" id="text-input" name="text-input" title="Text input"></select>
+                </td>
+                <td headers="basic-username" class="vertical-align-tr align-center-tr">
+                    <button class="aui-button aui-button-primary align-center-tr">$i18n.getText("my-task-view.label.execution")</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <ol class="aui-nav aui-nav-pagination" id="pagination-ol" display="none">
+        <li class="aui-nav-previous" id="li-prev"><a href="javascript:void(0);">$i18n.getText("all.label.prev")</a></li>
+        <li class="aui-nav-next" id="li-next"><a href="javascript:void(0);">$i18n.getText("all.label.next")</a></li>
+    </ol>
+</div>
+
+<div id="add-test-case-dialog-my-task" class="aui-dialog2 aui-dialog2-xlarge  aui-layer" role="dialog" aria-hidden="true">
+    <div class="aui-page-panel-inner">
+        <div class="aui-page-panel-content">
+            <header class="aui-page-header">
+                <div class="aui-page-header-inner">
+                    <span class="aui-icon aui-icon-large aui-iconfont-bullet-list"></span>
+                    <span class="header-title" id="selected-test-case-titile" style="vertical-align: text-top;"></span>
+                    <a class="aui-dialog2-header-close" style="float: right">
+                    <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+                    </a>
+                </div>
+            </header>
+            <div class="aui-tabs horizontal-tabs">
+                <ul class="tabs-menu manual-test-case-di-tab">
+                    <li class="menu-item active-tab" data-id="details" id="details-tab">
+                        <a href="#test-case-details-tab-my-tasks">
+                            <span class="aui-icon aui-icon-small aui-iconfont-info-circle"></span>
+                               $i18n.getText("reportsview.table.td.details")
+                        </a>
+                    </li>
+                <!--    <li class="menu-item">
+                        <a href="#manual-data-iterations-tab" data-id="data-iteration" id="data-iteration-tab">
+                            <span class="aui-icon aui-icon-small aui-iconfont-task-list"></span>
+                            Data Iterations
+                        </a>
+                    </li> -->
+                </ul>
+                <div class="tabs-pane active-pane" id="test-case-details-tab-my-tasks">
+                    <form class="aui">
+                        <div class="field-group">
+                            <label for="test-case-name">
+                                Name
+                                <span class="aui-icon icon-required">(required)</span>
+                            </label>
+                            <input class="text medium-field" type="text" id="test-case-name" name="test-case-name" disabled>
+                            <div class="description">$i18n.getText("reportsview.div.your-test-case-name")</div>
+                        </div>
+                        <div class="field-group" style="display:none">
+                            <label id="iteration-id">
+                            </label>
+                        <div class="description">$i18n.getText("reportsview.div.your-test-case-name")</div>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-description">
+                                $i18n.getText("reportsview.label.description")
+                            </label>
+                            <textarea class="textarea" disabled="true" name="test-case-description" id="test-case-description" rows="5"
+                                      placeholder="Your description here..."></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-overall-expected-result">
+                                $i18n.getText("reportsview.label.overall-expected-result")
+                            </label>
+                            <textarea class="textarea" disabled="true" name="test-case-overall-expected-result" id="test-case-overall-expected-result" rows="5"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-overall-actual-result">
+                                 $i18n.getText("reportsview.label.overall-actual-result")
+                            </label>
+                         <textarea class="textarea" name="test-case-overall-actual-result" id="test-case-overall-actual-result" rows="5"></textarea>
+                        </div>
+                        <div class="field-group">
+                             <label for="test-case-overall-status">
+                                 $i18n.getText("reportsview.label.overall-status")
+                             </label>
+                             <select id="test-case-overall-status" class="select form-control" ng-model="selectoverallStatus" ng-change="setSelectedExpected(selectoverallStatus)">
+                                 <option hidden value=""></option>
+                                 <option value="Select">
+                                    Select
+                                </option>
+                                <option value="Pass">
+                                    Passed
+                                </option>
+                                <option value="Failed">
+                                    Failed
+                                </option>
+                                <option value="N/A">
+                                    N/A
+                                </option>
+                             </select>
+                        </div>
+                        <div class="field-group">
+                            <label>$i18n.getText("reportsview.label.automated")</label>
+                            <div class="radio">
+                                <input class="radio" type="radio" name="automatedRadioButtons" id="automatedYes" value="Yes" disabled>
+                                <label for="automatedYes">$i18n.getText("reportsview.label.yes")</label>
+                            </div>
+                            <div class="radio">
+                                <input class="radio" type="radio" checked="checked" name="automatedRadioButtons"
+                                       id="automatedNo" value="No" disabled>
+                                <label for="automatedNo">$i18n.getText("reportsview.label.no")</label>
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label>$i18n.getText("reportsview.label.manual")</label>
+                            <div class="radio">
+                                <input class="radio" type="radio" checked="checked" name="manualRadioButtons"
+                                       id="manualYes" value="Yes" disabled>
+                                <label for="manualYes">$i18n.getText("reportsview.label.yes")</label>
+                            </div>
+                            <div class="radio">
+                                <input class="radio" type="radio" name="manualRadioButtons" id="manualNo" value="No" disabled>
+                                <label for="manualNo">$i18n.getText("reportsview.label.no")</label>
+                            </div>
+                        </div>
+                        <div class="field-group table steps-group">
+                            <label for="steps-excel-view-my-task">
+                                Steps
+                            </label>
+                            <!--<div class="steps-table-content">-->
+                                <!--<div id="steps-excel-view-my-task" class="steps-excel-view"></div>-->
+                                <div id="steps-excel-view-my-task"  class="mytask-steps-table-content">
+                                    <div class="table-header">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="no"></th>
+                                                <th class="desc">Step Description</th>
+                                                <th class="data">Data</th>
+                                                <th class="result">Expected Result</th>
+                                                <th class="result">Actual Result</th>
+                                                <th class="status">Actual Status</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="table-content">
+                                        <table>
+                                            <tbody id="test-step-tb">
+                                            <tr ng-repeat="step in stepList">
+                                                <td class="no" ng-right-click="setSelectedIndex($index)" >{{ $index +
+                                                    1 }}
+                                                </td>
+                                                <td class="desc">
+                                                    <textarea readonly ng-mouseup="resizeMTD($event)" ng-mousedown="resizeMTD($event)"  ng-model="step.step" class="textarea-desc" type="text" ng-model="step.step" style="max-width: 100% !important;height: 100%;" ></textarea>
+                                                </td>
+                                                <td class="data">
+                                                    <textarea readonly ng-mouseup="resizeMTD($event)" ng-mousedown="resizeMTD($event)" ng-model="step.data"  class="textarea-result" type="text" ng-model="step.expectedResult" style="max-width: 100% !important;height: 100%;font-family: inherit;"></textarea>
+                                                </td>
+                                                <td class="result" >
+                                                    <textarea readonly ng-mouseup="resizeMTD($event)" ng-mousedown="resizeMTD($event)" ng-model="step.expectedResult" class="textarea-data" type="text" style="max-width: 100% !important;height: 100%;font-family: inherit;"></textarea>
+                                                </td>
+                                                <td class="result">
+                                                    <textarea  ng-mouseup="resizeMTD($event)" ng-mousedown="resizeMTD($event)" ng-model="step.actualResult" class="textarea-data" type="text" style="max-width: 100% !important;height: 100%;font-family: inherit;"></textarea>
+                                                </td>
+                                                <td class="status">
+                                                    <select class="mytask-select" ng-model="step.actualStatus" ng-init="step.actualStatus" ng-change="actualStatusUpdate(step)">
+                                                        <option value="In Progress">In Progress</option>
+                                                        <option value="Passed">Passed</option>
+                                                        <option value="Failed">Failed</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            <!--</div>-->
+                        </div>
+                        <div class="buttons-container">
+                            <div class="buttons">
+                                <button class="button" id="test-case-form-my-task-save-btn" ng-click="saveMyTask()">$i18n.getText("executionview.label.execute")</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="manual-data-iterations-tab" class="tabs-pane">
+                    <div class="row" id="row">
+                        <div class="iterations-column">
+                            <div class="iterations-table-content" style="overflow:auto;">
+                                <table id="iterations-table">
+                                    <tbody id="iterations-table-tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="iterations-result-table-div" style="overflow-y:auto;">
+                            <table class="aui" id="iterations-result-data-table">
+                            <tbody>
+                            </tbody>
+                            </table>
+                            <div class="iterations-result-data-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="iteration-data-dialog" class="aui-dialog2 aui-dialog2-medium  aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">$i18n.getText("my-task-view.label.data-iteration")</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <div class="iteration-table-content">
+            <table id="iteration-results-table" class="aui controller"  style="overflow-y: auto;">
+                <th id="iteration-table-param-header" style="font-size: 15px; border: 1px solid #dfe1e6;">$i18n.getText("all.label.paramater")</th>
+                <th id="iteration-table-data-header" style="font-size: 15px; border: 1px solid #dfe1e6;">$i18n.getText("all.label.data")</th>
+                <tbody id="iteration-results-table-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<section id="add-defects-dialog-my-task" class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-bullet-list" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("my-tasks-view.label.attach-defects-manually")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="">
+                <div style="margin-left: 20px;">
+                    <div>
+                        <label style="width: 20px; height: 15px; font-size: 15px; vertical-align: sub;">$i18n.getText("my-tasks-view.label.attach-defects-manually")</label>
+                        <label style="vertical-align: sub;">
+                        <input type="checkbox" class="radio" value="1" name="" style="width: 20px; height: 15px; vertical-align: sub;"/>$i18n.getText("reportsview.label.yes")</label>
+                        <label style="vertical-align: sub;"> 
+                        <input type="checkbox" class="radio" value="2" name="" style="width: 20px; height: 15px; vertical-align: sub;" checked/>$i18n.getText("reportsview.label.no")</label>
+                    </div>
+                </div>
+            </div>
+            <div id="defect-list-selector-div" style="display:none; margin-top: 15px; margin: 20px;">
+                <label for="defect-list-selector" style="margin-right:15px; margin-top:5px; float:left;">
+                    <h5 style="font-size: 15px;color: #6b778c;">Select Defect</h5>
+                </label>
+                <select id="defect-list-selector" class="js-example-responsive" style="width: 85%; height: 30px">
+                </select>
+            </div>
+            <div id="defect-list-table-div" style="display:none" width="100%">
+                <table id="defect-list-selector-table" style="margin-top: 15px; overflow-y: auto;" width="95%;">
+                    <thead>
+                        <th style="border: 1px solid #dfe1e6; padding: 8px;" width="15%">$i18n.getText("reportsview.label.defect-key")</th>
+                        <th style="border: 1px solid #dfe1e6; padding: 8px;" width="75%">$i18n.getText("reportsview.label.defect-summary")</th>
+                        <th style="border: 1px solid #dfe1e6; padding: 8px;" width="5%"></th>
+                    </thead>
+                    <tbody id="defect-list-tbody"></tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="save-defect-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.save")</button>
+            <button id="cancel-defect-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+        </div>
+    </footer>
+</section>
+</div>
+

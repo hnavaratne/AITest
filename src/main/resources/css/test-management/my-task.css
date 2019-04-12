@@ -1,0 +1,297 @@
+.test-css-class{
+    color:red;
+}
+
+#my-task-view{
+    height: calc(100vh - 80px);
+}
+
+/*.vertical-align-tr{
+    vertical-align: inherit !important;
+}*/
+
+.text-area-full-width-tr{
+    width: 100% !important;
+}
+
+.align-center-tr{
+    text-align: center !important;
+}
+
+#test-case-details-tab-my-tasks{
+    height: 300px;
+    width: auto;
+    overflow: auto;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group input,
+div#test-case-details-tab-my-tasks form.aui div.field-group textarea,
+div#add-test-case-dialog-my-task form.aui div.field-group input,
+div#add-test-case-dialog-my-task form.aui div.field-group textarea {
+    max-width: 100% !important;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel{
+    width: 100%;
+    max-width: 100% !important;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(1),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(1) {
+    width: 5%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(2),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(2) {
+    width: 25%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(3),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(3) {
+    width: 20%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(4),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(4) {
+    width: 20%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(5),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(5) {
+    width: 15%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(6),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(6) {
+    width: 15%;
+}
+
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel thead tr td:nth-child(7),
+div#test-case-details-tab-my-tasks form.aui div.field-group table.jexcel tbody tr td:nth-child(7) {
+    display: none;
+}
+
+
+div#test-case-details-tab-my-tasks form.aui div.field-group.steps-group {
+    height: 180px;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+div.field-group.steps-group div.steps-table-header > table,
+div.field-group.steps-group div.steps-table-content > table {
+    table-layout: fixed;
+}
+
+div.field-group.steps-group div.steps-table-content {
+    /* overflow: auto; */
+}
+
+.row {
+    display: flex;
+}
+
+.iterations-column {
+    border: none !important;
+    margin-top: 3px;
+    flex: 29.8%;
+    height: auto;
+    overflow: auto;
+}
+
+.iterations-result-table-div {
+    border: none !important;
+    margin-top: 3px;
+    flex: 70%;
+    height: auto; 
+}
+
+#iterations-table{
+    overflow-y: auto;
+}
+
+#iterations-result-data-table{
+    overflow-y: auto;
+}
+
+.divider{
+    flex: 0.2%
+}
+
+#iterations-result-data-body{
+    width: 100%;
+    min-width: 100%;
+}
+
+div#steps-excel-view-data-iteration table.jexcel{
+    width: 100%;
+    max-width: 100% !important;
+    border-collapse: collapse;
+}
+
+/* #steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(1),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(1) {
+    width: 5%;
+}
+
+#steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(2),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(2) {
+    width: 25%;
+}
+
+#steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(3),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(3) {
+    width: 20%;
+}
+
+#steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(4),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(4) {
+    width: 20%;
+}
+
+#steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(5),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(5) {
+    width: 15%;
+}
+
+#steps-excel-view-data-iteration table.jexcel thead tr td:nth-child(6),
+#steps-excel-view-data-iteration table.jexcel tbody tr td:nth-child(6) {
+    width: 15%;
+} */
+
+.select2-drop-active{
+    margin-top: -25px;
+}
+#li-prev>a{
+    text-decoration: none;
+}
+#li-next>a{
+    text-decoration: none;
+}
+
+#defect-list-selector-table{
+    margin: 20px;
+}
+div.mytask-steps-table-content div.table-header table,
+div.mytask-steps-table-content div.table-content table {
+    width: 100%;
+}
+
+div.mytask-steps-table-content div.table-content {
+    height: 135px;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr,
+div.mytask-steps-table-content div.table-content table tbody tr {
+    line-height: 25px;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th,
+div.mytask-steps-table-content div.table-content table tbody tr td {
+    border: 1px solid #ccc;
+    font-weight: 400;
+    text-align: inherit;
+}
+
+div.mytask-steps-table-content div.table-content table tbody tr td {
+    border-top: none;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.no,
+div.mytask-steps-table-content div.table-content table tbody tr td.no {
+    width: 5%;
+    text-align: center;
+}
+div.mytask-steps-table-content div.table-header table thead tr th.desc,
+div.mytask-steps-table-content div.table-content table tbody tr td.desc {
+    width: 19%;
+    padding: 0 5px;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.result,
+div.mytask-steps-table-content div.table-content table tbody tr td.result {
+    width: 19%;
+    padding: 0 5px;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.data,
+div.mytask-steps-table-content div.table-content table tbody tr td.data {
+    width: 19%;
+    padding: 0 5px;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.status,
+div.mytask-steps-table-content div.table-content table tbody tr td.status {
+    width: 19%;
+    padding: 0 5px;
+}
+div.mytask-steps-table-content div.table-content table tbody tr td.status,
+div.mytask-steps-table-content div.table-content table tbody tr td.no {
+    vertical-align: top;
+}
+
+div.mytask-steps-table-content div.table-content table tbody tr td.desc,
+div.mytask-steps-table-content div.table-content table tbody tr td.result,
+div.mytask-steps-table-content div.table-content table tbody tr td.data,
+div.mytask-steps-table-content div.table-content table tbody tr td.status {
+    background-color: #ffffff;
+    font-size: 100%;
+    font-family: inherit;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.no,
+div.mytask-steps-table-content div.table-content table tbody tr td.no{
+   background-color: #f3f3f3;
+}
+
+div.mytask-steps-table-content div.table-header table thead tr th.result,
+div.mytask-steps-table-content div.table-header table thead tr th.desc,
+div.mytask-steps-table-content div.table-header table thead tr th.data,
+div.mytask-steps-table-content div.table-header table thead tr th.status{
+   background-color: #dcdcdc;
+}
+div.mytask-steps-table-content div.table-content table tbody tr td.desc textarea,
+div.mytask-steps-table-content div.table-content table tbody tr td.result textarea,
+div.mytask-steps-table-content div.table-content table tbody tr td.data textarea {
+    vertical-align: top;
+    width: 100%;
+    min-height: 30px !important;
+    border: none;
+    background: transparent;
+    outline: none;
+    height: 100%;
+    resize: vertical;
+    overflow: hidden;
+    font-family: inherit;
+}
+div.mytask-steps-table-content div.table-header table,
+div.mytask-steps-table-content div.table-content table{
+    border-spacing: 0px;
+}
+
+.mytask-select{
+    margin-top: 3px;
+    background-color: white;
+    width:100%;
+    border-radius:5px;
+    border:1px solid #e9e9e9;
+    height:34px;
+    padding: 6px 12px;
+    font-family: Arial;
+    font-size:14px;
+    color:#696969;
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */
+    flex: 1;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#pagination-ol{
+    position: absolute;
+    left: 91%;
+    bottom: 5%;
+}

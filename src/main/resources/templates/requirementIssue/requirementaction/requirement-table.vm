@@ -1,0 +1,50 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-table-sortable")
+$webResourceManager.requireResource("com.virtusa.gto.plugins:aitest-resources")
+<table class="aui aui-table-sortable table-hover">
+    <thead>
+    <tr>
+        <th class="aui-table-column-issue-key">Issue key</th>
+        <th>Summary</th>
+        <th class="aui-table-column-unsortable">Status</th>
+        <th>Assigned-To</th>
+        <th>Created Date</th>
+        <th>Reporter</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Updated Date</th>
+
+    <tr>
+    </thead>
+    <tbody>
+    #foreach ($Issue in $IssueList)
+    <tr>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getKey()</a></td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getSummary()</a></td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getStatus().getName()</a></td>
+
+        #if($Issue.getAssignee().getName())
+        <td>$Issue.getAssignee().getName()</td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getUpdated()</a></td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getReporter().getName()</a></td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getDescription()</a></td>
+        <td class="requirementId" issue-id=$Issue.getKey()><a href=#>$Issue.getPriorityObject().getName()</a></td>
+        #else
+
+
+        <td></td>
+
+        #end
+
+        <td>$Issue.getCreated()</td>
+    </tr>
+    #end
+    </tbody>
+</table>
+<div>
+    <ol class="aui-nav aui-nav-pagination">
+        <li class="aui-nav-first"><a href="#">First</a></li>
+        <li class="aui-nav-previous"><a href="#">Prev</a></li>
+        <li class="aui-nav-next"><a href="#">Next</a></li>
+        <li class="aui-nav-last"><a href="#">Last</a></li>
+    </ol>
+</div>

@@ -1,0 +1,90 @@
+<form class="aui top-label">
+    <script> #include("js/rci.js")</script>
+    <div class="col-lg-12 col-md-12 no-padding-margin">
+        <fieldset class="top-label">
+            <div class="field-group top-label">
+                <label for="requirementTitle">Title</label>
+                <input class="text full-width-field" type="text" id="requirementTitle"
+                       name="requirementTitle">
+            </div>
+        </fieldset>
+    </div>
+    <div class="row" style="margin: 0">
+        <div class="col-lg-6 col-md-6 no-padding-margin">
+            <div class="field-group top-label">
+                <label for="textarea-id">Description</label>
+                <textarea class="textarea" name="comment" id="textarea-id" rows="9" cols="40"
+                          placeholder="Your comment here...">$issue.getDescription();</textarea>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 no-padding-margin">
+            <div class="col-lg-12 col-md-12 no-padding-margin">
+                <div class="field-group top-label">
+                    <div class="col-lg-6 col-md-6 no-padding-margin">
+                        <label for="AssignedTo">AssignedTo</label>
+                        <input class="text" type="text" id="AssignedTo" name="AssignedTo"
+                               value=$issue.getAssigneeUser().getUsername()>
+                    </div>
+                    <div class="col-lg-6 col-md-6 no-padding-margin">
+                        <label for="Release">Release</label>
+                        <input class="text" type="text" id="Release" name="Release" value=$release>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 no-padding-margin">
+                <div class="field-group top-label">
+                    <div class="col-lg-6 col-md-6 no-padding-margin">
+                        <label for="Status">Status</label>
+                        <input class="text" type="text" id="Status" name="Status">
+                    </div>
+                    <div class="col-lg-6 col-md-6 no-padding-margin">
+                        <label for="StatusMessage">StatusMessage</label>
+                        <input class="text" type="text" id="StatusMessage" name="StatusMessage">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 no-padding-margin">
+                <div class="col-lg-6 col-md-6 no-padding-margin">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">DEV RCI
+                            <div id="DEV RCI" value="1">
+                                <div class="devrci">
+                                    <span class="glyphicon glyphicon-star" rating="1"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="2"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="3"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="4"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="5"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 no-padding-margin">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">QA RCI
+                            <div id="QA-RCI" value="1">
+                                <div class="qarci">
+                                    <span class="glyphicon glyphicon-star" rating="1"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="2"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="3"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="4"></span>
+                                    <span class="glyphicon glyphicon-star-empty"
+                                          rating="5"></span>
+                                    <!--         <input type="hidden" id="QA-RCI"  value="1"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--        </div> -->
+            </div>
+        </div>
+    </div>
+</form>

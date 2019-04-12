@@ -1,0 +1,7 @@
+$webResourceManager.requireResource("com.virtusa.gto.plugins.aitest:linked-testcase-resources")
+<div>
+    <table class="aui aui-table-list" style="cursor:pointer;">
+        <tbody id="issuelink-tbody">
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,5 @@
+<div id="DEV RCI">
+    <script type="text/javascript">#include("js/custom-fields/parent-custom-field.js");
+            updateParentView($value);
+    </script>
+</div>

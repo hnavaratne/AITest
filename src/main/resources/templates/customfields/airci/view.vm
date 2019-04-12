@@ -1,0 +1,111 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-inline-dialog2")
+<div id="AI-RCI">
+    #set($finalValue = $value.get("RQmetrics").getAsJsonObject())
+    #set($rating = $finalValue.get("overall_rating").getAsInt())
+    #foreach($i in [1..5])
+    #if($i <= $rating)
+    <span class="aui-icon aui-icon-small aui-iconfont-star-filled" rating=$i style="color: orange;"></span>
+    #else
+    <span class="aui-icon aui-icon-small aui-iconfont-new-star" rating=$i></span>
+    #end
+    #end
+    <span>
+    <a id="ai-rci-details" href="#">
+    <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+         style="max-height: 20px;"/>
+    </a>
+    </span>
+</div>
+
+#set($sentence_count_score_jsonObject = $finalValue.get("sentence_count_score").getAsJsonArray())
+#if($sentence_count_score_jsonObject.size() == 3 && !($sentence_count_score_jsonObject.get(2).isEmpty()))
+#set($sentence_count_score = $sentence_count_score_jsonObject.get(2).getAsString())
+#end
+
+#set($word_count_score_jsonObject = $finalValue.get("word_count_score").getAsJsonArray())
+#if($word_count_score_jsonObject.size() == 3 && !($word_count_score_jsonObject.get(2).isEmpty()))
+#set($word_count_score = $word_count_score_jsonObject.get(2).getAsString())
+#end
+
+#set($word_list_score_jsonObject = $finalValue.get("word_list_score").getAsJsonArray())
+#if($word_list_score_jsonObject.size() == 3 && !($word_list_score_jsonObject.get(2).isEmpty()))
+#set($word_list_score = $word_list_score_jsonObject.get(2).getAsString())
+#end
+
+#set($listing_score_jsonObject = $finalValue.get("listing_score").getAsJsonArray())
+#if($listing_score_jsonObject.size() == 3 && !($listing_score_jsonObject.get(2).isEmpty()))
+#set($listing_score = $listing_score_jsonObject.get(2).getAsString())
+#end
+
+#set($noun_score_jsonObject = $finalValue.get("noun_score").getAsJsonArray())
+#if($noun_score_jsonObject.size() == 3 && !($noun_score_jsonObject.get(2).isEmpty()))
+#set($noun_score = $noun_score_jsonObject.get(2).getAsString())
+#end
+
+#if($rating < 5)
+<section id="ai-details-dialog" class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog"
+         aria-hidden="true" style="min-height: auto;height: auto;max-height: fit-content;">
+
+    <header class="aui-dialog2-header" style="width: 100%;border-bottom: 0px;">
+        <h2 class="aui-dialog2-header-main" style="padding-top: 10px;max-width: 100%;">
+            <script type="text/javascript">#include("js/rci.js")
+            </script>
+            <span style="float: left;"><img
+                    src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+                    style="max-height: 50px;"></span>
+            <span style="float: left;margin: 12px;letter-spacing: 0.5px;font-weight: 700;color: hsl(208, 90%, 30%);"> Your requirement seems to be lacking clarity!!</span><br>
+
+        </h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div style="padding-left: 20px;padding-bottom: 20px;">
+        <div class="ai-rci-circle" id="circle-a">
+            <strong></strong>
+        </div>
+        <ul style="list-style-type: disc;padding-left: 10px;padding-right: 10px;">
+            <div style="font-size: 20px;font-style: oblique;border-bottom-color: azure;text-decoration: underline;padding-bottom: 10px;padding-top: 10px;font: bold;">
+                Recommendations
+            </div>
+            #if($sentence_count_score && $sentence_count_score.length() > 0 )
+            <li>$sentence_count_score</li>
+            #end
+            #if($word_count_score && $word_count_score.length() > 0 )
+            <li>$word_count_score</li>
+            #end
+            #if($word_list_score && $word_list_score.length() > 0)
+            <li>$word_list_score</li>
+            #end
+            #if($listing_score && $listing_score.length() > 0)
+            <li>$listing_score</li>
+            #end
+            #if($noun_score && $noun_score.length() > 0)
+            <li>$noun_score</li>
+            #end
+        </ul>
+    </div>
+</section>
+#else
+<section id="ai-details-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog"
+         aria-hidden="true" style="min-height: auto;height: auto;max-height: fit-content;">
+
+    <header class="aui-dialog2-header" style="width: 100%;border-bottom: 0px;">
+        <h2 class="aui-dialog2-header-main" style="padding-top: 10px;max-width: 100%;">
+            <script type="text/javascript">#include("js/rci.js")
+            </script>
+            <span style="float: left;"><img
+                    src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+                    style="max-height: 50px;"></span>
+            <span style="float: left;margin: 12px;letter-spacing: 0.5px;font-weight: 700;color: hsl(208, 90%, 30%);"> Awesome  </span><br>
+
+        </h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div style="padding-left: 20px;padding-bottom: 20px;">
+        It's the easiest to read.
+    </div>
+</section>
+#end

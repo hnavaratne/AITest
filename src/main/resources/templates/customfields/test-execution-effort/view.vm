@@ -1,0 +1,13 @@
+<div>
+    <div class="column" style="width:10px;padding:5px;text-align:center;">
+        <span id="z-span">0</span>
+    </div>
+    <div class="column" style="padding-top:5px;width:130px;">
+        <input type="range" value="$value" min="0" max="100" id="tee-slide" class="tee-slider" customId="$customField.id" style="width:120px;" disabled />
+        <output id="tee-slider-value" for="tee-slide" onforminput="value = $value;" style="width:20px;font-size:11px;bottom: 50% !important; margin-top: 12px !important;"></output>
+    </div>
+    <div class="column" style="width:30px;padding-top:5px;padding-left:0px;">
+        <span id="h-span">100</span>
+    </div>
+
+</div>

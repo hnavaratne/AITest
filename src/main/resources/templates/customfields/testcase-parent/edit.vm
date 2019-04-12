@@ -1,0 +1,22 @@
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResource("com.virtusa.gto.plugins:aitest-resources")
+<form class="aui">
+    #if($value)
+    #set($input1InInteger = $Integer.parseInt($value))
+    #else
+    #set($input1InInteger = 1 )
+    #end
+
+    <div class="testcase-parent">
+        <select id="select2-example">
+            <script type="text/javascript">#include("js/custom-fields/parent-custom-field.js");
+            updateParent($input1InInteger);
+
+            </script>
+        </select>
+        <input class="text" id="$customField.id" name="$customField.id" type="hidden"
+               value="$textutils.htmlEncode($!value)"/>
+    </div>
+</form>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)

@@ -1,0 +1,337 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-sidebar")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-toggle")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-spinner")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-progress-tracker")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-table-sortable")
+
+<div ng-app="testCaseDefect" ng-controller="defectCtrl" data-ng-init="init()">
+    <div class="container" style="width: 100%; border-bottom: 2px solid #f4f5f7; background:white">
+        <h4 style="float:left;" id="defect-title">$i18n.getText("defectview.h4.defect-title.label.defect-title")</h4>
+        <div style="float:right;margin-top:3px;width: 100%;padding: 5px;border-bottom: 1px solid #f4f5f7;background-color: #f4f5f7;">
+            <div class="defect-breadcrum">
+              <span class="aui-avatar aui-avatar-medium">
+                <span class="aui-avatar-inner">
+                    <svg width="32" version="1.1" id="Default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"> <circle fill="#4AC6C6" cx="63.964" cy="63.964" r="63.964"/> <path fill="#4A2593" d="M40.282,109.662h-2.119c-1.752,0-3.186-1.434-3.186-3.186V93.928c0-1.752,1.434-3.186,3.186-3.186h2.119 c1.752,0,3.186,1.434,3.186,3.186v12.548C43.468,108.228,42.034,109.662,40.282,109.662z"/> <path fill="#4A2593" d="M89.032,109.662h-2.119c-1.752,0-3.186-1.434-3.186-3.186l0-12.548c0-1.752,1.434-3.186,3.186-3.186h2.119 c1.752,0,3.186,1.434,3.186,3.186v12.548C92.218,108.228,90.784,109.662,89.032,109.662z"/> <ellipse fill="#4A2593" cx="63.842" cy="74.704" rx="43.622" ry="30.013"/> <ellipse fill="#7F4CBF" cx="63.964" cy="67.657" rx="50.305" ry="30.013"/> <path fill="#FFFFFF" d="M94.762,48.578c0.039-0.622,0.065-1.253,0.065-1.901c0-17.247-13.981-31.228-31.228-31.228 c-16.905,0-30.663,13.435-31.202,30.208h-0.026v8.268h0.022c0.266,9.711,5.062,16.441,12.376,20.366l37.665,0.002 c7.529-4.037,12.393-11.044,12.393-21.217c0-0.648-0.026-1.29-0.065-1.928V48.578z"/> <path opacity="0.15" fill="#7F4CBF" d="M32.477,44.258c-0.036,0.464-0.065,0.93-0.08,1.399h-0.026v8.268h0.022 c0.456,16.661,14.247,24.547,31.206,24.547c17.247,0,31.228-8.149,31.228-25.395c0-0.648-0.026-1.29-0.065-1.928v-2.57 c0.039-0.622,0.065-1.253,0.065-1.901c0-0.935-0.049-1.858-0.129-2.771c-8.501-3.921-19.157-6.261-30.734-6.261 C52.042,37.644,41.097,40.123,32.477,44.258z"/> <path fill="#59AFE1" d="M63.599,28.253L63.599,28.253c-10.359,0-18.834,8.475-18.834,18.834v6.092v15.018v6.092 c5.236,2.808,11.759,4.182,18.834,4.182c7.075,0,13.598-1.374,18.834-4.182v-6.092V53.179v-6.092 C82.433,36.728,73.958,28.253,63.599,28.253z"/> <circle fill="#FFFFFF" cx="63.86" cy="50.735" r="11.139"/> <circle fill="#2A5083" cx="63.472" cy="50.608" r="4.418"/> </svg>
+                 </span>
+                </span>
+                <div class="inner-defect-breadcrum" style="display:none;" id="sv-breadcrum">
+                    <p><a href="javascript:void(0);" id="db-story">{{selectedStory.issuekey }} / {{ selectedStory.summary}}</a></p>
+                    <p><a href="javascript:void(0);" id="db-testcase">{{selectedTestCase.Name}}</a></p>
+                </div>
+            </div>
+            <div id="total-defect-summary">
+                <div>
+                    <span class="dsheading-span-title">
+                        <span style="vertical-align: middle;"><svg width="14" height="14" xmlns="http://www.w3.org/2000/svg"
+                                                               viewbox="0 0 16 16">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <path d="M0 1.777C0 .796.796 0 1.777 0h12.446C15.204 0 16 .796 16 1.777v12.446c0 .981-.796 1.777-1.777 1.777H1.777A1.778 1.778 0 0 1 0 14.223V1.777z"
+                                                              fill="#36B37E"/>
+                                                        <path d="M4.5 12.5V4.378c0-.485.392-.878.875-.878h5.25c.483 0 .875.393.875.878V12.5L8 8.988 4.5 12.5z"
+                                                              fill="#FFF"/>
+                                                    </g>
+                                                </svg></span>
+                        <span style="font-size: 12px; font-weight: bold;">STORIES</span>
+                        <span>
+                    <span class="dsheading-span-count">{{totalStoryCount}}</span>
+                </div>
+                <div style="width: 41%;">
+                    <span class="dsheading-span-title">
+                        <span class="aui-icon aui-icon-small aui-iconfont-calendar-filled" style="vertical-align: middle;margin-top: -3%;width: 14px; height: 14px;"></span>
+                        <span style="font-size: 12px; font-weight: bold;">TESTCASES</span>
+                    <span>
+                    <!--<span class="dsheading-span-title" ng-if="totalTestCaseCount!=1"><span class="aui-icon aui-icon-small aui-iconfont-calendar-filled">TestCases</span><span>-->
+                    <span class="dsheading-span-count">{{totalTestCaseCount}}</span>
+                </div>
+                <div>
+                    <span class="dsheading-span-title">
+                        <span style="vertical-align: middle;"><svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16"><g fill="none" fill-rule="evenodd"><path d="M0 1.777C0 .796.796 0 1.777 0h12.446C15.204 0 16 .796 16 1.777v12.446c0 .981-.796 1.777-1.777 1.777H1.777A1.778 1.778 0 0 1 0 14.223V1.777z" fill="#FF5630"/><circle fill="#FFF" cx="8" cy="8" r="4"/></g></svg></span>
+                        <span style="font-size: 12px; font-weight: bold;">DEFECTS</span>
+                    <!--<span class="dsheading-span-title" ng-if="totalDefectCount!=1"><span><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16"><g fill="none" fill-rule="evenodd"><path d="M0 1.777C0 .796.796 0 1.777 0h12.446C15.204 0 16 .796 16 1.777v12.446c0 .981-.796 1.777-1.777 1.777H1.777A1.778 1.778 0 0 1 0 14.223V1.777z" fill="#FF5630"/><circle fill="#FFF" cx="8" cy="8" r="4"/></g></svg></span><span>-->
+                    <span class="dsheading-span-count">{{totalDefectCount}}</span>
+                </div>
+            </div>
+            <div style="margin-top: 10px;float: right;">
+                <aui-label for="select-defect-release" for="select-defect-release" style="margin-left: 5px;"><span
+                        class="aui-icon aui-icon-small aui-iconfont-configure"></span></aui-label>
+                <select ng-model="selectedVersion" class="jira-form-control" id="select-defect-release"
+                        name="select-example"
+                        style="margin-top:-25px; width: 200px !important;padding-left: 28px;" ng-model="release"
+                        ng-options="version as version.name for version in versions track by version.id"
+                        ng-model="selected"
+                        title="$i18n.getText('defectview.select.select-defect-release.tooltip.select-defect-release')"
+                        ng-change="selectAction()">
+                    <!--<option ng-repeat="version in versions" ng-selected="version.selected" value="{{version.id}}" id="{{version.id}}">{{version.name}}</option>-->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="aui-sidebar" id="test-defect-side-nav" style="margin-top: 3.49%;">
+        <div class="aui-sidebar-wrapper" style="border-right: 1px solid #ebecf0;">
+            <div class="aui-sidebar-body" style="background-color:#ffff;">
+                <div class="aui-nav-heading" title="Stuff" style="margin: 10px;">
+                    <strong>$i18n.getText("defectview.stories")</strong>
+                </div>
+                <!--<div class="test-defects-grouping">-->
+                <nav class="aui-navgroup aui-navgroup-vertical">
+                    <div class="aui-navgroup-inner">
+                        <div class="aui-sidebar-group aui-sidebar-group-tier-one" style="margin-top:0;">
+                            <div class="story-filter-box">
+                                <input type="text" class="story-filter" ng-enter="searchForStory()"
+                                       ng-model="searchStory">
+                            </div>
+                            <ul class="aui-nav"><!--edit for new change-->
+                                <li ng-repeat="story in stories" style="padding-left: 21px;"
+                                    ng-click="showTestCaseAndDefect(story)">
+                                    <a class="aui-nav-item"
+                                       style="padding: 15px 10px;border-bottom: 1px solid #dfe1e5;">
+                                        <div>
+                                            <div>
+                                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                                     viewbox="0 0 16 16">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <path d="M0 1.777C0 .796.796 0 1.777 0h12.446C15.204 0 16 .796 16 1.777v12.446c0 .981-.796 1.777-1.777 1.777H1.777A1.778 1.778 0 0 1 0 14.223V1.777z"
+                                                              fill="#36B37E"/>
+                                                        <path d="M4.5 12.5V4.378c0-.485.392-.878.875-.878h5.25c.483 0 .875.393.875.878V12.5L8 8.988 4.5 12.5z"
+                                                              fill="#FFF"/>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <div class="text-section">
+                                                <span class="text-issue-key">{{story.issuekey}}</span><span class="testc-count" ng-if="story.testcaseCount===1">{{story.testcaseCount}} Testcase</span><span class="testc-count" ng-if="story.testcaseCount>1">{{story.testcaseCount}} Testcases</span><br/>
+                                                <span>{{story.summary}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--<ul class="aui-nav">-->
+                            <!--<li id="test-defect-story-root-node" type="test-defect-story"-->
+                            <!--ng-click="hide($event)">-->
+                            <!--<a class="aui-nav-item">-->
+                            <!--<span class="aui-icon aui-icon-small aui-iconfont-share"></span>-->
+                            <!--<span class="aui-nav-item-label">Root</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <!--<ul class="aui-nav" parent="test-defect-story-root-node" style="display: block">-->
+                            <!--<li ng-repeat="story in storylist" id="{{story.storyid}}-test-case-defect-folder"-->
+                            <!--data-ng-click="load($event, story);" type="test-defect-story"><a-->
+                            <!--class="aui-nav-item"><span-->
+                            <!--class="aui-icon aui-icon-small aui-iconfont-book"></span><span-->
+                            <!--class="aui-nav-item-label">{{story.summary}}</span></a>-->
+                            <!--<ul class="aui-nav" parent="{{story.storyid}}-test-case-defect-folder"-->
+                            <!--style="display: none" resolved="">-->
+                            <!--<li ng-repeat="testcase in story.testCases"-->
+                            <!--data-ng-click="loadDefects($event,testcase,story.storyid)"-->
+                            <!--id="{{testcase.id}}-test-case" type="test-case"><a-->
+                            <!--class="aui-nav-item"><span-->
+                            <!--class="aui-icon aui-icon-small aui-iconfont-bullet-list"></span><span-->
+                            <!--class="aui-nav-item-label">{{testcase.Name}}</span></a></li>-->
+                            <!--</ul>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+                            <!--</ul>-->
+                        </div>
+                    </div>
+                </nav>
+                <!--</div>-->
+                <!--<div class="hr"></div>-->
+                <!--<div class="aui-nav-heading" title="Stuff" style="margin: 10px;">-->
+                <!--<strong>Test Cases</strong>-->
+                <!--</div>-->
+                <!--<div class="test-execution-test-cases-grouping">-->
+                <!--<nav class="aui-navgroup aui-navgroup-vertical">-->
+                <!--<div class="aui-navgroup-inner">-->
+                <!--<div class="aui-sidebar-group aui-sidebar-group-tier-one">-->
+                <!--<ul class="aui-nav">-->
+                <!--<li id="test-exec-tc-root-node" type="test-exec-tc-folder">-->
+                <!--<a class="aui-nav-item">-->
+                <!--<span class="aui-icon aui-icon-small aui-iconfont-share"></span>-->
+                <!--<span class="aui-nav-item-label">Root</span>-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<ul class="aui-nav" parent="test-exec-tc-root-node"></ul>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</nav>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <div class="aui-page-panel">
+        <div class="selected-test-defect-container">
+            <div class="selected-test-defect-table-header">
+                <table class="aui">
+                    <thead style="border-bottom: 2px solid #b3d4ff;">
+                    <tr>
+                        <th width="25%">
+                            <div style="position: relative; float: left; margin-top: 3px;">
+                                <svg style="width: 16px; height: 16px; vertical-align: middle; position: absolute;margin-top: 5px;"
+                                     aria-hidden="true"
+                                     data-prefix="fas" data-icon="filter" class="svg-inline--fa fa-filter fa-w-16"
+                                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                          d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+                                </svg>
+                                <input class="text" id="story-search" placeholder="Filter TestCase"
+                                       ng-enter="findByTestCase()"
+                                       ng-model="serchTestcase"
+                                       title="Filter by Testcase Name"
+                                >
+                            </div>
+                        </th>
+                        <th width="75%">
+                            <div style="margin-top:3px;position: relative;margin-left: 57.5%;">
+                                <input placeholder="$i18n.getText('defectview.filter.defects')" class="text" type="text"
+                                       id="defect-filter-name"
+                                       ng-enter="searchResult()" ng-model="MyText"
+                                       title="$i18n.getText('defectview.filter.by.defect.name')">
+                                <select ng-model="selectedStatus"
+                                        id="defect-status-filter"
+                                        title="$i18n.getText('defectview.select.find-by-status.tooltip.find-by-status')"
+                                        ng-model="SelectedStatus"
+                                        ng-options="status as status for status in statusFilterArray "
+                                        ng-change="findByStatus()"
+                                        ng-model="selected"
+                                >
+                                    <!--<option ng-selected>All</option>-->
+                                    <!--<option>To Do</option>-->
+                                    <!--<option>In Progress</option>-->
+                                    <!--<option>Done</option>-->
+                                </select>
+                                <div class="aui-buttons" id="defect-siverity-filter"
+                                     >
+                                    <button class="aui-button" style="border:none" id="siverity-showStopper"
+                                            title="$i18n.getText('defectview.btn.siverity-showStopper.tooltip.siverity-showStopper')"
+                                            ng-click="setSiveritySS($event)"><span
+                                            class="aui-icon aui-icon-small aui-iconfont-remove"
+                                            style="color:red"></span></button>
+                                    <button class="aui-button" style="border:none" id="siverity-high"
+                                            title="$i18n.getText('defectview.btn.siverity-high.tooltip.siverity-high')"
+                                            ng-click="setSiverityH($event)"><span
+                                            class="aui-icon aui-icon-small aui-iconfont-warning"
+                                            style="color:red"></span></button>
+                                    <button class="aui-button" style="border:none" id="siverity-medium"
+                                            title="$i18n.getText('defectview.btn.siverity-medium.tooltip.siverity-medium')"
+                                            ng-click="setSiverityM($event)"><span
+                                            class="aui-icon aui-icon-small aui-iconfont-warning"
+                                            style="color:orange"></span></button>
+                                    <button class="aui-button" style="border:none" id="siverity-low"
+                                            title="$i18n.getText('defectview.btn.siverity-low.tooltip.siverity-low')"
+                                            ng-click="setSiverityL($event)"><span
+                                            class="aui-icon aui-icon-small aui-iconfont-warning"
+                                            style="color:green"></span></button>
+                                </div>
+                                <input placeholder="$i18n.getText('defectview.placeholder.filter.by.assignee')"
+                                       class="text" type="text" style=""
+                                       id="assigned-user-search" ng-model="searchableAssignee"
+                                       title="$i18n.getText('defectview.tooltip.filter.by.assigness')"
+                                       ng-enter="findByAssignee()">
+
+                                <!--<svg style="width: 16px;height: 16px;vertical-align: middle;" aria-hidden="true"-->
+                                <!--data-prefix="fas" data-icon="filter" class="svg-inline&#45;&#45;fa fa-filter fa-w-16"-->
+                                <!--role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">-->
+                                <!--<path fill="currentColor"-->
+                                <!--d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>-->
+                                <!--</svg>-->
+                                <!--<select style="position: absolute; margin-top: -150%; width: 90px; margin-left: 50px;">-->
+                                <!--<option>Option1</option>-->
+                                <!--</select>-->
+                                <!--<select style="position: absolute; margin-top: -150%; width: 90px; margin-left: 150px;">-->
+                                <!--<option>Option1</option>-->
+                                <!--</select>-->
+                                <!--<select style="position: absolute; /* float: right; */ margin-top: -150%; width: 90px; margin-left: 250px;">-->
+                                <!--<option>Option1</option>-->
+                                <!--</select>-->
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="test-defect-container">
+                <!--defect table removed-->
+                <table width="100%">
+                    <tbody id="testcaseAndDefects">
+                    <tr>
+                        <td>
+                            <table width="100%">
+                                <tbody ng-repeat="testCase in testCases">
+                                <tr id="testCase.id">
+                                    <td width="1%">
+                                        <a class="btn btn-link" ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index];setTestcase(testCase);">
+                                            <span class="aui-icon aui-icon-small aui-iconfont-chevron-right" ng-if="!toggle[$index]"></span>
+                                            <span class="aui-icon aui-icon-small aui-iconfont-arrow-down-small" ng-if="toggle[$index]"></span>
+                                        </a>
+                                    </td>
+                                    <td width="69%"><span
+                                            class="aui-icon aui-icon-small aui-iconfont-bullet-list"></span>{{testCase.Name}}
+                                          <div class="defect-count-div"><span>{{testCase.defects.length}} defects</span></div>
+                                    </td>
+                                    <td colspan="3" width="30%">
+
+                                        <div><span class="aui-icon aui-icon-small aui-iconfont-calendar-filled"></span>{{testCase.time}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="toggle[$index] && testCase.defects.length>0">
+                                    <td colspan="3">
+                                        <table style="width: 100%;">
+                                            <tbody id="tc-defect-table">
+                                            <tr ng-repeat="defectObj in testCase.defects">
+                                                <td colspan="1" width="5%"></td>
+                                                <td>
+                                                    <span style="position: absolute;display: inline-flex;">
+                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16"><g fill="none" fill-rule="evenodd"><path d="M0 1.777C0 .796.796 0 1.777 0h12.446C15.204 0 16 .796 16 1.777v12.446c0 .981-.796 1.777-1.777 1.777H1.777A1.778 1.778 0 0 1 0 14.223V1.777z" fill="#FF5630"/><circle fill="#FFF" cx="8" cy="8" r="4"/></g></svg>
+                                                    </span>
+                                                        <a href="javascript:void(0);"
+                                                       ng-click="viewDefectInfo(defectObj.key)" style="margin-left:25%">{{defectObj.id}}</a>
+                                                </td>
+                                                <td id="testcase-summary">
+                                                    <div class="ai-tooltip">
+                                                        {{defectObj.name | limitTo: 40}}
+                                                        {{defectObj.name.length < 40 ? '' : '...'}}
+                                                        <span class="ai-tooltiptext">{{defectObj.name}}</span>
+                                                    </div>
+                                                </td>
+                                                <td headers="priority" ng-if="defectObj.priorityurl!=null">
+                                                     <span class="priority-badge" ng-if="defectObj.priorityurl!='N/A'">
+                                                         <img alt="" height="16" src="{{defectObj.priorityurl}}"
+                                                              width="16">
+                                                         {{defectObj.priority}}
+                                                     </span>
+                                                </td>
+                                                <td>{{defectObj.siverity}}</td>
+                                                <td headers="status">
+                                                    <span class="aui-lozenge aui-lozenge-success"
+                                                          ng-if="defectObj.status=='Done'">{{defectObj.status}}</span>
+                                                    <span class="aui-lozenge aui-lozenge-moved"
+                                                          ng-if="defectObj.status=='In Progress'">{{defectObj.status}}</span>
+                                                    <span class="aui-lozenge jira-issue-status-lozenge-blue-gray"
+                                                          ng-if="defectObj.status=='To Do'">{{defectObj.status}}</span>
+                                                </td>
+                                                <td>{{defectObj.createddate}}</td>
+                                                <td>{{defectObj.assigned}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

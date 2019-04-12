@@ -1,0 +1,34 @@
+<header class="aui-dialog2-header">
+    <h2 class="aui-dialog2-header-main">Captain...</h2>
+    <a class="aui-dialog2-header-close">
+        <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+    </a>
+</header>
+<div class="aui-tabs horizontal-tabs">
+    <ul class="tabs-menu">
+        <li class="menu-item active-tab">
+            <a href="#tabs-example-first">Basic Info.</a>
+        </li>
+        <li class="menu-item">
+            <a href="#tabs-example-second">Comments</a>
+        </li>
+    </ul>
+    <div class="tabs-pane active-pane" id="tabs-example-first">
+        <form class="aui top-label">
+            <fieldset class="top-label">
+                <div class="field-group top-label">
+                    <label for="requirementTitle">Title</label>
+                    <input class="text" type="text" id="requirementTitle" name="requirementTitle">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="tabs-pane" id="tabs-example-second">
+        <h2>This is tab 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+</div>
+<div class="aui-dialog2-content">
+    <p>We've detected debris of some sort in a loose orbit.</p>
+    <p>I suggest we beam a section aboard for analysis...</p>
+</div>

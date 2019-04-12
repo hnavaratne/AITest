@@ -1,0 +1,144 @@
+.slider-box{
+    padding-top:0px;
+    /*margin-left:30px;*/
+    width:200px;
+    height:30px;
+}
+
+.slider{
+  -webkit-appearance: none;
+  background: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+.slider::-ms-track {
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+.slider::-moz-range-track {
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  position: relative;
+}
+
+.slider::-ms-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  position: relative;
+}
+
+.slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  position: relative;
+}
+
+.slider:focus {
+  outline: none;
+  &::-webkit-slider-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #eee;
+    border-radius: 5px;
+    color: #555;
+    padding: 5px 10px;
+    border: 2px solid #555;
+  }
+  &::-ms-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #eee;
+    border-radius: 5px;
+    color: #555;
+    padding: 5px 10px;
+    border: 2px solid #555;
+  }
+  &::-moz-range-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #eee;
+    border-radius: 5px;
+    color: #555;
+    padding: 5px 10px;
+    border: 2px solid #555;
+  }
+}
+
+.slider:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+.slider:focus::-ms-track {
+  background: #ccc;
+}
+
+.slider:focus::-moz-range-track {
+  background: #ccc;
+}
+
+output {
+  position: relative;
+  width: 1px;
+  height: 30px;
+  text-align: center;
+  color: #848282;
+  border-radius: 10px;
+  display:block;
+  font: bold 11px/12px Georgia;
+  bottom: 130%;
+  left: 0;
+  margin-top: 0px;
+   font-family:"Helvetica Neue",Helvetica,Aril,sans-serif !important;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 60%;
+    padding-left: 10px;
+    height: 25px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

@@ -1,0 +1,75 @@
+<div class="issue-questions-content">
+    <span id="issue-id-span" style="display:none;">$issue.id</span>
+    <span id="issue-name-span" >$issue.summary</span>
+    <button id="issue-questions-add" name="add-questions" class="aui-button">
+        <span class="aui-icon aui-icon-small aui-iconfont-question-circle"></span>
+        <span>Add Question</span>
+    </button>
+    <div id="issue-questions-list" class="issue-questions-list">
+        <table class="aui questions">
+            <tbody id="issue-questions-tbody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<section id="issue-question-dialog" class="aui-dialog2 aui-dialog2-xlarge aui-layer" data-aui-modal="true" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">Add New Question</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content" style="max-height: 100%;">
+        <form class="aui top-label">
+            <div class="field-group" style="position: absolute; width: 100%;">
+                <label for="issue-question-title">
+                    Title
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text" type="text" id="issue-question-title" name="issue-question-title" placeholder="Question Title" style="max-width: 100%;">
+                <div class="description">You Question Title here..</div>
+            </div>
+            <div class="field-group" style="position: absolute; top: 90px; width: 28%;">
+                <label for="issue-question-assign-to">
+                    Assign To
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <select id="issue-question-assign-to" class="select form-control">
+                </select>
+            </div>
+            <div class="field-group" style="position: absolute; top: 90px; left: 30%; width: 20%;">
+                <label for="issue-question-status">
+                    Status
+                </label>
+                <select id="issue-question-status" class="select form-control">
+                    <option value="Open">Open</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+            </div>
+            <div class="field-group" style="position: absolute; top: 160px; width: 50%;">
+                <label for="issue-question-description">Description</label>
+                <textarea class="textarea medium-field" rows="6" name="issue-question-description" id="issue-question-description" placeholder="Question Description"></textarea>
+            </div>
+            <div class="issue-question-discussion" style="position: absolute; top: 90px; left: 52%; width: 48%; height: 250px;"></div>
+        </form>
+        <div id="message-panel"style="float:right;margin-top:80px;;width:45%;height:304px;position:relative;">
+            <div id="message-body" style="position:absolute;width:100%; height:80%;overflow: auto;">
+
+            </div>
+            <div id="message-input" style="">
+               <div style="position:absolute;margin:10px; float:left'"><img id="user-pro-pic" src="https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mm&s=16" alt="Avatar" class="avatar" style=""></div>
+                <div style="margin-left:16% !important;margin:15px;width:80%;position:absolute;"><textarea rows="2" id="msg-input" style="border:1px solid #e0e0e0;boder-radius:20px;width:80%;"></textarea></div>
+                <div style="float:right;margin-right:5% !important;margin-top:12px !important; margin:5px;"><button type="button" class="btn-post" style="" ><span class="aui-icon aui-icon-small aui-iconfont-send"></span></button></div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="save-issue-question-btn" class="aui-button aui-button-primary">Create</button>
+            <button id="edit-issue-question-btn" class="aui-button aui-button-primary" style="visibility: hidden;display:none;">Edit</button>
+            <button id="cancel-issue-question-btn" class="aui-button aui-button-default">Cancel</button>
+        </div>
+    </footer>
+</section>

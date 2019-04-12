@@ -1,0 +1,14 @@
+<div id="DEV RCI">
+    #if($value)
+    #set($input1InInteger = $value)
+    #else
+    #set($input1InInteger = 0)
+    #end
+    #foreach($i in [1..5])
+    #if($i <= $input1InInteger)
+    <span class="aui-icon aui-icon-small aui-iconfont-star-filled" rating=$i style="color: orange;"></span>
+    #else
+    <span class="aui-icon aui-icon-small aui-iconfont-new-star" rating=$i></span>
+    #end
+    #end
+</div>

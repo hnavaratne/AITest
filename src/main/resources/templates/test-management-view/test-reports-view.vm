@@ -1,0 +1,660 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:table")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-lozenge")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-spinner")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-progress-tracker")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+
+<div class="container" style="width: 100%; border-bottom: 2px solid #f4f5f7; background: white;">
+    <ol class="aui-progress-tracker" style="width: 100%;">
+        <li id="aui-progress-tracker-test-case-designing" class="aui-progress-tracker-step " style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-designing.label.auipgt-tcd")</a></span></li>
+        <li id="aui-progress-tracker-test-case-planning" class="aui-progress-tracker-step" style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-planning.label.auipgt-tcp")</a></span></li>
+        <li id="aui-progress-tracker-test-case-execution" class="aui-progress-tracker-step" style="width:25%"><span><a
+                href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-execution.label.auipgt-tce")</a></span></li>
+        <li id="aui-progress-tracker-test-case-results"
+            class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:25%"><span><a href="#"
+                                                                                                           class="aui-lozenge aui-lozenge-moved">$i18n.getText("all.li.aui-progress-tracker-test-case-results.label.auipgt-tcr")</a></span>
+        </li>
+        <!--<li id="aui-progress-tracker-test-case-defects" class="aui-progress-tracker-step" style="width:20%"><span><a-->
+                <!--href="#" class="aui-lozenge">Defects</a></span></li>-->
+    </ol>
+</div>
+<div class="test-results-view" style="background:white;">
+    <div class="test-results-summary-container">
+        <div class="test-results-summary-details">
+            <div class="aui-nav-heading" title="$i18n.getText('reportsview.div.aui-nav-heading.tooltip.stuff')" style="margin: 5px 0;">
+                <strong style="color: #000;">$i18n.getText("reportsview.label.current-execution-cycle-details")</strong>
+            </div>
+            <div class="test-results-summary-details-panel">
+                <div class="selected-eentity-title" style="padding: 0 10px;">
+                    <span id="selected-eentity-title"></span>
+                    <span id="selected-eentity-status"></span>
+                </div>
+                <div class="selected-eentity-status">
+                    <div class="card total">
+                        <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                            <strong style="color: #000;">$i18n.getText("reportsview.label.total-test-cases")</strong>
+                        </div>
+                        <div class="total-count">
+                            <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/total.svg"
+                                 alt="Total">
+                            <span id="current-total-tc-count">-</span>
+                        </div>
+                    </div>
+                    <div class="card executed">
+                        <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                            <strong style="color: #000;">$i18n.getText("reportsview.label.executed-test-cases")</strong>
+                        </div>
+                        <div class="executed-types">
+                            <div class="pass">
+                                <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                    <strong style="color: #000;">$i18n.getText("reportsview.label.executed-test-cases-pass")</strong>
+                                </div>
+                                <div class="pass-count">
+                                    <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/pass.svg"
+                                         alt="Pass">
+                                    <span id="current-executed-pass-tc-count">-</span>
+                                </div>
+                            </div>
+                            <div class="details-separator"></div>
+                            <div class="failed">
+                                <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                    <strong style="color: #000;">$i18n.getText("reportsview.label.executed-test-cases-failed")</strong>
+                                </div>
+                                <div class="failed-count">
+                                    <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/failed.svg"
+                                         alt="Failed">
+                                    <span id="current-executed-failed-tc-count">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card not-executed">
+                        <div class="aui-nav-heading" style="margin: 5px 0;">
+                            <strong style="color: #000;">$i18n.getText("reportsview.label.in-progress-test-cases")</strong>
+                        </div>
+                        <div class="not-executed-count">
+                            <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/in-progress.svg"
+                                 alt="In Progress">
+                            <span id="current-inprogress-tc-count">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details-separator"></div>
+        <div class="test-results-summary-graph">
+            <div class="aui-nav-heading" title="$i18n.getText('reportsview.div.aui-nav-heading.tooltip.stuff')" style="margin: 5px 0;">
+                <strong style="color: #000;">$i18n.getText("reportsview.label.test-result-summary")</strong>
+            </div>
+            <div id="test-results-summary-graph-canvas" style="display: flex;"></div>
+        </div>
+        <div class="details-separator"></div>
+        <div class="test-results-summary-overall-graph">
+            <div class="aui-nav-heading" title="$i18n.getText('reportsview.div.aui-nav-heading.tooltip.stuff')" style="margin: 5px 0;">
+                <strong style="color: #000;">$i18n.getText("reportsview.label.overall-test-result-summary")</strong>
+            </div>
+            <div id="test-results-summary-overall-graph-canvas" style="display: flex;"></div>
+        </div>
+    </div>
+    <div class="test-results-table-container">
+        <div class="aui-nav-heading" title="$i18n.getText('reportsview.div.aui-nav-heading.tooltip.stuff')" style="margin: 5px 0;">
+            <strong style="color: #000;">$i18n.getText("reportsview.label.execution-cycle-details")</strong>
+        </div>
+        <div class="test-results-table-header">
+            <table class="aui controller">
+                <tr data-level="header" class="header" style="font-weight: 600;">
+                    <td width="70px;" style="min-width: 70px; border-bottom: none;"></td>
+                    <td width="15%" style="border-bottom: none;">
+                        <span>$i18n.getText("reportsview.table.td.span.execution-cycle")</span>
+                        <!--<button id="test-reports-filter-btn" class="aui-button" style="outline: none; padding: 5px; font-size: 12px;">-->
+                        <!--<span class="aui-icon aui-icon-small aui-iconfont-filter"></span>-->
+                        <!--<span>Filter</span>-->
+                        <!--</button>-->
+                    </td>
+                    <td width="18%" style="border-bottom: none;">$i18n.getText("reportsview.table.td.details")</td>
+                    <td width="10%" style="border-bottom: none;">$i18n.getText("reportsview.table.td.execution-date")</td>
+                    <td width="14%" style="text-align: center; border-bottom: none;">$i18n.getText("reportsview.table.td.total")</td>
+                    <td width="8%" style="border-bottom: none;">$i18n.getText("reportsview.table.td.status")</td>
+                    <td width="7%" style="border-bottom: none;">$i18n.getText("reportsview.table.td.state")</td>
+                    <td width="14%" style="text-align: center; border-bottom: none;">$i18n.getText("reportsview.table.td.completed")</td>
+                    <td width="14%" style="text-align: center; border-bottom: none;">$i18n.getText("reportsview.table.td.pending")</td>
+                </tr>
+            </table>
+        </div>
+        <div class="test-results-table-content" style="overflow: auto;">
+            <table id="test-results-table" class="aui controller">
+                <tbody id="test-results-table-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<section id="show-tc-dialog" class="aui-dialog2 aui-dialog2-xlarge aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header" style="justify-content: left;">
+        <span class="aui-icon aui-icon-large aui-iconfont-info-filled" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("reportsview.span.details")</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("reportsview.span.close")</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="test-reports-test-case-name">
+                    Name
+                    <span class="aui-icon icon-required">(required)</span>
+                </label>
+                <input class="text medium-field" type="text" id="test-reports-test-case-name"
+                       name="test-reports-test-case-name"
+                       placeholder="$i18n.getText('reportview.placeholder.test-case-name')" disabled>
+                <div class="description">$i18n.getText("reportsview.div.your-test-case-name")</div>
+            </div>
+            <div class="field-group">
+                <label for="test-reports-test-case-description">
+                    Description
+                </label>
+                <textarea class="textarea" name="test-reports-test-case-description"
+                          id="test-reports-test-case-description" rows="5"
+                          placeholder="$i18n.getText('reportview.placeholder.your-description-here')" disabled></textarea>
+            </div>
+            <div class="field-group">
+                <label for="test-reports-test-case-overall-expected-result">
+                    $i18n.getText("reportsview.label.overall-expected-result")
+                </label>
+                <textarea class="textarea" name="test-reports-test-case-overall-expected-result"
+                          id="test-reports-test-case-overall-expected-result" rows="5"
+                          placeholder="$i18n.getText('reportview.placeholder.overall-expected-result-here')" disabled></textarea>
+            </div>
+            <div class="field-group">
+                <label>$i18n.getText("reportsview.label.automated")</label>
+                <div class="radio">
+                    <input class="radio" type="radio" name="automatedRadioButtons" id="test-reports-automatedYes"
+                           value="Yes" disabled>
+                    <label for="test-reports-automatedYes" style="color: #000;">$i18n.getText("reportsview.label.yes")</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="automatedRadioButtons"
+                           id="test-reports-automatedNo" value="No" disabled>
+                    <label for="test-reports-automatedNo" style="color: #000;">$i18n.getText("reportsview.label.no")</label>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Manual</label>
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="manualRadioButtons"
+                           id="test-reports-manualYes" value="Yes" disabled>
+                    <label for="test-reports-manualYes" style="color: #000;">$i18n.getText("reportsview.label.yes")</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" name="manualRadioButtons" id="test-reports-manualNo" value="No"
+                           disabled>
+                    <label for="test-reports-manualNo" style="color: #000;">$i18n.getText("reportsview.label.no")</label>
+                </div>
+            </div>
+            <div class="field-group">
+                <label for="test-reports-test-case-overall-actual-result">
+                    $i18n.getText("reportsview.label.overall-actual-result")
+                </label>
+                <textarea class="textarea" name="test-reports-test-case-overall-actual-result"
+                          id="test-reports-test-case-overall-actual-result" rows="5"
+                          placeholder="$i18n.getText('reportsview.placeholder.overall-actual-result-here')" disabled></textarea>
+            </div>
+            <div class="field-group">
+                <label for="test-reports-test-case-overall-status">
+                    $i18n.getText("reportsview.label.actual-status")
+                </label>
+                <input class="text medium-field" type="text" id="test-reports-test-case-overall-status"
+                       name="test-reports-test-case-actual-status"
+                       placeholder="$i18n.getText('reportsview.placeholder.actual-result')" disabled>
+            </div>
+            <div class="field-group" id="testCaseAgentData">
+            <label id="agentLabel">
+            </label>
+            <input class="text medium-field" type="text" id="test-case-agent-detail" disabled>
+            </div>
+            <div class="field-group steps-group">
+                <label for="test-reports-steps-excel-view">
+                    Steps
+                </label>
+                <div class="steps-table-content">
+                    <div id="test-reports-steps-excel-view" class="steps-excel-view"></div>
+                </div>
+                <!--<div class="steps-table-content">
+                    <div id="test-reports-steps-excel-view" class="steps-excel-view">
+                        <table id="steps-table" style="">
+                              <thead>
+                                <tr>
+                                    <th style="padding: 4px;">Step Description</th>
+                                    <th>Data</th>
+                                    <th>Expected Result</th>
+                                    <th>Actual Result</th>
+                                    <th>Actual Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td>Alfreds Futterkiste</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                                <tr>
+                                    <td>Island Trading</td>
+                                    <td>Helen Bennett</td>
+                                    <td>UK</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                                <tr>
+                                    <td>Magazzini Alimentari Riuniti</td>
+                                    <td>Giovanni Rovelli</td>
+                                    <td>Italy</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                                <tr>
+                                    <td>Magazzini Alimentari Riuniti</td>
+                                    <td>Giovanni Rovelli</td>
+                                    <td>Italy</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                                <tr>
+                                    <td>Magazzini Alimentari Riuniti</td>
+                                    <td>Giovanni Rovelli</td>
+                                    <td>Italy</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                              </tbody>
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<section id="show-tcdi-dialog" class="aui-dialog2 aui-dialog2-xlarge aui-layer" role="dialog" aria-hidden="true">
+    <div style="padding: 10px;">
+        <header class="aui-dialog2-header" style="justify-content: left;">
+            <span class="glyphicon glyphicon-tasks" style="margin-right: 10px;"></span>
+            <span class="aui-dialog2-header-main" style="font-size: 18px;"> $i18n.getText("reportsview.label.data-iterations")</span>
+            <span style="flex: 1"></span>
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("reportsview.span.close")</span>
+            </a>
+        </header>
+    </div>
+    <div style="padding: 10px;">
+        <div class="di-results-summary-details-panel">
+            <div class="selected-eentity-title" style="padding: 0 10px;">
+                <span id="di-selected-eentity-title"></span>
+                <span id="di-selected-eentity-status"></span>
+            </div>
+            <div class="selected-eentity-status" style="display: flex;">
+                <div class="card total"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 20%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.total-data-iterations")</strong>
+                    </div>
+                    <div class="total-count" style="margin: 5px 0;padding: 0 10px;text-align: left;display: flex;">
+                        <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/total.svg"
+                             alt="Total" style="height: 30px;width: 30px;margin: auto 10px auto 0;">
+                        <span id="di-current-total-tc-count" style="font-size: 50px;cursor: pointer;">1</span>
+                    </div>
+                </div>
+                <div class="card executed"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 20%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.executed-data-iterations")</strong>
+                    </div>
+                    <div class="executed-types"
+                         style="display: flex;margin: 5px 0;padding: 0 10px;text-align: left; display: flex;">
+                        <div class="pass" style="flex: 0 0 50%;">
+                            <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                <strong style="color: #000;">$i18n.getText("reportsview.label.executed-test-cases-pass")</strong>
+                            </div>
+                            <div class="pass-count" style="display: flex;">
+                                <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/pass.svg"
+                                     alt="Pass" style="height: 25px;width: 25px;margin: auto 10px auto 0;">
+                                <span id="di-current-executed-pass-tc-count"
+                                      style="color: #39b39b;font-size: 35px;">0</span>
+                            </div>
+                        </div>
+                        <div class="details-separator"></div>
+                        <div class="failed">
+                            <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                <strong style="color: #000;margin: 5px 0 0;/* display: flex; */">$i18n.getText("reportsview.label.executed-test-cases-failed")</strong>
+                            </div>
+                            <div class="failed-count"
+                                 style="height: 25px;width: 25px;margin: auto 10px auto 0;display: flex;">
+                                <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/failed.svg"
+                                     alt="Failed" style="height: 50px;width: 25px;margin: auto 10px auto 10px;">
+                                <span id="di-current-executed-failed-tc-count"
+                                      style="color: #e75236;font-size: 35px;">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card not-executed"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 25%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.in-progress-data-iterations")</strong>
+                    </div>
+                    <div class="not-executed-count" style="font-size: 50px;">
+                        <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/in-progress.svg"
+                             alt="In Progress" style="height: 30px;width: 30px;margin: auto 10px auto 10px;">
+                        <span id="di-current-inprogress-tc-count" style="color: #ffca0f;">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 0 10px; overflow: auto; height: 350px">
+        <table class="aui aui-table-sortable" style="overflow: auto;">
+            <thead>
+            <tr>
+                <th class="aui-table-column-issue-key">$i18n.getText("all.label.id")</th>
+                <th>$i18n.getText("all.label.data")</th>
+                <th>$i18n.getText("all.label.status")</th>
+            </tr>
+            </thead>
+            <tbody id="v_tcdi">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="di-data-unavailable" style="display: none;">$i18n.getText("reportsview.label.no-iterations-for-this-test-case")</div>
+</section>
+
+<section id="show-manualtcdi-dialog"  class="aui-dialog2 aui-dialog2-xlarge aui-layer" role="dialog" aria-hidden="true">
+    <div style="padding: 10px;">
+        <header class="aui-dialog2-header" style="justify-content: left;">
+            <span class="glyphicon glyphicon-tasks" style="margin-right: 10px;"></span>
+            <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("reportsview.label.data-iterations")</span>
+            <span style="flex: 1"></span>
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+            </a>
+        </header>
+    </div>
+    <div style="padding: 10px;">
+        <div class="di-results-summary-details-panel">
+            <div class="selected-eentity-title" style="padding: 0 10px;">
+                <span id="di-selected-eentity-title"></span>
+                <span id="di-selected-eentity-status"></span>
+            </div>
+            <div class="selected-eentity-status" style="display: flex;">
+                <div class="card total"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 20%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.total-data-iterations")</strong>
+                    </div>
+                    <div class="total-count" style="margin: 5px 0;padding: 0 10px;text-align: left;display: flex;">
+                        <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/total.svg"
+                             alt="Total" style="height: 30px;width: 30px;margin: auto 10px auto 0;">
+                        <span id="manual-iteration-current-total-tc-count" style="font-size: 50px;cursor: pointer;">1</span>
+                    </div>
+                </div>
+                <div class="card executed"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 20%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.executed-data-iterations")</strong>
+                    </div>
+                    <div class="executed-types"
+                         style="display: flex;margin: 5px 0;padding: 0 10px;text-align: left; display: flex;">
+                        <div class="pass" style="flex: 0 0 50%;">
+                            <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                <strong style="color: #000;">$i18n.getText("reportsview.label.executed-test-cases-pass")</strong>
+                            </div>
+                            <div class="pass-count" style="display: flex;">
+                                <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/pass.svg"
+                                     alt="Pass" style="height: 25px;width: 25px;margin: auto 10px auto 0;">
+                                <span id="manual-iteration-current-executed-pass-tc-count"
+                                      style="color: #39b39b;font-size: 35px;">0</span>
+                            </div>
+                        </div>
+                        <div class="details-separator"></div>
+                        <div class="failed">
+                            <div class="aui-nav-heading" style="margin: 5px 0 0;">
+                                <strong style="color: #000;margin: 5px 0 0;/* display: flex; */">$i18n.getText("reportsview.label.executed-test-cases-failed")</strong>
+                            </div>
+                            <div class="failed-count"
+                                 style="height: 25px;width: 25px;margin: auto 10px auto 0;display: flex;">
+                                <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/failed.svg"
+                                     alt="Failed" style="height: 50px;width: 25px;margin: auto 10px auto 10px;">
+                                <span id="manual-iteration-current-executed-failed-tc-count"
+                                      style="color: #e75236;font-size: 35px;">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card not-executed"
+                     style="box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);flex: 0 0 25%;">
+                    <div class="aui-nav-heading" style="margin: 5px 0;">
+                        <strong style="color: #000;">$i18n.getText("reportsview.label.in-progress-data-iterations")</strong>
+                    </div>
+                    <div class="not-executed-count" style="font-size: 50px;">
+                        <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/in-progress.svg"
+                             alt="In Progress" style="height: 30px;width: 30px;margin: auto 10px auto 10px;">
+                        <span id="manual-iteration-current-inprogress-tc-count" style="color: #ffca0f;">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 0 10px; overflow: auto; height: 350px">
+        <table class="aui aui-table-sortable" style="overflow: auto;">
+            <thead>
+            <tr>
+                <th class="aui-table-column-issue-key">$i18n.getText("all.label.id")</th>
+                <th>$i18n.getText("all.label.data")</th>
+                <th>$i18n.getText("all.label.status")</th>
+            </tr>
+            </thead>
+            <tbody id="manul_tc_body">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="di-data-unavailable" style="display: none;">$i18n.getText("reportsview.label.no-iterations-for-this-test-case")</div>
+</section>
+
+<section id="show-defects-dialog"  class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog" aria-hidden="true">
+    <div style="padding: 10px;">
+        <header class="aui-dialog2-header" style="justify-content: left;">
+            <span class="glyphicon glyphicon-tasks" style="margin-right: 10px;"></span>
+            <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("reportsview.label.defect-summary")</span>
+            <span style="flex: 1"></span>
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+            </a>
+        </header>
+    </div>
+    <div style="padding: 0 10px; overflow: auto; height: 350px">
+        <table class="aui aui-table-sortable" style="overflow: auto;" id="defects-table" width="100%">
+            <thead>
+            <tr>
+                <th class="aui-table-column-issue-key" width="20%">$i18n.getText("reportsview.label.defect-key")</th>
+                <th width="50%">$i18n.getText("reportsview.label.defect-summary")</th>
+                <th width="30%">$i18n.getText("reportsview.label.defect-status")</th>
+            </tr>
+            </thead>
+            <tbody id="defect_tc_body">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="di-data-unavailable" style="display: none;">$i18n.getText("reportsview.label.no-iterations-for-this-test-case")</div>
+</section>
+
+<section id="show-test-case-defects-dialog"  class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog" aria-hidden="true">
+    <div style="padding: 10px;">
+        <header class="aui-dialog2-header" style="justify-content: left;">
+            <span class="glyphicon glyphicon-tasks" style="margin-right: 10px;"></span>
+            <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("reportsview.label.defect-summary")</span>
+            <span style="flex: 1"></span>
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+            </a>
+        </header>
+    </div>
+    <div style="padding: 0 10px; overflow: auto; height: 350px">
+        <table class="aui aui-table-sortable" style="overflow: auto;" id="defects-table" width="100%">
+            <thead>
+            <tr>
+                <th class="aui-table-column-issue-key" width="20%">$i18n.getText("reportsview.label.defect-key")</th>
+                <th width="50%">$i18n.getText("reportsview.label.defect-summary")</th>
+                <th width="30%">$i18n.getText("reportsview.label.defect-status")</th>
+            </tr>
+            </thead>
+            <tbody id="test_case_defect_tc_body">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="di-data-unavailable" style="display: none;">$i18n.getText("reportsview.label.no-iterations-for-this-test-case")</div>
+</section>
+
+<div id="test-reports-release-filter" style="display: none;">
+    <div class="release-container"></div>
+</div>
+
+<!-- TEST CASE SUMMARY VIEW -->
+<div id="view-test-case-dialog" class="aui-dialog2 aui-dialog2-xlarge  aui-layer" role="dialog" aria-hidden="true">
+    <div class="aui-page-panel-inner">
+        <div class="aui-page-panel-content">
+            <header class="aui-dialog2-header" style="border-bottom: none">
+                <div class="aui-page-header-inner">
+                    <span class="aui-icon aui-icon-large aui-iconfont-bullet-list"></span>
+                    <span class="header-title" id="selected-test-case-titile" style="vertical-align: text-top;"></span>
+                    <span class="aui-icon aui-icon-small aui-iconfont-close-dialog" id="test-case-close-button" style="vertical-align: text-top; float: right;">Close</span>
+                </div>
+            </header>
+            <div class="aui-tabs horizontal-tabs">
+                <ul class="tabs-menu manual-test-case-di-tab">
+                    <li class="menu-item active-tab" data-id="details" id="details-tab">
+                        <a href="#test-case-details-tab-my-tasks">
+                            <span class="aui-icon aui-icon-small aui-iconfont-info-circle"></span>
+                            $i18n.getText("reportsview.span.details")
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs-pane active-pane" id="test-case-details-tab-my-tasks">
+                    <form class="aui">
+                        <div class="field-group">
+                            <label for="test-case-name">
+                                $i18n.getText("reportsview.label.name")
+                                <span class="aui-icon icon-required">(required)</span>
+                            </label>
+                            <input class="text medium-field" type="text" id="test-case-name" name="test-case-name" disabled>
+                            <div class="description">$i18n.getText("reportsview.div.your-test-case-name")</div>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-description">
+                                $i18n.getText("reportsview.label.description")
+                            </label>
+                            <textarea class="textarea" disabled="true" name="test-case-description" id="test-case-description" rows="5"
+                                      placeholder="$i18n.getText('reportview.placeholder.your-description-here')"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-overall-expected-result">
+                                $i18n.getText("reportsview.label.overall-expected-result")
+                            </label>
+                            <textarea class="textarea" disabled="true" name="test-case-overall-expected-result" id="test-case-overall-expected-result" rows="5" disabled></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="test-case-overall-actual-result">
+                                $i18n.getText("reportsview.label.overall-actual-result")
+                            </label>
+                         <textarea class="textarea" name="test-case-overall-actual-result" id="test-case-overall-actual-result" rows="5" disabled></textarea>
+                        </div>
+                        <div class="field-group">
+                             <label for="test-case-overall-status">
+                                 $i18n.getText("reportsview.label.overall-status")
+                             </label>
+                             <select id="test-case-overall-status" class="select form-control" disabled>
+                                <option value="Select">
+                                    $i18n.getText("reportsview.label.select")
+                                </option>
+                                <option value="Pass">
+                                    $i18n.getText("reportsview.label.executed-test-cases-pass")
+                                </option>
+                                <option value="Failed">
+                                    $i18n.getText("reportsview.label.executed-test-cases-failed")
+                                </option>
+                                <option value="N/A">
+                                    N/A
+                                </option>
+                             </select>
+                        </div>
+                        <div class="field-group">
+                            <label>$i18n.getText("reportsview.label.automated")</label>
+                            <div class="radio">
+                                <input class="radio" type="radio" name="automatedRadioButtons" id="automatedYes" value="Yes" disabled>
+                                <label for="automatedYes">$i18n.getText("reportsview.label.yes")</label>
+                            </div>
+                            <div class="radio">
+                                <input class="radio" type="radio" checked="checked" name="automatedRadioButtons"
+                                       id="automatedNo" value="No" disabled>
+                                <label for="automatedNo">$i18n.getText("reportsview.label.no")</label>
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label>$i18n.getText("reportsview.label.manual")</label>
+                            <div class="radio">
+                                <input class="radio" type="radio" checked="checked" name="manualRadioButtons"
+                                       id="manualYes" value="Yes" disabled>
+                                <label for="manualYes">$i18n.getText("reportsview.label.yes")</label>
+                            </div>
+                            <div class="radio">
+                                <input class="radio" type="radio" name="manualRadioButtons" id="manualNo" value="No" disabled>
+                                <label for="manualNo">$i18n.getText("reportsview.label.no")</label>
+                            </div>
+                        </div>
+                        <div class="field-group table steps-group">
+                            <label for="steps-excel-view-my-report">
+                                Steps
+                            </label>
+                            <div class="steps-table-content">
+                                <div id="steps-excel-view-my-report" class="steps-excel-view"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="manual-data-iterations-tab" class="tabs-pane">
+                    <div class="row" id="row">
+                        <div class="iterations-column">
+                            <div class="iterations-table-content" style="overflow:auto;">
+                                <table id="iterations-table">
+                                    <tbody id="iterations-table-tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="iterations-result-table-div" style="overflow-y:auto;">
+                            <table class="aui" id="iterations-result-data-table">
+                            <tbody>
+                            </tbody>
+                            </table>
+                            <div class="iterations-result-data-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

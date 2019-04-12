@@ -1,0 +1,135 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-inline-dialog2")
+<div id="AI-RCI">
+    #set($finalValue = $value.get("RQmetrics").getAsJsonObject())
+    #set($rating = $finalValue.get("overall_rating").getAsInt())
+    #foreach($i in [1..5])
+    #if($i <= $rating)
+    <span class="aui-icon aui-icon-small aui-iconfont-star-filled" rating=$i style="color: orange;"></span>
+    #else
+    <span class="aui-icon aui-icon-small aui-iconfont-new-star" rating=$i></span>
+    #end
+    #end
+    <span>
+    <a id="ai-rci-details" href="#">
+    <img src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+         style="max-height: 20px;"/>
+    </a>
+    </span>
+</div>
+
+#set($continuances_rating_jsonObject = $finalValue.get("continuances_rating").getAsJsonArray())
+#if($continuances_rating_jsonObject.size() == 3 && !($continuances_rating_jsonObject.get(2).isEmpty()))
+#set($continuances_rating = $continuances_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($directives_rating_jsonObject = $finalValue.get("directives_rating").getAsJsonArray())
+#if($directives_rating_jsonObject.size() == 3 && !($directives_rating_jsonObject.get(2).isEmpty()))
+#set($directives_rating = $directives_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($imperatives_rating_jsonObject = $finalValue.get("imperatives_rating").getAsJsonArray())
+#if($imperatives_rating_jsonObject.size() == 3 && !($imperatives_rating_jsonObject.get(2).isEmpty()))
+#set($imperatives_rating = $imperatives_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($incomplete_rating_jsonObject = $finalValue.get("incomplete_rating").getAsJsonArray())
+#if($incomplete_rating_jsonObject.size() == 3 && !($incomplete_rating_jsonObject.get(2).isEmpty()))
+#set($incomplete_rating = $incomplete_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($options_rating_jsonObject = $finalValue.get("options_rating").getAsJsonArray())
+#if($options_rating_jsonObject.size() == 3 && !($options_rating_jsonObject.get(2).isEmpty()))
+#set($options_rating = $options_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($readability-rating_jsonObject = $finalValue.get("readability_rating").getAsJsonArray())
+#if($readability-rating_jsonObject.size() == 3 && !($readability-rating_jsonObject.get(2).isEmpty()))
+#set($readability-rating = $readability-rating_jsonObject.get(2).getAsString())
+#end
+
+#set($weak_phrases_rating_jsonObject = $finalValue.get("weak_phrases_rating").getAsJsonArray())
+#if($weak_phrases_rating_jsonObject.size() == 3 && !($weak_phrases_rating_jsonObject.get(2).isEmpty()))
+#set($weak_phrases_rating = $weak_phrases_rating_jsonObject.get(2).getAsString())
+#end
+
+#set($generalities_rating_jsonObject = $finalValue.get("generalities_rating").getAsJsonArray())
+#if($generalities_rating_jsonObject.size() == 3 && !($generalities_rating_jsonObject.get(2).isEmpty()))
+#set($generalities_rating = $generalities_rating_jsonObject.get(2).getAsString())
+#end
+
+#if($rating < 5)
+<section id="ai-details-dialog" class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog"
+         aria-hidden="true" style="min-height: auto;height: auto;max-height: fit-content;">
+
+    <header class="aui-dialog2-header" style="width: 100%;border-bottom: 0px;">
+        <h2 class="aui-dialog2-header-main" style="padding-top: 10px;max-width: 100%;">
+            <script type="text/javascript">#include("js/rci.js")
+            </script>
+            <span style="float: left;"><img
+                    src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+                    style="max-height: 50px;"></span>
+            <span style="float: left;margin: 12px;letter-spacing: 0.5px;font-weight: 700;color: hsl(208, 90%, 30%);"> Your requirement seems to be lacking clarity!!</span><br>
+
+        </h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div style="padding-left: 20px;padding-bottom: 20px;">
+        <div class="ai-rci-circle" id="circle-a">
+            <strong></strong>
+        </div>
+        <ul style="list-style-type: disc;padding-left: 10px;padding-right: 10px;">
+            <div style="font-size: 20px;font-style: oblique;border-bottom-color: azure;text-decoration: underline;padding-bottom: 10px;padding-top: 10px;font: bold;">
+                Recommendations
+            </div>
+            #if($continuances_rating && $continuances_rating.length() > 0 )
+            <li>$continuances_rating</li>
+            #end
+            #if($directives_rating && $directives_rating.length() > 0 )
+            <li>$directives_rating</li>
+            #end
+            #if($imperatives_rating && $imperatives_rating.length() > 0)
+            <li>$imperatives_rating</li>
+            #end
+            #if($incomplete_rating && $incomplete_rating.length() > 0)
+            <li>$incomplete_rating</li>
+            #end
+            #if($options_rating && $options_rating.length() > 0)
+            <li>$options_rating</li>
+            #end
+            #if($readability-rating && $readability-rating.length() > 0)
+            <li>$readability-rating</li>
+            #end
+            #if($weak_phrases_rating && $weak_phrases_rating.length() > 0 )
+            <li>$weak_phrases_rating</li>
+            #end
+            #if($generalities_rating && $generalities_rating.length() > 0)
+            <li>$generalities_rating</li>
+            #end
+        </ul>
+    </div>
+</section>
+#else
+<section id="ai-details-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog"
+         aria-hidden="true" style="min-height: auto;height: auto;max-height: fit-content;">
+
+    <header class="aui-dialog2-header" style="width: 100%;border-bottom: 0px;">
+        <h2 class="aui-dialog2-header-main" style="padding-top: 10px;max-width: 100%;">
+            <script type="text/javascript">#include("js/rci.js")
+            </script>
+            <span style="float: left;"><img
+                    src="$req.contextPath/download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/test-management/robotics-n.svg"
+                    style="max-height: 50px;"></span>
+            <span style="float: left;margin: 12px;letter-spacing: 0.5px;font-weight: 700;color: hsl(208, 90%, 30%);"> Awesome  </span><br>
+
+        </h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div style="padding-left: 20px;padding-bottom: 20px;">
+        It's the easiest to read.
+    </div>
+</section>
+#end

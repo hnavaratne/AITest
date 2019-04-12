@@ -1,0 +1,290 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-sidebar")
+$webResourceManager.requireResource("com.atlassian.auiplugin:aui-forms")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-toggle")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:dialog2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-spinner")
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-progress-tracker")
+$webResourceManager.requireResource("com.virtusa.gto.plugins.aitest:heat-map-resource")
+$webResourceManager.requireResource("com.virtusa.gto.plugins.aitest:cron-resource")
+
+<div class="container" style="width: 100%; border-bottom: 2px solid #f4f5f7; background: white;">
+    <ol class="aui-progress-tracker" style="width: 100%;">
+        <li id="aui-progress-tracker-test-case-designing" class="aui-progress-tracker-step " style="width:25%"><span ><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-designing.label.auipgt-tcd")</a></span></li>
+        <li id="aui-progress-tracker-test-case-planning" class="aui-progress-tracker-step" style="width:25%"><span><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-planning.label.auipgt-tcp")</a></span></li>
+        <li id="aui-progress-tracker-test-case-execution" class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:25%"><span><a href="#" class="aui-lozenge aui-lozenge-moved">$i18n.getText("all.li.aui-progress-tracker-test-case-execution.label.auipgt-tce")</a></span></li>
+        <li id="aui-progress-tracker-test-case-results" class="aui-progress-tracker-step" style="width:25%"><span><a href="#" class="aui-lozenge">$i18n.getText("all.li.aui-progress-tracker-test-case-results.label.auipgt-tcr")</a></span></li>
+        <!--<li id="aui-progress-tracker-test-case-defects" class="aui-progress-tracker-step" style="width:20%"><span><a-->
+                <!--href="#" class="aui-lozenge">Defects</a></span></li>-->
+    </ol>
+</div>
+<div class="aui-sidebar" id="test-execution-side-nav">
+    <div class="aui-sidebar-wrapper">
+        <div class="aui-sidebar-body">
+            <div class="aui-nav-heading" title="Stuff" style="margin: 10px;">
+                <strong>$i18n.getText("executionview.label.test-plans")</strong>
+            </div>
+            <div class="test-execution-test-plans-grouping">
+                <nav class="aui-navgroup aui-navgroup-vertical">
+                    <div class="aui-navgroup-inner">
+                        <div class="aui-sidebar-group aui-sidebar-group-tier-one">
+                            <ul class="aui-nav" id="test-execution-test-plan-ul">
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="hr"></div>
+            <div class="aui-nav-heading" title="Stuff" style="margin: 10px;">
+                <strong>$i18n.getText("all.label.test-cases")</strong>
+            </div>
+            <div class="test-execution-test-cases-grouping">
+                <nav class="aui-navgroup aui-navgroup-vertical">
+                    <div class="aui-navgroup-inner">
+                        <div class="aui-sidebar-group aui-sidebar-group-tier-one">
+                            <ul class="aui-nav">
+                                <li id="test-exec-tc-root-node" type="test-exec-tc-folder">
+                                    <a class="aui-nav-item">
+                                        <span class="aui-icon aui-icon-small aui-iconfont-share"></span>
+                                        <span class="aui-nav-item-label">$i18n.getText("all.label.root")</span>
+                                    </a>
+                                </li>
+                                <ul class="aui-nav" parent="test-exec-tc-root-node"></ul>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="test-exection-selected-items-panel" class="aui-page-panel">
+    <div class="selected-test-exec-table-container">
+        <div class="selected-test-exec-table-header">
+            <table class="aui">
+                <thead style="border-bottom: 2px solid #b3d4ff;">
+                    <tr>
+                        <th width="15%">
+                            <div style="float:left; margin-top:3px;">$i18n.getText("all.label.name")</div>
+                        </th>
+                        <th width="80%">
+                            <div style="float:left; margin-top:3px;">$i18n.getText("all.label.configuration")</div>
+                            <div>
+                                <div style="float:right;"> $i18n.getText("executionview.label.impact-analysis")
+                                    <button id="impact-anaylsis-btn" style="margin-right: 35px; margin-left:10px">
+                                        <span class="aui-icon aui-icon-small aui-iconfont-queues"></span>
+                                    </button>
+                                    <div style="margin-top: 3px;float:right;" >$i18n.getText("executionview.label.parallel-execution")</div>
+                                </div>
+                            </div>
+                        </th>
+                        <th width="5%">
+                            <div style="float:left;">
+                            <aui-toggle id="parallel-execution" tooltip-on="Enabled" tooltip-off="Disabled"></aui-toggle>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="selected-test-exec-table-content" style="overflow: auto;">
+            <table class="aui">
+                <tbody id="selected-test-exec-table-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="test-exec-actions" style="border-top: 1px solid #dfe1e6;">
+        <button class="aui-button" style="margin: 10px;" id="execute-test-plan-btn">
+            <span class="aui-icon aui-icon-small aui-iconfont-addon"></span>$i18n.getText("executionview.label.start-execution")
+        </button>
+        <button class="aui-button" style="margin: 10px;" id="schedule-execute-test-plan-btn">
+            <span class="aui-icon aui-icon-small aui-iconfont-recent" style="margin-right: 5px;"></span>$i18n.getText("executionview.label.schedule-execution")
+        </button>
+    </div>
+</div>
+
+
+<section id="run-execution-entity-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" data-aui-modal="true" role="dialog"
+             aria-hidden="true">
+        <header class="aui-dialog2-header" style="justify-content: left;">
+            <span class="aui-icon aui-icon-large aui-iconfont-addon" style="margin-right: 10px;"></span>
+            <span class="aui-dialog2-header-main" style="font-size: 18px;">$i18n.getText("executionview.label.start-execution")</span>
+            <span style="flex: 1"></span>
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">$i18n.getText("all.label.close")</span>
+            </a>
+        </header>
+        <div class="aui-dialog2-content">
+            <form class="aui">
+                <div class="field-group">
+                    <label for="exection-entity-release">
+                        Release
+                    </label>
+                    <select id="exection-entity-release" style="max-width: 250px !important;">
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="exection-entity-release-description">
+                        Description
+                    </label>
+                    <textarea class="textarea" name="exection-entity-release-description" id="exection-entity-release-description" rows="3"
+                              placeholder="Your description here..." style="max-width: 250px !important;"></textarea>
+                </div>
+            </form>
+        </div>
+        <footer class="aui-dialog2-footer">
+            <div class="aui-dialog2-footer-actions">
+                <button id="run-exection-entity-btn" class="aui-button aui-button-primary">$i18n.getText("executionview.label.execute")</button>
+                <button id="cancel-exection-entity-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+            </div>
+        </footer>
+</section>
+
+<section id="browser-selector-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" data-aui-modal="true" role="dialog"
+             aria-hidden="true">
+        <header class="aui-dialog2-header">
+            <h3 class="aui-dialog2-header-main">$i18n.getText("executionview.label.browser-selector")</h3>
+        </header>
+        <div class="aui-dialog2-content">
+            <form class="aui">
+                <aui-select placeholder="Select a Browser" id = "browser-select-test-plan">
+                    <aui-option>Select</aui-option>
+                    <aui-option>IE</aui-option>
+                    <aui-option>Firefox</aui-option>
+                    <aui-option>Chrome</aui-option>
+                </aui-select>
+            </form>
+        </div>
+        <footer class="aui-dialog2-footer">
+            <div class="aui-dialog2-footer-actions">
+                <button id="apply-browser-btn" class="aui-button aui-button-primary">$i18n.getText("all.label.apply")</button>
+                <button id="cancel-browser-btn" class="aui-button aui-button-default">$i18n.getText("all.label.cancel")</button>
+            </div>
+        </footer>
+</section>
+
+<section id="impact-analysis-dialog" class="aui-dialog2 aui-dialog2-large aui-layer" role="dialog" aria-hidden="true">
+        <div class="aui-dialog2-content">
+            <div width="100%">
+                <table class="aui" id="requirment-data-table-main">
+                    <thead id="auithead">
+                        <th id = "impact-analysis-header" style="padding-bottom: 10px;">
+                            <nav class="aui-navgroup aui-navgroup-horizontal" id="impact-view-nav">
+                                <div class="aui-navgroup-inner">
+                                    <div class="aui-navgroup-primary" id="aui-navgroup-tab-selected" style="width: 34%;">
+                                        <ul class="aui-nav">
+                                            <li class="aui-nav-selected" id="impact-analysis-item"><a href="#impact-analysis-tab" style="font-size:18px">$i18n.getText("executionview.label.impact-analysis") </a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="aui-navgroup-primary" id="aui-navgroup-tab" style="width: 50%;margin-left: 5px;">
+                                        <ul class="aui-nav">
+                                            <li class="aui-nav" id="heat-map-item"><a href="#heat-map-tab" style="font-size:18px;">$i18n.getText("executionview.label.heat-map") </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </th>
+                        <th id="impact-analysis-release" style="vertical-align: middle;">
+                            <div class="field-group" style="float:right">
+                                <label for="impact-analysis-release" style="margin-right:15px; margin-top:6px; float:left">
+                                        <h5>Release</h5>
+                                </label>
+                                <select placeholder="Select a Release" id="impact-analysis-release-selector" style="float:right">
+                                </select>
+                            </div>
+                        </th>
+                    </thead>
+                    <tbody id="auitbody">
+                    </tbody>
+                </table>
+            <div class="row" id="impact-analysis-tab">
+                <div class="component-column">
+                    <div class="components-table-content">
+                        <table id="components-results-table" class="aui controller"  style="overflow-y: auto;">
+                            <tbody id="components-results-table-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="requirment-table-column">
+                    <table class="aui" id="requirment-data-table">
+                    <thead id="requirment-data-head">
+                        <th id = "test-casses-header" class="requirement-table-headers" style="text-align:center; height: 25px;">$i18n.getText("all.label.test-cases")</th>
+                        <th id = "total-test-casses" class="requirement-table-headers"  style="text-align:center"> All - 0</th>
+                        <th id = "added-to-build" class="requirement-table-headers"  style="text-align:center"> Added to build - 0</th>
+                        <th> <button id="add-to-build-btn" style="margin-top: -5px; border-radius: 6px; padding: 5px; float: right;">$i18n.getText("executionview.label.add-to-execution") </button> </th>
+                    </thead>
+                    <tbody >
+                    </tbody>
+                    </table>
+                    <div id="requirment-data-body" style="overflow: auto;"></div>
+                </div>
+            </div>
+            <div class="heat-map-view" id="heat-map-tab">
+                <canvas id="container" style="min-height: 400px; min-width: 700px; width: 700px; height: 400px;"></canvas>
+            </div>
+            </div>
+        </div>
+</section>
+
+
+<section id="schedule-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" role="dialog" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <span class="aui-icon aui-icon-large aui-iconfont-recent" style="margin-right: 10px;"></span>
+        <span class="aui-dialog2-header-main" style="font-size: 18px;">Schedule</span>
+        <span style="flex: 1"></span>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <div class="aui-dialog2-content">
+        <form class="aui">
+            <div class="field-group">
+                <label for="schedule-entity-release">
+                        Release
+                </label>
+                <select id="schedule-entity-release" style="max-width: 300px;">
+                </select>
+                </div>
+                <div class="field-group">
+                <label for="schedule-entity-release-description">
+                        Description
+                </label>
+                <textarea class="textarea" name="schedule-entity-release-description" id="schedule-entity-release-description" rows="3"
+                    placeholder="Your description here..." style="max-width: 300px !important;"></textarea>
+                </div>
+            <div class="field-group">
+                <label for="schedule-name">Schedule Name
+                    <span class="aui-icon icon-required">(required)</span></label>
+                <input class="text long-field" type="text"
+                       id="schedule-name" name="schedule-name" placeholder="Schedule Name" style="max-width: 300px;">
+            </div>
+            <div class="field-group">
+                <label for="cron-value">Cron Value
+                    <span class="aui-icon icon-required">(required)</span></label>
+                <input class="text long-field" type="text"
+                       id="cron-value" name="cron-value" placeholder="Cron Value" style="max-width: 300px;">
+                <!--<cron-generator ng-model="myOutput" config="cronConfig" name="cron-value"></cron-generator>
+                <p class="lead">{{myOutput}}</p>-->
+                <!--<cron-gen ng-model="cronExpression"
+                  ng-disabled="isCronDisabled">
+                </cron-gen>
+                 <label id="generated-cron-label">Generated Cron Expression:</label>
+                <span class="text-success">
+                <b class="ng-binding">{{cronExpression}}</b>
+                </span>-->
+            </div>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="add-schedule-button" class="aui-button aui-button-primary">Add</button>
+            <button id="schedule-cancel-button" class="aui-button aui-button-default">Cancel</button>
+        </div>
+    </footer>
+</section>

@@ -1,0 +1,65 @@
+div.oscar-actions {
+    height: 615px;
+}
+
+div.oscar-actions button.action-btn {
+    position: absolute;
+    top: 50px;
+    height: 35px;
+    outline: none;
+    background: #e6e6e6;
+    color: #0747a6;
+}
+
+div.oscar-actions button.back-btn,
+div.oscar-actions button.save-btn {
+    width: 45px;
+}
+
+div.oscar-actions button.back-btn {
+    left: 25px;
+}
+
+div.oscar-actions button.save-btn {
+    left: 75px;
+}
+
+div.oscar-actions button.value-expansion-btn {
+    left: 125px;
+    width: 160px;
+}
+
+div.oscar-actions button.generate-btn {
+    left: 290px;
+}
+
+div.oscar-actions button.generate-btn img,
+div.oscar-actions button.value-expansion-btn img {
+    margin-right: 10px;
+}
+
+div.oscar-actions button.back-btn img,
+div.oscar-actions button.save-btn img,
+div.oscar-actions button.generate-btn img,
+div.oscar-actions button.value-expansion-btn img {
+    height: 15px;
+}
+
+section#oscar-value-expansion-dialog,
+section#oscar-integration-dialog {
+    width: 95%;
+    height: 90%;
+    top: 5%;
+}
+
+section#oscar-integration-dialog div.aui-dialog2-content {
+    padding: 0;
+}
+
+#button-navi-zoom-out{
+background: url("../../download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/mindmap/zoom-out.png");
+}
+#button-navi-zoom-in{
+background: url("../../download/resources/com.virtusa.gto.plugins.aitest:aitest-resources/images/mindmap/zoom-in.png");
+}
+

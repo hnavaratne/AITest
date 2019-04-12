@@ -1,0 +1,24 @@
+#if($value)
+<div id="script-header">
+    <table class="aui">
+        <thead>
+        <tr>
+            <th class="test-case-id" id="test-case-id">#</th>
+            <th id="test-case-name">Script Name</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="script-content">
+    <table class="aui">
+        <tbody>
+        #foreach($script in $value)
+        <tr>
+            <td class="test-case-id">$script.get("script-id").getAsString()</td>
+            <td>$script.get("script-name").getAsString()</td>
+        </tr>
+        #end
+        </tbody>
+    </table>
+</div>
+#end

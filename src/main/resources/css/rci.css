@@ -1,0 +1,207 @@
+.glyphicon-star {
+   color: orange;
+   line-height: 35px;
+   font-size: 1.5em;
+ }
+
+.aui-iconfont-star-filled{
+    color: orange;
+ }
+
+ .aui-iconfont-new-star{
+    color: black;
+ }
+
+ .glyphicon-star-empty {
+   line-height: 32px;
+   font-size: 1.5em;
+ }
+
+ .panel-group .panel {
+   margin-top: 0;
+   padding: 5;
+ }
+
+ .requirementId {
+    border-bottom: 1px solid #f0f2f7;
+ }
+
+ .rci {
+    border: 1px solid #c1c7d0;
+    max-width: fit-content;
+    padding: 5px;
+ }
+
+ .req-highest{
+    background: rgb(208, 208, 208);
+    color: white;
+    min-width: 70px;
+ }
+
+ .req-high{
+     background: rgb(208, 208, 208);
+     min-width: 70px;
+     color: white;
+ }
+
+ .req-low{
+    min-width: 70px;
+    color: white;
+    background: rgb(208, 208, 208);
+ }
+
+ .req-lowest{
+    background: rgb(208, 208, 208);
+    color: white;
+    min-width: 70px;
+ }
+
+ .aui-lozenge.aui-lozenge-subtle{
+    background: rgb(208, 208, 208);
+ }
+
+ .glyphicon-filter{
+    font-size: 30px;
+    display: flex;
+ }
+
+ .value.type-scripts{
+     width: 100%;
+ }
+
+ .script-content{
+     overflow: auto;
+     height: 75px;
+     width: auto;
+ }
+
+ .test-case-id{
+     width: 20%;
+ }
+
+ .aui-select2-container.select2-container {
+     background: white;
+     border: 1px solid #c1c7d0;
+  }
+
+  #AI-RCI img {
+    color: #0052cc;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes star-rating-blink{
+   0%{opacity: 0;}
+   50%{opacity: .5;}
+   100%{opacity: 1;}
+   }
+
+  #more-details .aui-inline-dialog .aui-inline-dialog-contents{
+      box-shadow: 0 4px 8px 4px rgba(9,30,66,0.25), 0 0 1px rgba(9,30,66,0.31);
+      background: #fff;
+      border: 0 solid #dfe1e6;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 20px;
+  }
+
+  @keyframes zoominoutsinglefeatured {
+      0% {
+          transform: scale(1,1);
+      }
+      50% {
+          transform: scale(1.5,1.5);
+      }
+      100% {
+          transform: scale(1,1);
+      }
+  }
+
+  @keyframes wobble {
+
+      from {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: scale(1.5,1.5) translate3d(0, 0, 0);
+        }
+
+        15% {
+          -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+          transform: scale(1.5,1.5) translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+        }
+
+        30% {
+          -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+          transform: scale(1.5,1.5) translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+        }
+
+        45% {
+          -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+          transform: scale(1.5,1.5) translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+        }
+
+        60% {
+          -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+          transform: scale(1.5,1.5) translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+        }
+
+        75% {
+          -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+          transform: scale(1.5,1.5) translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+        }
+
+        to {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: scale(1.5,1.5) translate3d(0, 0, 0);
+        }
+  }
+
+  @keyframes bounce {
+    from,
+    20%,
+    53%,
+    80%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: scale(1.5,1.5) translate3d(0, 0, 0);
+    }
+
+    40%,
+    43% {
+      -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      -webkit-transform: translate3d(0, -5px, 0);
+      transform: scale(1.5,1.5) translate3d(0, -5px, 0);
+    }
+
+    70% {
+      -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      -webkit-transform: translate3d(0, -5px, 0);
+      transform: scale(1.5,1.5) translate3d(0, -5px, 0);
+    }
+
+    90% {
+      -webkit-transform: translate3d(0, -4px, 0);
+      transform: scale(1.5,1.5) translate3d(0, -4px, 0);
+    }
+  }
+
+  .ai-rci-circle {
+  	width: 200px;
+      margin: 6px 20px 20px;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+  	vertical-align: top;
+  	strong {
+  		position: absolute;
+  		top: 70px;
+  		left: 0;
+  		width: 100%;
+  		text-align: center;
+  		line-height: 45px;
+  		font-size: 43px;
+  	}
+  }
+

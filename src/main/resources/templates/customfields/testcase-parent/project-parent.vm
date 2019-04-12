@@ -1,0 +1,7 @@
+#if($selectedParent)
+<option value=$selectedParent.get(0).getID() selected>$selectedParent.get(0).getFolderName()</option>
+#end
+
+#foreach ($parent in $parentList)
+<option value=$parent.getID()>$parent.getFolderName()</option>
+#end

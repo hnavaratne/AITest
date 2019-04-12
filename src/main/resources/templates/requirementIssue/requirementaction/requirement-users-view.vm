@@ -1,0 +1,8 @@
+$webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-select2")
+#foreach($user in $userList)
+<option value=$user.getUsername()>$user.getUsername()</option>
+#end
+
+ #foreach($user in $userList)
+      <option id="userId" issue-id=$user.getID()> $user.userName</option>
+ #end
